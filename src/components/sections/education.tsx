@@ -3,7 +3,7 @@ export function Education() {
     {
       institution: 'Trường Đại học Kangwon, Chuncheon',
       degree: 'Thạc sĩ',
-      years: '2025 - Hiện tại',
+      years: '03/2025 - Hiện tại',
     },
     {
       institution: 'Trường Đại học Đà Lạt, Lâm Đồng',
@@ -31,7 +31,15 @@ export function Education() {
           {educationData.map((item, index) => (
             <div key={index} className="relative flex items-start w-full group">
               <div className={`w-1/2 ${index % 2 === 0 ? 'pr-20 text-right' : 'order-1 pl-20 text-left'}`}>
-                <p className="text-lg text-primary">{item.years.split(' - ')[0]}</p>
+                <p className="text-lg text-primary">
+                  {item.years.includes('Hiện tại') ? (
+                    <>
+                      {item.years.split(' - ')[0]} - <span className="font-bold">Hiện tại</span>
+                    </>
+                  ) : (
+                    item.years
+                  )}
+                </p>
               </div>
 
               <div className="absolute left-1/2 top-2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background z-10"></div>
