@@ -48,7 +48,7 @@ export default function Home() {
         <div className="mt-8 text-center">
             <Button asChild>
                 <Link href="/posts">
-                    Xem toàn bộ bài viết <ArrowRight className="ml-2 h-4 w-4" />
+                    Đọc thêm <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
             </Button>
         </div>
