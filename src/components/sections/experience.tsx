@@ -47,14 +47,15 @@ export function Experience() {
         <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-border" aria-hidden="true"></div>
         <div className="space-y-10">
           {experienceData.map((item, index) => (
-             <div key={index} className="relative flex items-center w-full">
-                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'order-1 pl-8 text-left'}`}>
-                  <p className="font-bold text-lg text-primary">{item.period}</p>
+             <div key={index} className="relative flex items-start w-full group">
+                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-16 text-right' : 'order-1 pl-16 text-left'}`}>
+                  <p className="text-lg text-primary">{item.period}</p>
                 </div>
                 
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background z-10"></div>
+                <div className="absolute left-1/2 top-2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background z-10"></div>
 
-                <div className={`w-1/2 ${index % 2 === 0 ? 'pl-8 text-left' : 'order-first pr-8 text-right'}`}>
+                <div className={`w-1/2 relative ${index % 2 === 0 ? 'pl-16 text-left' : 'order-first pr-16 text-right'}`}>
+                  <div className={`absolute top-3 h-px w-8 bg-border ${index % 2 === 0 ? 'left-8' : 'right-8'}`}></div>
                   <h3 className="text-xl font-medium font-heading text-primary">{item.title}</h3>
                   <p className="text-muted-foreground mt-1">{item.company}</p>
                   {item.duration && <p className="text-sm text-muted-foreground/80">{item.duration}</p>}
