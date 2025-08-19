@@ -84,30 +84,30 @@ export default function Home() {
       {/* Education Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Học vấn</h2>
-        <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
-          <div className="text-center w-full">
-              <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Kangwon, Chuncheon
-              </h3>
-              <p className="text-muted-foreground">Thạc sĩ (2025 - Hiện tại)</p>
+        <div className="flex flex-col items-stretch space-y-4 max-w-3xl mx-auto">
+          <div className="flex justify-between items-baseline w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+                Đại học Kangwon, Chuncheon
+            </h3>
+            <p className="text-muted-foreground text-right">Thạc sĩ (2025 - Hiện tại)</p>
           </div>
-          <div className="text-center w-full">
-              <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Đà Lạt
-              </h3>
-              <p className="text-muted-foreground">Cử nhân (2019 - 2024)</p>
+          <div className="flex justify-between items-baseline w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+                Đại học Đà Lạt
+            </h3>
+            <p className="text-muted-foreground text-right">Cử nhân (2019 - 2024)</p>
           </div>
-          <div className="text-center w-full">
-              <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Wonkwang, Iksan
-              </h3>
-              <p className="text-muted-foreground">Sinh viên trao đổi (2023)</p>
+          <div className="flex justify-between items-baseline w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+                Đại học Wonkwang, Iksan
+            </h3>
+            <p className="text-muted-foreground text-right">Sinh viên trao đổi (2023)</p>
           </div>
-           <div className="text-center w-full">
-              <h3 className="text-xl font-medium font-heading text-primary">
-                  THPT Bùi Thị Xuân, Đà Lạt
-              </h3>
-              <p className="text-muted-foreground">Tốt nghiệp (2019)</p>
+          <div className="flex justify-between items-baseline w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+                THPT Bùi Thị Xuân, Đà Lạt
+            </h3>
+            <p className="text-muted-foreground text-right">Tốt nghiệp (2019)</p>
           </div>
         </div>
       </section>
