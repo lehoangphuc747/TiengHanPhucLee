@@ -93,7 +93,7 @@ export default function Home() {
           </div>
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Đà Lạt, Lâm Đồng
+                  Đại học Đà Lạt
               </h3>
               <p className="text-muted-foreground">Cử nhân (2019 - 2024)</p>
           </div>
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
            <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  THPT Bùi Thị Xuân, Đà Lạt
+                  THPT Bùi Thị Xuân
               </h3>
               <p className="text-muted-foreground">Tốt nghiệp (2019)</p>
           </div>
