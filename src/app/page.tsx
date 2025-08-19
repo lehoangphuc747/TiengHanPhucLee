@@ -37,7 +37,7 @@ export default function Home() {
                 href={`/posts/${post.slug}`} 
                 className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
               >
-                <h3 className="text-2xl font-semibold font-heading text-primary group-hover:text-accent-foreground">
+                <h3 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground">
                   {post.title}
                 </h3>
               </Link>
@@ -45,7 +45,7 @@ export default function Home() {
             </Fragment>
           ))}
         </div>
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-left">
             <Button asChild>
                 <Link href="/posts">
                     Xem toàn bộ bài viết <ArrowRight className="ml-2 h-4 w-4" />
