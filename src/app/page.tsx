@@ -93,15 +93,15 @@ export default function Home() {
           </div>
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Wonkwang, Hàn Quốc
-              </h3>
-              <p className="text-muted-foreground">Sinh viên trao đổi (2023)</p>
-          </div>
-          <div className="text-center w-full">
-              <h3 className="text-xl font-medium font-heading text-primary">
                   Đại học Đà Lạt, Việt Nam
               </h3>
               <p className="text-muted-foreground">Cử nhân (2019 - 2024)</p>
+          </div>
+          <div className="text-center w-full">
+              <h3 className="text-xl font-medium font-heading text-primary">
+                  Đại học Wonkwang, Hàn Quốc
+              </h3>
+              <p className="text-muted-foreground">Sinh viên trao đổi (2023)</p>
           </div>
            <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
