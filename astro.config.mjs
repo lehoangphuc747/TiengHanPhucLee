@@ -10,7 +10,7 @@ export default defineConfig({
 	integrations: [mdx(), sitemap()],
 	image: {
 		service: {
-			entrypoint: 'astro/assets/services/passthrough',
+			entrypoint: 'astro/assets/services/sharp',
 		},
 	},
 });
