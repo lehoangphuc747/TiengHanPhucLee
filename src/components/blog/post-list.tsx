@@ -4,9 +4,8 @@
 import { useState, useMemo, Fragment } from 'react';
 import Link from 'next/link';
 import type { Post } from '@/lib/types';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 interface PostListProps {
   posts: Post[];
@@ -39,21 +38,34 @@ export function PostList({ posts }: PostListProps) {
     }
   }, [posts, sortOption]);
 
+  const handleSortChange = (value: SortOption) => {
+    if (value) { // ToggleGroup allows deselecting all, this prevents that
+      setSortOption(value);
+    }
+  };
+
   return (
     <section>
       <div className="flex flex-wrap items-center justify-end gap-2 mb-6">
         <span className="text-sm text-muted-foreground mr-2">Sắp xếp theo:</span>
-        {sortOptions.map(option => (
-          <Button
-            key={option.value}
-            variant={sortOption === option.value ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setSortOption(option.value)}
-            className="text-xs md:text-sm"
-          >
-            {option.label}
-          </Button>
-        ))}
+        <ToggleGroup
+          type="single"
+          value={sortOption}
+          onValueChange={handleSortChange}
+          aria-label="Sắp xếp bài viết"
+          className="flex-wrap justify-end"
+        >
+          {sortOptions.map(option => (
+            <ToggleGroupItem 
+              key={option.value} 
+              value={option.value} 
+              aria-label={option.label}
+              className="text-xs md:text-sm"
+            >
+              {option.label}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
       </div>
       <div className="flex flex-col">
         {sortedPosts.map((post: Post, index: number) => (
