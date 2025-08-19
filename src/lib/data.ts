@@ -42,25 +42,25 @@ export const posts: Post[] = [
 
 export const projects: Project[] = [
   {
-    title: 'ankivn.com',
+    title: 'Trang Anki Việt Nam',
     description: 'Cộng đồng người Việt sử dụng Anki để học tập hiệu quả.',
     link: 'https://ankivn.com',
     icon: Code,
   },
   {
-    title: 'hocanki.com',
+    title: 'Trang Học Anki',
     description: 'Hướng dẫn và tài nguyên giúp bạn tận dụng tối đa Anki.',
     link: 'https://hocanki.com',
     icon: BookOpen,
   },
   {
-    title: 'thefreekorean.com',
+    title: 'Trang Tiếng Hàn Miễn Phí | The Free Korean',
     description: 'Nguồn tài liệu học tiếng Hàn miễn phí và chất lượng.',
     link: 'https://thefreekorean.com',
     icon: BookOpen,
   },
   {
-    title: 'theochanducphat.com',
+    title: 'Trang tu tập Phật giáo | Theo Chân Đức Phật',
     description: 'Khám phá và thực hành lời dạy của Đức Phật trong cuộc sống hàng ngày.',
     link: 'https://theochanducphat.com',
     icon: Wind,
