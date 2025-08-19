@@ -2,7 +2,7 @@ export function Experience() {
   return (
     <section>
       <h2 className="text-3xl font-bold font-heading mb-8 text-center">Kinh nghiệm làm việc</h2>
-      <div className="space-y-6 max-w-3xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 max-w-5xl mx-auto">
         <div>
           <h3 className="text-xl font-medium font-heading text-primary">Dạy Anki</h3>
           <p className="text-muted-foreground ml-4">hocanki.com (2022 - Hiện tại)</p>
