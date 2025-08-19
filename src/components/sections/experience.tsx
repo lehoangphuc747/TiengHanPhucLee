@@ -43,54 +43,22 @@ export function Experience() {
   return (
     <section>
       <h2 className="text-3xl font-bold font-heading mb-12 text-center">Kinh nghiệm làm việc</h2>
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative max-w-5xl mx-auto px-4">
         <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-border" aria-hidden="true"></div>
         <div className="space-y-10">
           {experienceData.map((item, index) => (
-             <div key={index} className="relative">
-              <div className="absolute left-1/2 top-2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background"></div>
-               <div className="grid md:grid-cols-2 gap-x-8 items-center">
-                 {/* Timeline Line */}
-                 <div
-                   className={`absolute left-1/2 top-[1.10rem] h-0.5 w-1/2 bg-border ${
-                     index % 2 === 0 ? '-translate-x-full' : ''
-                   }`}
-                   aria-hidden="true"
-                 ></div>
+             <div key={index} className="relative flex items-center w-full">
+                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'order-1 pl-8 text-left'}`}>
+                  <p className="font-bold text-lg text-primary">{item.period}</p>
+                </div>
+                
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background z-10"></div>
 
-                 {/* Year Display */}
-                 <div
-                   className={
-                     index % 2 === 0
-                       ? 'md:col-start-1 text-right pr-8'
-                       : 'md:col-start-2 text-left pl-8'
-                   }
-                 >
-                   <p className="font-bold text-lg text-primary">{item.period}</p>
-                 </div>
-
-                 {/* Empty div for spacing */}
-                 <div
-                   className={
-                     index % 2 === 0 ? 'md:col-start-2' : 'md:col-start-1 md:row-start-1'
-                   }
-                 ></div>
-
-                 {/* Content */}
-                 <div
-                   className={
-                     index % 2 === 0
-                       ? 'md:col-start-1 md:row-start-1 pr-8 text-right'
-                       : 'md:col-start-2 pl-8 text-left'
-                   }
-                 >
-                   <div className="w-full">
-                     <h3 className="text-xl font-medium font-heading text-primary">{item.title}</h3>
-                     <p className="text-muted-foreground mt-1">{item.company}</p>
-                     {item.duration && <p className="text-sm text-muted-foreground/80">{item.duration}</p>}
-                   </div>
-                 </div>
-               </div>
+                <div className={`w-1/2 ${index % 2 === 0 ? 'pl-8 text-left' : 'order-first pr-8 text-right'}`}>
+                  <h3 className="text-xl font-medium font-heading text-primary">{item.title}</h3>
+                  <p className="text-muted-foreground mt-1">{item.company}</p>
+                  {item.duration && <p className="text-sm text-muted-foreground/80">{item.duration}</p>}
+                </div>
             </div>
           ))}
         </div>
