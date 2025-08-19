@@ -16,6 +16,7 @@ type ToasterToast = ToastProps & {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
+  duration?: number
 }
 
 const actionTypes = {
@@ -183,6 +184,24 @@ function useToast() {
       }
     }
   }, [state])
+
+  React.useEffect(() => {
+    state.toasts.forEach((toast) => {
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+      if (toast.duration) {
+        timeout = setTimeout(() => {
+          dispatch({ type: "DISMISS_TOAST", toastId: toast.id });
+        }, toast.duration);
+      }
+
+      return () => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
+    });
+  }, [state.toasts]);
+
 
   return {
     ...state,

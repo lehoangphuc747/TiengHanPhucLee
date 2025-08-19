@@ -56,6 +56,7 @@ export function ShareButtons({ title }: ShareButtonsProps) {
       toast({
         title: "Đã sao chép!",
         description: "Liên kết bài viết đã được sao chép vào bộ nhớ tạm.",
+        duration: 3000,
       });
       setTimeout(() => setIsCopied(false), 2000);
     }).catch(err => {
