@@ -4,21 +4,25 @@ export function Education() {
       institution: 'Trường Đại học Kangwon, Chuncheon',
       degree: 'Thạc sĩ',
       years: '03/2025 - Hiện tại',
+      duration: '',
     },
     {
       institution: 'Trường Đại học Đà Lạt, Lâm Đồng',
       degree: 'Cử nhân',
       years: '2019 - 2024',
+      duration: '5 năm',
     },
     {
       institution: 'Trường Đại học Wonkwang, Iksan',
       degree: 'Sinh viên trao đổi',
       years: '03/2023 - 12/2023',
+      duration: '10 tháng',
     },
     {
       institution: 'Trường THPT Bùi Thị Xuân, Đà Lạt',
       degree: 'Tốt nghiệp',
       years: '2019',
+      duration: '3 năm',
     },
   ];
 
@@ -30,8 +34,9 @@ export function Education() {
         <div className="space-y-10">
           {educationData.map((item, index) => (
             <div key={index} className="relative flex items-start w-full group">
-              <div className={`w-1/2 ${index % 2 === 0 ? 'pr-20 text-right' : 'order-1 pl-20 text-left'}`}>
-                <p className="text-lg text-primary">
+              {/* Time */}
+              <div className="w-1/2 pr-20 text-right">
+                 <p className="text-lg text-primary">
                   {item.years.includes('Hiện tại') ? (
                     <>
                       {item.years.split(' - ')[0]} - <span className="font-bold">Hiện tại</span>
@@ -40,12 +45,14 @@ export function Education() {
                     item.years
                   )}
                 </p>
+                {item.duration && <p className="text-sm text-muted-foreground/80 mt-1">{item.duration}</p>}
               </div>
 
               <div className="absolute left-1/2 top-2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background z-10"></div>
               
-              <div className={`w-1/2 relative ${index % 2 === 0 ? 'pl-20 text-left' : 'order-first pr-20 text-right'}`}>
-                  <div className={`absolute top-3 h-px w-10 bg-border ${index % 2 === 0 ? 'left-10' : 'right-10'}`}></div>
+              {/* Content */}
+              <div className="w-1/2 relative pl-20 text-left">
+                  <div className="absolute top-3 left-10 h-px w-10 bg-border"></div>
                   <h3 className="text-xl font-medium font-heading text-primary">{item.institution}</h3>
                   <p className="text-muted-foreground mt-1 ml-4">{item.degree}</p>
               </div>
