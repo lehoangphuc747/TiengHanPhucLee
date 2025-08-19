@@ -5,67 +5,85 @@ import { useState, useMemo, Fragment } from 'react';
 import Link from 'next/link';
 import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Button } from '@/components/ui/button';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 
 interface PostListProps {
   posts: Post[];
 }
 
-type SortOption = 'date-desc' | 'date-asc' | 'title-asc' | 'title-desc';
-
-const sortOptions: { label: string; value: SortOption }[] = [
-  { label: 'Mới nhất', value: 'date-desc' },
-  { label: 'Cũ nhất', value: 'date-asc' },
-  { label: 'Tiêu đề (A-Z)', value: 'title-asc' },
-  { label: 'Tiêu đề (Z-A)', value: 'title-desc' },
-];
+type SortKey = 'date' | 'title';
+type SortDirection = 'asc' | 'desc';
 
 export function PostList({ posts }: PostListProps) {
-  const [sortOption, setSortOption] = useState<SortOption>('date-desc');
+  const [sortKey, setSortKey] = useState<SortKey>('date');
+  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
   const sortedPosts = useMemo(() => {
     const sorted = [...posts];
-    switch (sortOption) {
-      case 'date-asc':
-        return sorted.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-      case 'title-asc':
-        return sorted.sort((a, b) => a.title.localeCompare(b.title));
-      case 'title-desc':
-        return sorted.sort((a, b) => b.title.localeCompare(a.title));
-      case 'date-desc':
-      default:
-        return sorted.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    }
-  }, [posts, sortOption]);
+    sorted.sort((a, b) => {
+      if (sortKey === 'date') {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      }
+      if (sortKey === 'title') {
+        return a.title.localeCompare(b.title);
+      }
+      return 0;
+    });
 
-  const handleSortChange = (value: SortOption) => {
-    if (value) { // ToggleGroup allows deselecting all, this prevents that
-      setSortOption(value);
+    if (sortDirection === 'desc') {
+      sorted.reverse();
+    }
+
+    return sorted;
+  }, [posts, sortKey, sortDirection]);
+
+  const handleSort = (key: SortKey) => {
+    if (key === sortKey) {
+      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(key);
+      setSortDirection(key === 'date' ? 'desc' : 'asc');
     }
   };
+
+  const getButtonLabel = (key: SortKey) => {
+    if (key === 'date') {
+      return sortDirection === 'desc' ? 'Mới nhất' : 'Cũ nhất';
+    }
+    if (key === 'title') {
+      return sortDirection === 'asc' ? 'Tiêu đề (A-Z)' : 'Tiêu đề (Z-A)';
+    }
+    return '';
+  };
+
+  const SortIcon = ({ for_key }: {for_key: SortKey}) => {
+    if (sortKey !== for_key) return null;
+    return sortDirection === 'asc' ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />
+  }
 
   return (
     <section>
       <div className="flex flex-wrap items-center justify-start gap-2 mb-6">
         <span className="text-sm text-muted-foreground mr-2">Sắp xếp theo:</span>
-        <ToggleGroup
-          type="single"
-          value={sortOption}
-          onValueChange={handleSortChange}
-          aria-label="Sắp xếp bài viết"
-          className="flex-wrap justify-start"
-        >
-          {sortOptions.map(option => (
-            <ToggleGroupItem 
-              key={option.value} 
-              value={option.value} 
-              aria-label={option.label}
-              className="text-xs md:text-sm"
-            >
-              {option.label}
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
+        <div className="flex flex-wrap justify-start gap-2">
+           <Button 
+            variant={sortKey === 'date' ? 'default' : 'outline'}
+            onClick={() => handleSort('date')}
+            className="text-xs md:text-sm"
+          >
+            {getButtonLabel('date')}
+            <SortIcon for_key='date' />
+          </Button>
+          <Button 
+            variant={sortKey === 'title' ? 'default' : 'outline'}
+            onClick={() => handleSort('title')}
+            className="text-xs md:text-sm"
+          >
+            {getButtoneLabel('title')}
+            <SortIcon for_key='title' />
+          </Button>
+        </div>
       </div>
       <div className="flex flex-col">
         {sortedPosts.map((post: Post, index: number) => (
@@ -85,3 +103,4 @@ export function PostList({ posts }: PostListProps) {
     </section>
   );
 }
+
