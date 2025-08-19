@@ -35,7 +35,7 @@ export default async function Home() {
 
       {/* Pinned Posts Section */}
       <section>
-        <h2 className="text-3xl font-bold font-heading mb-8 text-center">Bài viết</h2>
+        <h2 className="text-3xl font-bold font-heading mb-8 text-center">Bài viết nổi bật</h2>
         <div className="flex flex-col items-center space-y-4">
           {pinnedPosts.map((post: Post) => (
             <Link 
@@ -52,7 +52,7 @@ export default async function Home() {
         <div className="mt-10 text-center">
           <Button asChild variant="outline" className="bg-white text-black border-black hover:bg-gray-200">
             <Link href="/posts">
-              Đọc thêm <ArrowRight className="ml-2 h-4 w-4" />
+              Tất cả bài viết <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
