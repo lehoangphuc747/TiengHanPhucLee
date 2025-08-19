@@ -4,14 +4,22 @@
 import { useState, useMemo, Fragment } from 'react';
 import Link from 'next/link';
 import type { Post } from '@/lib/types';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 interface PostListProps {
   posts: Post[];
 }
 
 type SortOption = 'date-desc' | 'date-asc' | 'title-asc' | 'title-desc';
+
+const sortOptions: { label: string; value: SortOption }[] = [
+  { label: 'Mới nhất', value: 'date-desc' },
+  { label: 'Cũ nhất', value: 'date-asc' },
+  { label: 'Tiêu đề (A-Z)', value: 'title-asc' },
+  { label: 'Tiêu đề (Z-A)', value: 'title-desc' },
+];
 
 export function PostList({ posts }: PostListProps) {
   const [sortOption, setSortOption] = useState<SortOption>('date-desc');
@@ -33,18 +41,19 @@ export function PostList({ posts }: PostListProps) {
 
   return (
     <section>
-      <div className="flex justify-end mb-6">
-        <Select value={sortOption} onValueChange={(value: SortOption) => setSortOption(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Sắp xếp theo..." />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="date-desc">Mới nhất</SelectItem>
-            <SelectItem value="date-asc">Cũ nhất</SelectItem>
-            <SelectItem value="title-asc">Tiêu đề (A-Z)</SelectItem>
-            <SelectItem value="title-desc">Tiêu đề (Z-A)</SelectItem>
-          </SelectContent>
-        </Select>
+      <div className="flex flex-wrap items-center justify-end gap-2 mb-6">
+        <span className="text-sm text-muted-foreground mr-2">Sắp xếp theo:</span>
+        {sortOptions.map(option => (
+          <Button
+            key={option.value}
+            variant={sortOption === option.value ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setSortOption(option.value)}
+            className="text-xs md:text-sm"
+          >
+            {option.label}
+          </Button>
+        ))}
       </div>
       <div className="flex flex-col">
         {sortedPosts.map((post: Post, index: number) => (
