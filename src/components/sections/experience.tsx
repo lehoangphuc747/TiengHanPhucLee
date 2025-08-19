@@ -35,7 +35,7 @@ export function Experience() {
       title: 'Lễ tân',
       company: 'Biệt Thự Khánh Lâm',
       period: '2018 - 2022',
-      duration: '4 năm',
+      duration: '5 năm',
     },
   ].sort((a, b) => (a.current === b.current ? 0 : a.current ? -1 : 1));
 
