@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -5,6 +6,22 @@ import { Facebook, Twitter, Linkedin, Link as LinkIcon, Check } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+
+// Simple Messenger Icon as SVG component
+const MessengerIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="h-5 w-5"
+  >
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.85 0 3.58-.5 5.09-1.38L20.59 22l-1.09-3.26A9.92 9.92 0 0 0 22 12c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+    <path d="M7.5 11.5l3.5 3.5 5-5-3.5-3.5-5 5z" />
+  </svg>
+);
+
 
 interface ShareButtonsProps {
   title: string;
@@ -29,8 +46,8 @@ export function ShareButtons({ title }: ShareButtonsProps) {
 
   const socialLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-    twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`,
+    // Note: Messenger link will prompt user to log in if not already. It's one of the few ways without an app_id
+    messenger: `https://www.facebook.com/dialog/send?link=${encodedUrl}&app_id=123456789&redirect_uri=${encodedUrl}`,
   };
 
   const copyToClipboard = () => {
@@ -53,25 +70,21 @@ export function ShareButtons({ title }: ShareButtonsProps) {
 
   return (
     <div className="mt-12 py-6 border-t border-b">
-      <h3 className="text-lg font-medium text-center mb-4">Chia sẻ bài viết này</h3>
+      <h3 className="text-lg font-medium text-center mb-4">Chia sẻ</h3>
       <div className="flex justify-center items-center gap-2 flex-wrap">
-        <Button variant="outline" size="icon" asChild>
+        <Button variant="outline" asChild className="gap-2">
           <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
-            <Facebook />
+            <Facebook className="h-4 w-4" /> Facebook
           </a>
         </Button>
-        <Button variant="outline" size="icon" asChild>
-          <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
-            <Twitter />
+        <Button variant="outline" asChild className="gap-2">
+          <a href={socialLinks.messenger} target="_blank" rel="noopener noreferrer" aria-label="Share on Messenger">
+            <MessengerIcon /> Messenger
           </a>
         </Button>
-        <Button variant="outline" size="icon" asChild>
-          <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
-            <Linkedin />
-          </a>
-        </Button>
-        <Button variant="outline" size="icon" onClick={copyToClipboard} aria-label="Copy link">
-            {isCopied ? <Check className="text-green-500" /> : <LinkIcon />}
+        <Button variant="outline" onClick={copyToClipboard} aria-label="Copy link" className="gap-2">
+            {isCopied ? <Check className="text-green-500 h-4 w-4" /> : <LinkIcon className="h-4 w-4" />}
+            {isCopied ? 'Đã chép' : 'Copy link'}
         </Button>
       </div>
     </div>
