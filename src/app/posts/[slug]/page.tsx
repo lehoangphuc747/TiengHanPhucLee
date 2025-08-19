@@ -54,7 +54,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   return (
     <div className="max-w-3xl mx-auto py-8">
       <div className="mb-8">
-        <Button asChild variant="ghost" className="pl-0 text-muted-foreground hover:text-primary">
+        <Button asChild variant="outline">
           <Link href="/posts">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Tất cả bài viết
