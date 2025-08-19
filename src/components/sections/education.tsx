@@ -39,7 +39,7 @@ export function Education() {
               <div className={`w-1/2 relative ${index % 2 === 0 ? 'pl-16 text-left' : 'order-first pr-16 text-right'}`}>
                   <div className={`absolute top-3 h-px w-8 bg-border ${index % 2 === 0 ? 'left-8' : 'right-8'}`}></div>
                   <h3 className="text-xl font-medium font-heading text-primary">{item.institution}</h3>
-                  <p className="text-muted-foreground mt-1">{item.degree}</p>
+                  <p className="text-muted-foreground mt-1 ml-4">{item.degree}</p>
               </div>
             </div>
           ))}
