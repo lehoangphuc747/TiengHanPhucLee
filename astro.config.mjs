@@ -8,4 +8,9 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	site: 'https://example.com',
 	integrations: [mdx(), sitemap()],
+	image: {
+		service: {
+			entrypoint: 'astro/assets/services/passthrough',
+		},
+	},
 });
