@@ -67,7 +67,7 @@ export function PostList({ posts }: PostListProps) {
       <div className="flex flex-wrap items-center justify-start gap-2 mb-6">
         <div className="flex flex-wrap justify-start gap-2">
            <Button 
-            variant={sortKey === 'date' ? 'default' : 'outline'}
+            variant={sortKey === 'date' ? 'secondary' : 'ghost'}
             onClick={() => handleSort('date')}
             className="text-xs md:text-sm"
           >
@@ -75,7 +75,7 @@ export function PostList({ posts }: PostListProps) {
             <SortIcon for_key='date' />
           </Button>
           <Button 
-            variant={sortKey === 'title' ? 'default' : 'outline'}
+            variant={sortKey === 'title' ? 'secondary' : 'ghost'}
             onClick={() => handleSort('title')}
             className="text-xs md:text-sm"
           >
