@@ -80,7 +80,7 @@ export function PostList({ posts }: PostListProps) {
             onClick={() => handleSort('title')}
             className="text-xs md:text-sm"
           >
-            {getButtoneLabel('title')}
+            {getButtonLabel('title')}
             <SortIcon for_key='title' />
           </Button>
         </div>
@@ -103,4 +103,3 @@ export function PostList({ posts }: PostListProps) {
     </section>
   );
 }
-
