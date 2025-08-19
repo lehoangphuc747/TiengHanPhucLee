@@ -12,7 +12,7 @@ const courses = [
   {
     title: 'Khoá học Anki Toàn Diện',
     description: 'Nắm vững Anki từ cơ bản đến nâng cao để tối ưu hóa việc học từ vựng và kiến thức.',
-    link: '#', 
+    link: '/khoa-hoc/anki-toan-dien', 
   },
   {
     title: 'Tiếng Hàn Giao Tiếp Cho Người Mới Bắt Đầu',
