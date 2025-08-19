@@ -15,6 +15,17 @@ export const posts: Post[] = [
     pinned: true,
   },
   {
+    slug: 'what-is-this-website-about',
+    title: 'Trang Web này viết về cái quần gì?',
+    description: 'Một lời giải thích ngắn gọn về mục đích và nội dung của trang web này.',
+    content: `
+      <p>Chào bạn, nếu bạn đang đọc những dòng này, có lẽ bạn đang tự hỏi trang web này thực sự nói về điều gì. Nói một cách đơn giản, đây là khu vườn kỹ thuật số của tôi.</p>
+      <p>Đây là một không gian cá nhân nơi tôi ghi lại hành trình học tiếng Hàn của mình, chia sẻ những ghi chú, những phát hiện và bất kỳ tài nguyên nào tôi thấy hữu ích. Nó cũng là nơi tôi giới thiệu các dự án nhỏ mà tôi đang thực hiện.</p>
+      <p>Về cơ bản, đây là một blog cá nhân và một danh mục đầu tư được kết hợp thành một. Cảm ơn bạn đã ghé qua!</p>
+    `,
+    pinned: true,
+  },
+  {
     slug: 'my-favorite-learning-resources',
     title: 'Các tài nguyên học tiếng Hàn yêu thích của tôi',
     description: 'Một danh sách tuyển chọn các ứng dụng, trang web và sách đã giúp tôi trên hành trình học ngôn ngữ của mình.',
