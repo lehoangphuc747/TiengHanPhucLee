@@ -77,7 +77,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         />
       </article>
 
-      <ShareButtons title={post.title} />
+      <ShareButtons post={post} />
 
       <footer className="mt-8 pt-8">
         <div className="flex justify-between items-center">

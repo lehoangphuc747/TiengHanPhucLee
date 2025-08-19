@@ -2,10 +2,10 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Facebook, Twitter, Linkedin, Link as LinkIcon, Check } from 'lucide-react';
+import { Facebook, Link as LinkIcon, Check, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { cn } from '@/lib/utils';
+import type { Post } from '@/lib/types';
 
 // Simple Messenger Icon as SVG component
 const MessengerIcon = () => (
@@ -24,10 +24,10 @@ const MessengerIcon = () => (
 
 
 interface ShareButtonsProps {
-  title: string;
+  post: Post;
 }
 
-export function ShareButtons({ title }: ShareButtonsProps) {
+export function ShareButtons({ post }: ShareButtonsProps) {
   const [url, setUrl] = useState('');
   const [isCopied, setIsCopied] = useState(false);
   const { toast } = useToast();
@@ -42,7 +42,7 @@ export function ShareButtons({ title }: ShareButtonsProps) {
   }
 
   const encodedUrl = encodeURIComponent(url);
-  const encodedTitle = encodeURIComponent(title);
+  const encodedTitle = encodeURIComponent(post.title);
 
   const socialLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
@@ -58,7 +58,7 @@ export function ShareButtons({ title }: ShareButtonsProps) {
         description: "Liên kết bài viết đã được sao chép vào bộ nhớ tạm.",
         duration: 3000,
       });
-      setTimeout(() => setIsCopied(false), 2000);
+      setTimeout(() => setIsCopied(false), 3000);
     }).catch(err => {
       console.error('Failed to copy: ', err);
       toast({
@@ -67,6 +67,16 @@ export function ShareButtons({ title }: ShareButtonsProps) {
         description: "Không thể sao chép liên kết.",
       });
     });
+  };
+
+  const downloadMarkdown = () => {
+    const blob = new Blob([post.markdownContent], { type: 'text/markdown;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${post.slug}.md`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -86,6 +96,10 @@ export function ShareButtons({ title }: ShareButtonsProps) {
         <Button variant="outline" onClick={copyToClipboard} aria-label="Copy link" className="gap-2">
             {isCopied ? <Check className="text-green-500 h-4 w-4" /> : <LinkIcon className="h-4 w-4" />}
             {isCopied ? 'Đã chép' : 'Copy link'}
+        </Button>
+        <Button variant="outline" onClick={downloadMarkdown} aria-label="Download Markdown" className="gap-2">
+            <Download className="h-4 w-4" />
+            Markdown
         </Button>
       </div>
     </div>
