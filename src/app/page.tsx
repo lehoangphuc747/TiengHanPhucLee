@@ -87,25 +87,25 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Kangwon, Hàn Quốc
+                  Đại học Kangwon, Chuncheon
               </h3>
               <p className="text-muted-foreground">Thạc sĩ (2025 - Hiện tại)</p>
           </div>
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Đà Lạt, Việt Nam
+                  Đại học Đà Lạt, Lâm Đồng
               </h3>
               <p className="text-muted-foreground">Cử nhân (2019 - 2024)</p>
           </div>
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Wonkwang, Hàn Quốc
+                  Đại học Wonkwang, Iksan
               </h3>
               <p className="text-muted-foreground">Sinh viên trao đổi (2023)</p>
           </div>
            <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  THPT Bùi Thị Xuân, Việt Nam
+                  THPT Bùi Thị Xuân, Đà Lạt
               </h3>
               <p className="text-muted-foreground">Tốt nghiệp (2019)</p>
           </div>
