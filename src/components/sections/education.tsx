@@ -21,7 +21,7 @@ export function Education() {
     {
       institution: 'Trường THPT Bùi Thị Xuân, Đà Lạt',
       degree: 'Tốt nghiệp',
-      years: '2019',
+      years: '2016 - 2019',
       duration: '3 năm',
     },
   ];
@@ -35,7 +35,7 @@ export function Education() {
           {educationData.map((item, index) => (
             <div key={index} className="relative flex items-start w-full group">
               {/* Time */}
-              <div className="w-1/2 pr-20 text-right">
+              <div className="w-1/2 pr-8 text-right">
                  <p className="text-lg text-primary">
                   {item.years.includes('Hiện tại') ? (
                     <>
@@ -51,8 +51,8 @@ export function Education() {
               <div className="absolute left-1/2 top-2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full ring-4 ring-background z-10"></div>
               
               {/* Content */}
-              <div className="w-1/2 relative pl-20 text-left">
-                  <div className="absolute top-3 left-10 h-px w-10 bg-border"></div>
+              <div className="w-1/2 relative pl-8">
+                  <div className="absolute top-3 -left-1 h-px w-10 bg-border"></div>
                   <h3 className="text-xl font-medium font-heading text-primary">{item.institution}</h3>
                   <p className="text-muted-foreground mt-1 ml-4">{item.degree}</p>
               </div>
