@@ -68,7 +68,7 @@ export function Experience() {
 
                  {/* Year Display */}
                  <div className={index % 2 === 0 ? 'md:col-start-1 md:row-start-1 md:pr-8 text-right' : 'md:col-start-2 md:row-start-1 md:pl-8 text-left'}>
-                    <p className="font-bold text-lg text-primary">{item.period.split(' - ')[0]}</p>
+                    <p className="font-bold text-lg text-primary">{item.period}</p>
                  </div>
               </div>
             </div>
