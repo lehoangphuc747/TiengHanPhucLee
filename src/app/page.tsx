@@ -64,10 +64,12 @@ export default function Home() {
                 href={`/projects/${project.slug}`}
                 className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
               >
-                <h3 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mt-2">{project.description}</p>
+                <div className="flex justify-center items-center gap-4">
+                  <h3 className="text-xl font-medium font-heading text-primary group-hover:text-accent-foreground">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground">{project.description}</p>
+                </div>
               </Link>
               {index < projects.length - 1 && <Separator />}
             </Fragment>
