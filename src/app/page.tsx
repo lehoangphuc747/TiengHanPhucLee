@@ -46,7 +46,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="bg-white text-black border-black hover:bg-gray-200">
             <Link href="/posts">
               Đọc thêm <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -63,7 +63,9 @@ export default function Home() {
           {projects.map((project: Project) => (
             <Link
               key={project.slug}
-              href={`/projects/${project.slug}`}
+              href={project.link || `/projects/${project.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="block py-4 w-full max-w-2xl rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
             >
               <div className="flex justify-center items-baseline gap-4">
@@ -82,18 +84,30 @@ export default function Home() {
       {/* Education Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Học vấn</h2>
-        <div className="flex flex-col items-center space-y-6">
-          <div className="text-center w-full max-w-2xl">
+        <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
+          <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM
+                  Đại học Kangwon, Hàn Quốc
               </h3>
-              <p className="text-muted-foreground">Cử nhân Ngôn ngữ Hàn Quốc (2018 - 2022)</p>
+              <p className="text-muted-foreground">Thạc sĩ (2025 - Hiện tại)</p>
           </div>
-          <div className="text-center w-full max-w-2xl">
+          <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Khóa học Ngôn ngữ tại Đại học Yonsei
+                  Đại học Wonkwang, Hàn Quốc
               </h3>
-              <p className="text-muted-foreground">Chương trình trao đổi sinh viên (2021)</p>
+              <p className="text-muted-foreground">Sinh viên trao đổi (2023)</p>
+          </div>
+          <div className="text-center w-full">
+              <h3 className="text-xl font-medium font-heading text-primary">
+                  Đại học Đà Lạt, Việt Nam
+              </h3>
+              <p className="text-muted-foreground">Cử nhân (2019 - 2024)</p>
+          </div>
+           <div className="text-center w-full">
+              <h3 className="text-xl font-medium font-heading text-primary">
+                  THPT Bùi Thị Xuân, Việt Nam
+              </h3>
+              <p className="text-muted-foreground">Tốt nghiệp (2019)</p>
           </div>
         </div>
       </section>
