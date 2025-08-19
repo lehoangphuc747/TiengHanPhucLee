@@ -126,12 +126,6 @@ export default function Home() {
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
-              Giảng viên
-            </h3>
-            <p className="text-muted-foreground">Trường Hàn Ngữ Kanata (05/2024 - 03/2025)</p>
-          </div>
-          <div className="text-center w-full">
-            <h3 className="text-xl font-medium font-heading text-primary">
               Quản lý nhà hàng & Điều hành Tour
             </h3>
             <p className="text-muted-foreground">Công ty Hàn Quốc tại Nha Trang (03/2024 - 05/2025)</p>
