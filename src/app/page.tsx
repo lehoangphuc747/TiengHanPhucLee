@@ -11,7 +11,7 @@ export default function Home() {
   const pinnedPosts = posts.filter(post => post.pinned);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12">
       {/* Introduction Section */}
       <section className="text-center pt-16 pb-8">
         <h1 className="text-4xl md:text-5xl font-bold font-heading text-primary mb-4">
@@ -27,56 +27,52 @@ export default function Home() {
         </Button>
       </section>
 
-      <Separator className="my-8" />
+      <Separator className="my-12" />
 
       {/* Pinned Posts Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Bài viết</h2>
-        <div className="flex flex-col">
-          {pinnedPosts.map((post: Post, index: number) => (
-            <Fragment key={post.slug}>
-              <Link 
-                href={`/posts/${post.slug}`} 
-                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
-              >
-                <h3 className="text-2xl font-normal font-heading text-primary group-hover:text-accent-foreground">
-                  {post.title}
-                </h3>
-              </Link>
-              {index < pinnedPosts.length - 1 && <Separator className="my-2" />}
-            </Fragment>
+        <div className="flex flex-col items-center space-y-4">
+          {pinnedPosts.map((post: Post) => (
+            <Link 
+              key={post.slug}
+              href={`/posts/${post.slug}`} 
+              className="block py-4 w-full max-w-2xl rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
+            >
+              <h3 className="text-2xl font-normal font-heading text-primary group-hover:text-accent-foreground">
+                {post.title}
+              </h3>
+            </Link>
           ))}
         </div>
-        <div className="mt-8 text-center">
-            <Button asChild>
-                <Link href="/posts">
-                    Đọc thêm <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-            </Button>
+        <div className="mt-10 text-center">
+          <Button asChild>
+            <Link href="/posts">
+              Đọc thêm <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </section>
 
-      <Separator className="my-8" />
+      <Separator className="my-12" />
 
       {/* Projects Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Dự án</h2>
-        <div className="flex flex-col">
-          {projects.map((project: Project, index: number) => (
-             <Fragment key={project.slug}>
-              <Link
-                href={`/projects/${project.slug}`}
-                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
-              >
-                <div className="flex justify-center items-center gap-4">
-                  <h3 className="text-xl font-medium font-heading text-primary group-hover:text-accent-foreground">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground">{project.description}</p>
-                </div>
-              </Link>
-              {index < projects.length - 1 && <Separator className="my-2" />}
-            </Fragment>
+        <div className="flex flex-col items-center space-y-4">
+          {projects.map((project: Project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className="block py-4 w-full max-w-2xl rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
+            >
+              <div className="flex justify-center items-baseline gap-4">
+                <h3 className="text-xl font-medium font-heading text-primary group-hover:text-accent-foreground">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground">{project.description}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
