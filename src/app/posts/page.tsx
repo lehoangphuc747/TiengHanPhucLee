@@ -30,7 +30,7 @@ export default function AllPostsPage() {
                 href={`/posts/${post.slug}`} 
                 className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
               >
-                <h2 className="text-2xl font-semibold font-heading text-primary group-hover:text-accent-foreground">
+                <h2 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground">
                   {post.title}
                 </h2>
               </Link>
