@@ -5,8 +5,10 @@ export interface Post {
   slug: string;
   title: string;
   description: string;
-  content: string;
-  markdownContent: string;
+  date: string;
+  tags: string[];
+  content: string; // This will be the HTML content
+  markdownContent: string; // This will be the original markdown content
   pinned?: boolean;
 }
 

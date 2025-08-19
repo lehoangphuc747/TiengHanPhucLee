@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { posts } from '@/lib/data';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -7,12 +7,14 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ShareButtons } from '@/components/blog/share-buttons';
 
 export async function generateStaticParams() {
+  const posts = await getAllPosts();
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-function getPostData(slug: string) {
+async function getPostData(slug: string) {
+  const posts = await getAllPosts();
   const postIndex = posts.findIndex((p) => p.slug === slug);
 
   if (postIndex === -1) {
@@ -23,7 +25,7 @@ function getPostData(slug: string) {
     };
   }
 
-  const post = posts[postIndex];
+  const post = await getPostBySlug(slug);
   const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
   const nextPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
 
@@ -31,7 +33,7 @@ function getPostData(slug: string) {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { post } = getPostData(params.slug)
+  const { post } = await getPostData(params.slug);
 
   if (!post) {
     return {
@@ -45,8 +47,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const { post, prevPost, nextPost } = getPostData(params.slug);
+export default async function PostPage({ params }: { params: { slug: string } }) {
+  const { post, prevPost, nextPost } = await getPostData(params.slug);
 
   if (!post) {
     notFound();

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { posts } from '@/lib/data';
+import { getAllPosts } from '@/lib/posts';
 import type { Post } from '@/lib/types';
 import type { Metadata } from 'next';
 import { Fragment } from 'react';
@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   description: 'Tuyển tập tất cả các bài viết và ghi chú về việc học tiếng Hàn.',
 };
 
-export default function AllPostsPage() {
+export default async function AllPostsPage() {
+  const posts = await getAllPosts();
+
   return (
     <div className="space-y-12 max-w-4xl mx-auto">
       <section className="text-center md:text-left">

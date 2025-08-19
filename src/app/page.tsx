@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { posts, projects } from '@/lib/data';
+import { projects } from '@/lib/data';
+import { getAllPosts } from '@/lib/posts';
 import type { Post, Project } from '@/lib/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,8 @@ import { Separator } from '@/components/ui/separator';
 import { Education } from '@/components/sections/education';
 import { Experience } from '@/components/sections/experience';
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getAllPosts();
   const pinnedPosts = posts.filter(post => post.pinned);
 
   return (
