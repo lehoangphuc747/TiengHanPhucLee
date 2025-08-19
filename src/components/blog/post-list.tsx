@@ -65,7 +65,6 @@ export function PostList({ posts }: PostListProps) {
   return (
     <section>
       <div className="flex flex-wrap items-center justify-start gap-2 mb-6">
-        <span className="text-sm text-muted-foreground mr-2">Sắp xếp theo:</span>
         <div className="flex flex-wrap justify-start gap-2">
            <Button 
             variant={sortKey === 'date' ? 'default' : 'outline'}
