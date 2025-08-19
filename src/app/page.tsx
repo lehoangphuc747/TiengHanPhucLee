@@ -43,7 +43,7 @@ export default function Home() {
                   {post.title}
                 </h3>
               </Link>
-              {index < pinnedPosts.length - 1 && <Separator />}
+              {index < pinnedPosts.length - 1 && <Separator className="my-2" />}
             </Fragment>
           ))}
         </div>
@@ -75,7 +75,7 @@ export default function Home() {
                   <p className="text-muted-foreground">{project.description}</p>
                 </div>
               </Link>
-              {index < projects.length - 1 && <Separator />}
+              {index < projects.length - 1 && <Separator className="my-2" />}
             </Fragment>
           ))}
         </div>
