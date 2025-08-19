@@ -138,15 +138,15 @@ export default function Home() {
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
-              Trợ giảng
-            </h3>
-            <p className="text-muted-foreground">Viện King Sejong Đà Lạt (09/2022 - 03/2023)</p>
-          </div>
-          <div className="text-center w-full">
-            <h3 className="text-xl font-medium font-heading text-primary">
               Dạy Anki
             </h3>
             <p className="text-muted-foreground">hocanki.com (2022 - Hiện tại)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Trợ giảng
+            </h3>
+            <p className="text-muted-foreground">Viện King Sejong Đà Lạt (09/2022 - 03/2023)</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
