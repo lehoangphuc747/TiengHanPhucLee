@@ -11,9 +11,9 @@ export default function Home() {
   const pinnedPosts = posts.filter(post => post.pinned);
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-16">
       {/* Introduction Section */}
-      <section className="text-center py-16">
+      <section className="text-center pt-16 pb-8">
         <h1 className="text-4xl md:text-5xl font-bold font-heading text-primary mb-4">
           Annyeong~~
         </h1>
@@ -26,6 +26,8 @@ export default function Home() {
           </a>
         </Button>
       </section>
+
+      <Separator className="my-8" />
 
       {/* Pinned Posts Section */}
       <section>
@@ -53,6 +55,8 @@ export default function Home() {
             </Button>
         </div>
       </section>
+
+      <Separator className="my-8" />
 
       {/* Projects Section */}
       <section>
