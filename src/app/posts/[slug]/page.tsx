@@ -3,7 +3,7 @@ import { posts } from '@/lib/data';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export async function generateStaticParams() {
   return posts.map((post) => ({
@@ -11,12 +11,26 @@ export async function generateStaticParams() {
   }));
 }
 
-function getPostBySlug(slug: string) {
-  return posts.find((post) => post.slug === slug);
+function getPostData(slug: string) {
+  const postIndex = posts.findIndex((p) => p.slug === slug);
+
+  if (postIndex === -1) {
+    return {
+      post: null,
+      prevPost: null,
+      nextPost: null,
+    };
+  }
+
+  const post = posts[postIndex];
+  const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
+  const nextPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+
+  return { post, prevPost, nextPost };
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getPostBySlug(params.slug)
+  const { post } = getPostData(params.slug)
 
   if (!post) {
     return {
@@ -31,7 +45,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+  const { post, prevPost, nextPost } = getPostData(params.slug);
 
   if (!post) {
     notFound();
@@ -61,6 +75,27 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           dangerouslySetInnerHTML={{ __html: post.content }} 
         />
       </article>
+
+      <footer className="mt-16 pt-8 border-t">
+        <div className="flex justify-between items-center">
+          {prevPost ? (
+            <Button asChild variant="outline">
+              <Link href={`/posts/${prevPost.slug}`}>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Bài trước
+              </Link>
+            </Button>
+          ) : <div />}
+          {nextPost ? (
+            <Button asChild variant="outline">
+              <Link href={`/posts/${nextPost.slug}`}>
+                Bài tiếp theo
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          ) : <div />}
+        </div>
+      </footer>
     </div>
   );
 }
