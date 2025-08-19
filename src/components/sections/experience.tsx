@@ -15,15 +15,15 @@ export function Experience() {
     },
     {
       title: 'Giảng viên',
-      company: 'Trường Hàn Ngữ Kanata',
-      period: '05/2023 - 03/2024',
-      duration: '11 tháng',
-    },
-    {
-      title: 'Giảng viên',
       company: 'Trường Đại học Đà Lạt',
       period: '12/2023 - 03/2024',
       duration: '4 tháng',
+    },
+    {
+      title: 'Giảng viên',
+      company: 'Trường Hàn Ngữ Kanata',
+      period: '05/2023 - 03/2024',
+      duration: '11 tháng',
     },
     {
       title: 'Trợ giảng',

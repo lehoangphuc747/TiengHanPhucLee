@@ -6,14 +6,14 @@ export function Education() {
       years: '2025 - Hiện tại',
     },
     {
-      institution: 'Trường Đại học Wonkwang, Iksan',
-      degree: 'Sinh viên trao đổi',
-      years: '2023',
-    },
-    {
       institution: 'Trường Đại học Đà Lạt, Lâm Đồng',
       degree: 'Cử nhân',
       years: '2019 - 2024',
+    },
+    {
+      institution: 'Trường Đại học Wonkwang, Iksan',
+      degree: 'Sinh viên trao đổi',
+      years: '03/2023 - 12/2023',
     },
     {
       institution: 'Trường THPT Bùi Thị Xuân, Đà Lạt',
