@@ -69,7 +69,7 @@ export function PostList({ posts }: PostListProps) {
            <Button 
             variant={sortKey === 'date' ? 'default' : 'outline'}
             onClick={() => handleSort('date')}
-            className="text-xs md:text-sm"
+            className="text-xs md:text-sm bg-white text-black border-black hover:bg-gray-200 dark:bg-black dark:text-white dark:border-white dark:hover:bg-gray-800"
           >
             {getButtonLabel('date')}
             <SortIcon for_key='date' />
@@ -77,7 +77,7 @@ export function PostList({ posts }: PostListProps) {
           <Button 
             variant={sortKey === 'title' ? 'default' : 'outline'}
             onClick={() => handleSort('title')}
-            className="text-xs md:text-sm"
+            className="text-xs md:text-sm bg-white text-black border-black hover:bg-gray-200 dark:bg-black dark:text-white dark:border-white dark:hover:bg-gray-800"
           >
             {getButtonLabel('title')}
             <SortIcon for_key='title' />
