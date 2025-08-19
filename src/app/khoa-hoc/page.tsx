@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { Fragment } from 'react';
+import { Separator } from '@/components/ui/separator';
 
 export const metadata: Metadata = {
   title: 'Khoá học | TiengHanPhucLee',
@@ -39,26 +39,21 @@ export default function KhoaHocPage() {
         </p>
       </header>
 
-      <section>
-        <div className="flex flex-col gap-8">
+      <section className="flex flex-col">
           {courses.map((course, index) => (
-            <Card key={index} className="transition-shadow duration-300 hover:shadow-md">
-                <CardHeader>
-                  <CardTitle>{course.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{course.description}</CardDescription>
-                </CardContent>
-                <CardFooter>
-                   <Button asChild variant="link" className="p-0 h-auto text-primary">
-                      <Link href={course.link}>
-                        Xem chi tiết <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                </CardFooter>
-            </Card>
+            <Fragment key={index}>
+              <Link 
+                href={course.link} 
+                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+              >
+                <h2 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
+                  {course.title}
+                </h2>
+                <p className="text-muted-foreground mt-2">{course.description}</p>
+              </Link>
+              {index < courses.length - 1 && <Separator />}
+            </Fragment>
           ))}
-        </div>
       </section>
     </div>
   );
