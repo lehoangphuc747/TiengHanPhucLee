@@ -111,6 +111,51 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Separator className="my-12" />
+
+      {/* Work Experience Section */}
+      <section>
+        <h2 className="text-3xl font-bold font-heading mb-8 text-center">Kinh nghiệm làm việc</h2>
+        <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Giảng viên
+            </h3>
+            <p className="text-muted-foreground">Đại học Đà Lạt (12/2024 - 03/2025)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Giảng viên
+            </h3>
+            <p className="text-muted-foreground">Trường Hàn Ngữ Kanata (05/2024 - 03/2025)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Quản lý nhà hàng & Điều hành Tour
+            </h3>
+            <p className="text-muted-foreground">Công ty Hàn Quốc tại Nha Trang (03/2024 - 05/2025)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Trợ giảng
+            </h3>
+            <p className="text-muted-foreground">Viện King Sejong Đà Lạt (09/2022 - 03/2023)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Dạy Anki
+            </h3>
+            <p className="text-muted-foreground">hocanki.com (2022 - Hiện tại)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Lễ tân
+            </h3>
+            <p className="text-muted-foreground">Biệt Thự Khánh Lâm (2018 - 2022)</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
