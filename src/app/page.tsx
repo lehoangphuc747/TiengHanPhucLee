@@ -24,7 +24,7 @@ export default function Home() {
         </p>
         <Button asChild variant="outline">
           <a href="https://www.facebook.com/your-profile" target="_blank" rel="noopener noreferrer">
-            <Facebook className="mr-2 h-4 w-4" /> Liên hệ qua Facebook
+            <Facebook className="mr-2 h-4 w-4" /> Facebook
           </a>
         </Button>
       </section>
