@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   if (!post) {
     return {
-      title: 'Post Not Found'
+      title: 'Không tìm thấy bài viết'
     }
   }
 
@@ -37,19 +37,15 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   return (
     <article className="max-w-3xl mx-auto py-8">
       <header className="mb-12 text-center">
-        <h1 className="text-3xl md:text-5xl font-bold font-headline text-primary mb-4">{post.title}</h1>
+        <h1 className="text-3xl md:text-5xl font-bold font-heading text-primary mb-4">{post.title}</h1>
         <p className="text-lg text-muted-foreground">{post.description}</p>
       </header>
       
       <div 
-        className="space-y-6 text-lg leading-relaxed text-foreground/90
-                  [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:font-headline [&_h3]:text-primary [&_h3]:mt-10 [&_h3]:mb-4
-                  [&_p]:mb-4
-                  [&_strong]:font-semibold [&_strong]:text-foreground
-                  [&_a]:text-primary [&_a]:underline hover:[&_a]:text-accent-foreground
-                  [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2
-                  [&_li]:mb-1
-                  "
+        className="prose prose-lg dark:prose-invert max-w-none mx-auto
+                  prose-headings:font-heading prose-headings:text-primary
+                  prose-a:text-primary hover:prose-a:text-accent-foreground
+                  prose-strong:font-semibold"
         dangerouslySetInnerHTML={{ __html: post.content }} 
       />
     </article>

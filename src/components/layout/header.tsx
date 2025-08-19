@@ -7,7 +7,7 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center h-16">
           <nav>
-            <div className="flex items-baseline space-x-2">
+            <div className="flex items-baseline space-x-2 font-heading">
               <Button variant="ghost" asChild>
                 <Link href="/">Trang chủ</Link>
               </Button>
