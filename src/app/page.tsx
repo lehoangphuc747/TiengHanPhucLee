@@ -120,9 +120,15 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
-              Giảng viên
+              Dạy Anki
             </h3>
-            <p className="text-muted-foreground">Đại học Đà Lạt (12/2024 - 03/2025) • 4 tháng</p>
+            <p className="text-muted-foreground">hocanki.com (2022 - Hiện tại)</p>
+          </div>
+           <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Quản lý nhà hàng & Điều hành Tour
+            </h3>
+            <p className="text-muted-foreground">Công ty Hàn Quốc tại Nha Trang (03/2024 - 05/2025) • 1 năm 3 tháng</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
@@ -132,15 +138,9 @@ export default function Home() {
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
-              Quản lý nhà hàng & Điều hành Tour
+              Giảng viên
             </h3>
-            <p className="text-muted-foreground">Công ty Hàn Quốc tại Nha Trang (03/2024 - 05/2025) • 1 năm 3 tháng</p>
-          </div>
-          <div className="text-center w-full">
-            <h3 className="text-xl font-medium font-heading text-primary">
-              Dạy Anki
-            </h3>
-            <p className="text-muted-foreground">hocanki.com (2022 - Hiện tại)</p>
+            <p className="text-muted-foreground">Đại học Đà Lạt (12/2024 - 03/2025) • 4 tháng</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
