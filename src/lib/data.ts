@@ -1,5 +1,5 @@
 import type { Post, Project } from './types';
-import { BookOpen, Code, Mic } from 'lucide-react';
+import { BookOpen, Code, Wind } from 'lucide-react';
 
 export const posts: Post[] = [
   {
@@ -42,20 +42,27 @@ export const posts: Post[] = [
 
 export const projects: Project[] = [
   {
-    title: 'Ứng dụng trắc nghiệm từ vựng tiếng Hàn',
-    description: 'Một ứng dụng web đơn giản tôi đã xây dựng để kiểm tra từ vựng tiếng Hàn của mình bằng phương pháp lặp lại ngắt quãng.',
-    link: '#',
+    title: 'ankivn.com',
+    description: 'Cộng đồng người Việt sử dụng Anki để học tập hiệu quả.',
+    link: 'https://ankivn.com',
     icon: Code,
   },
   {
-    title: 'Ghi chú học TOPIK',
-    description: 'Một kho lưu trữ công khai các ghi chú học tập của tôi khi tôi chuẩn bị cho Kỳ thi Năng lực tiếng Hàn.',
-    link: '#',
+    title: 'hocanki.com',
+    description: 'Hướng dẫn và tài nguyên giúp bạn tận dụng tối đa Anki.',
+    link: 'https://hocanki.com',
     icon: BookOpen,
   },
   {
-    title: 'Bản ghi thực hành phát âm',
-    description: 'Một bộ sưu tập các đoạn âm thanh nơi tôi thực hành và nhận phản hồi về phát âm tiếng Hàn của mình.',
-    icon: Mic,
+    title: 'thefreekorean.com',
+    description: 'Nguồn tài liệu học tiếng Hàn miễn phí và chất lượng.',
+    link: 'https://thefreekorean.com',
+    icon: BookOpen,
+  },
+  {
+    title: 'theochanducphat.com',
+    description: 'Khám phá và thực hành lời dạy của Đức Phật trong cuộc sống hàng ngày.',
+    link: 'https://theochanducphat.com',
+    icon: Wind,
   },
 ];

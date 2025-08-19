@@ -4,6 +4,8 @@ import type { Post, Project } from '@/lib/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink, Facebook } from 'lucide-react';
+import { Fragment } from 'react';
+import { Separator } from '@/components/ui/separator';
 
 export default function Home() {
   const pinnedPosts = posts.filter(post => post.pinned);
@@ -18,7 +20,7 @@ export default function Home() {
         <p className="max-w-3xl mx-auto text-lg text-foreground/80 mb-8">
           Tôi là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của tôi, nơi tôi chia sẻ ghi chú, khám phá và tài nguyên.
         </p>
-        <Button asChild>
+        <Button asChild variant="outline">
           <a href="https://www.facebook.com/your-profile" target="_blank" rel="noopener noreferrer">
             <Facebook className="mr-2 h-4 w-4" /> Liên hệ qua Facebook
           </a>
@@ -28,22 +30,19 @@ export default function Home() {
       {/* Pinned Posts Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center md:text-left">Bài viết</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {pinnedPosts.map((post: Post) => (
-            <Card key={post.slug} className="bg-card hover:border-primary/50 transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="font-heading">{post.title}</CardTitle>
-                <CardDescription className="text-muted-foreground pt-2">{post.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button asChild variant="link" className="p-0 text-primary font-semibold hover:text-accent-foreground">
-                  <Link href={`/posts/${post.slug}`} className="group inline-flex items-center">
-                    Đọc thêm
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
+        <div className="flex flex-col">
+          {pinnedPosts.map((post: Post, index: number) => (
+            <Fragment key={post.slug}>
+              <Link 
+                href={`/posts/${post.slug}`} 
+                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+              >
+                <h3 className="text-2xl font-semibold font-heading text-primary group-hover:text-accent-foreground">
+                  {post.title}
+                </h3>
+              </Link>
+              {index < pinnedPosts.length - 1 && <Separator />}
+            </Fragment>
           ))}
         </div>
         <div className="mt-8 text-center">
