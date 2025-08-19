@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ShareButtons } from '@/components/blog/share-buttons';
 
 export async function generateStaticParams() {
   return posts.map((post) => ({
@@ -76,7 +77,9 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         />
       </article>
 
-      <footer className="mt-16 pt-8 border-t">
+      <ShareButtons title={post.title} />
+
+      <footer className="mt-8 pt-8">
         <div className="flex justify-between items-center">
           {prevPost ? (
             <Button asChild variant="outline">
