@@ -9,7 +9,7 @@ export function Education() {
     {
       institution: 'Trường Đại học Đà Lạt, Lâm Đồng',
       degree: 'Cử nhân',
-      years: '2019 - 2024',
+      years: '2019 - 06/2024',
       duration: '5 năm',
     },
     {
