@@ -16,50 +16,58 @@ type SortKey = 'date' | 'title';
 type SortDirection = 'asc' | 'desc';
 
 export function PostList({ posts }: PostListProps) {
-  const [sortKey, setSortKey] = useState<SortKey>('date');
-  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+  const [activeSortKey, setActiveSortKey] = useState<SortKey>('date');
+  const [sortConfig, setSortConfig] = useState({
+    date: 'desc' as SortDirection,
+    title: 'asc' as SortDirection,
+  });
 
   const sortedPosts = useMemo(() => {
     const sorted = [...posts];
+    const direction = sortConfig[activeSortKey];
+    
     sorted.sort((a, b) => {
-      if (sortKey === 'date') {
+      if (activeSortKey === 'date') {
         return new Date(a.date).getTime() - new Date(b.date).getTime();
       }
-      if (sortKey === 'title') {
+      if (activeSortKey === 'title') {
         return a.title.localeCompare(b.title);
       }
       return 0;
     });
 
-    if (sortDirection === 'desc') {
+    if (direction === 'desc') {
       sorted.reverse();
     }
 
     return sorted;
-  }, [posts, sortKey, sortDirection]);
+  }, [posts, activeSortKey, sortConfig]);
 
   const handleSort = (key: SortKey) => {
-    if (key === sortKey) {
-      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    if (key === activeSortKey) {
+      // Toggle direction if it's the active key
+      setSortConfig(prev => ({
+        ...prev,
+        [key]: prev[key] === 'asc' ? 'desc' : 'asc',
+      }));
     } else {
-      setSortKey(key);
-      setSortDirection(key === 'date' ? 'desc' : 'asc');
+      // Switch to the new key
+      setActiveSortKey(key);
     }
   };
 
   const getButtonLabel = (key: SortKey) => {
+    const direction = sortConfig[key];
     if (key === 'date') {
-      return sortDirection === 'desc' ? 'Mới nhất' : 'Cũ nhất';
+      return direction === 'desc' ? 'Mới nhất' : 'Cũ nhất';
     }
-    if (key === 'title') {
-      return sortDirection === 'asc' ? 'Tiêu đề (A-Z)' : 'Tiêu đề (Z-A)';
-    }
-    return '';
+    // key === 'title'
+    return direction === 'asc' ? 'Tiêu đề (A-Z)' : 'Tiêu đề (Z-A)';
   };
 
   const SortIcon = ({ for_key }: {for_key: SortKey}) => {
-    if (sortKey !== for_key) return null;
-    return sortDirection === 'asc' ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />
+    if (activeSortKey !== for_key) return null;
+    return sortConfig[for_key] === 'asc' ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />;
   }
 
   return (
@@ -67,7 +75,7 @@ export function PostList({ posts }: PostListProps) {
       <div className="flex flex-wrap items-center justify-start gap-2 mb-6">
         <div className="flex flex-wrap justify-start gap-2">
            <Button 
-            variant={sortKey === 'date' ? 'secondary' : 'ghost'}
+            variant={activeSortKey === 'date' ? 'secondary' : 'ghost'}
             onClick={() => handleSort('date')}
             className="text-xs md:text-sm"
           >
@@ -75,7 +83,7 @@ export function PostList({ posts }: PostListProps) {
             <SortIcon for_key='date' />
           </Button>
           <Button 
-            variant={sortKey === 'title' ? 'secondary' : 'ghost'}
+            variant={activeSortKey === 'title' ? 'secondary' : 'ghost'}
             onClick={() => handleSort('title')}
             className="text-xs md:text-sm"
           >
