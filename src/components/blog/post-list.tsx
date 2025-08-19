@@ -6,7 +6,7 @@ import Link from 'next/link';
 import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import { ArrowDown, ArrowUp, Pin } from 'lucide-react';
 
 interface PostListProps {
   posts: Post[];
@@ -27,18 +27,22 @@ export function PostList({ posts }: PostListProps) {
     const direction = sortConfig[activeSortKey];
     
     sorted.sort((a, b) => {
+      // Prioritize pinned posts
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+
+      // Then sort by the active key
       if (activeSortKey === 'date') {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return direction === 'desc' ? dateB - dateA : dateA - dateB;
       }
       if (activeSortKey === 'title') {
-        return a.title.localeCompare(b.title);
+        const comparison = a.title.localeCompare(b.title);
+        return direction === 'asc' ? comparison : -comparison;
       }
       return 0;
     });
-
-    if (direction === 'desc') {
-      sorted.reverse();
-    }
 
     return sorted;
   }, [posts, activeSortKey, sortConfig]);
@@ -99,8 +103,9 @@ export function PostList({ posts }: PostListProps) {
               href={`/posts/${post.slug}`} 
               className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
             >
-              <h2 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
-                {post.title}
+              <h2 className="flex items-center gap-3 text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
+                {post.pinned && <Pin className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
+                <span>{post.title}</span>
               </h2>
             </Link>
             {index < sortedPosts.length - 1 && <Separator />}
