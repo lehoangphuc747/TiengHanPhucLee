@@ -15,7 +15,7 @@ export default function Home() {
       {/* Introduction Section */}
       <section className="text-center py-16">
         <h1 className="text-4xl md:text-5xl font-bold font-heading text-primary mb-4">
-          Xin chào! Chào mừng đến với góc nhỏ của tôi.
+          Annyeong~~
         </h1>
         <p className="max-w-3xl mx-auto text-lg text-foreground/80 mb-8">
           Tôi là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của tôi, nơi tôi chia sẻ ghi chú, khám phá và tài nguyên.
