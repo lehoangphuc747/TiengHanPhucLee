@@ -46,7 +46,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Button asChild>
+          <Button asChild variant="outline">
             <Link href="/posts">
               Đọc thêm <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
