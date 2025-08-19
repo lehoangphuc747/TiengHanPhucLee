@@ -12,7 +12,7 @@ export default async function SearchPage() {
 
   return (
     <div className="space-y-12 max-w-4xl mx-auto">
-      <section className="text-center md:text-left">
+      <section className="text-center">
         <h1 className="text-4xl md:text-5xl font-bold font-heading text-primary mb-4">
           Tìm kiếm bài viết
         </h1>
