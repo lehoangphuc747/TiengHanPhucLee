@@ -3,6 +3,7 @@ title: "Não Bạn Là Một Thằng Sếp Tồi. Hãy Sa Thải Nó"
 description: "Nghe này, lý do bạn vẫn đang trì hoãn không phải vì bạn là một kẻ thất bại. Vấn đề đơn giản và cũng ngớ ngẩn hơn nhiều: Bộ não của bạn là một thằng lười biếng."
 date: "2024-07-26"
 tags: ["procrastination", "mindset", "productivity"]
+slug: "nao-ban-la-mot-thang-sep-toi-hay-sa-thai-no"
 ---
 
 Nghe này, lý do bạn vẫn đang trì hoãn không phải vì bạn là một kẻ thất bại. Vấn đề đơn giản và cũng ngớ ngẩn hơn nhiều: **Bộ não của bạn là một thằng lười biếng.**

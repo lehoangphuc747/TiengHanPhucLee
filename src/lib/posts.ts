@@ -10,11 +10,12 @@ const postsDirectory = path.join(process.cwd(), 'src', 'content', 'posts');
 export async function getAllPosts(): Promise<Post[]> {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = await Promise.all(fileNames.map(async (fileName) => {
-    const slug = fileName.replace(/\.md$/, '');
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     const matterResult = matter(fileContents);
+    const slug = matterResult.data.slug || fileName.replace(/\.md$/, '');
+
 
     const processedContent = await remark()
       .use(html)
@@ -43,6 +44,14 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
+    const allPosts = await getAllPosts();
+    const post = allPosts.find(p => p.slug === slug);
+
+    if (post) {
+      return post;
+    }
+
+    // Fallback for old slugs from file names if needed, though we should migrate
     try {
         const fullPath = path.join(postsDirectory, `${slug}.md`);
         const fileContents = fs.readFileSync(fullPath, 'utf8');

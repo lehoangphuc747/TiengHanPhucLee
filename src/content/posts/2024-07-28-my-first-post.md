@@ -4,6 +4,7 @@ description: "Giới thiệu về hành trình học tiếng Hàn của tớ và
 date: "2024-07-28"
 tags: ["intro", "learning"]
 pinned: true
+slug: "my-first-post"
 ---
 
 Xin chào và chào mừng! Tớ là Phúc Lee, và đây là không gian mới của tớ trên internet dành riêng cho hành trình học tiếng Hàn của tớ. Tớ luôn bị cuốn hút bởi văn hóa Hàn Quốc, từ điện ảnh đến ẩm thực, và cuối cùng tớ đã quyết định đi sâu vào việc học ngôn ngữ này.
