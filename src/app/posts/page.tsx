@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { posts } from '@/lib/data';
 import type { Post } from '@/lib/types';
 import type { Metadata } from 'next';
+import { Fragment } from 'react';
+import { Separator } from '@/components/ui/separator';
 
 export const metadata: Metadata = {
   title: 'Tất cả bài viết | TiengHanPhucLee',
@@ -21,17 +23,19 @@ export default function AllPostsPage() {
       </section>
 
       <section>
-        <div className="space-y-4">
-          {posts.map((post: Post) => (
-            <Link 
-              key={post.slug} 
-              href={`/posts/${post.slug}`} 
-              className="block p-4 -mx-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
-            >
-              <h2 className="text-2xl font-semibold font-heading text-primary group-hover:text-accent-foreground">
-                {post.title}
-              </h2>
-            </Link>
+        <div className="flex flex-col">
+          {posts.map((post: Post, index: number) => (
+            <Fragment key={post.slug}>
+              <Link 
+                href={`/posts/${post.slug}`} 
+                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+              >
+                <h2 className="text-2xl font-semibold font-heading text-primary group-hover:text-accent-foreground">
+                  {post.title}
+                </h2>
+              </Link>
+              {index < posts.length - 1 && <Separator />}
+            </Fragment>
           ))}
         </div>
       </section>
