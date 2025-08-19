@@ -64,7 +64,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       </div>
       <article>
         <header className="mb-12 text-center">
-          <h1 className="text-4xl md:text-4xl font-bold font-heading text-primary mb-4 leading-relaxed md:leading-snug">{post.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-heading text-primary mb-4 leading-relaxed md:leading-snug">{post.title}</h1>
           <p className="text-lg text-muted-foreground">{post.description}</p>
         </header>
         
@@ -72,7 +72,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           className="prose prose-lg dark:prose-invert max-w-none mx-auto
                     prose-headings:font-heading prose-headings:text-primary
                     prose-a:text-primary hover:prose-a:text-accent-foreground
-                    prose-strong:font-semibold"
+                    prose-strong:font-semibold text-justify"
           dangerouslySetInnerHTML={{ __html: post.content }} 
         />
       </article>
