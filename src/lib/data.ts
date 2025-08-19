@@ -15,23 +15,6 @@ export const posts: Post[] = [
     pinned: true,
   },
   {
-    slug: 'understanding-korean-particles',
-    title: 'Hướng dẫn cho người mới bắt đầu về các tiểu từ tiếng Hàn (은/는, 이/가)',
-    description: 'Phân tích các tiểu từ chủ đề và tiểu từ chủ ngữ phổ biến và thường gây nhầm lẫn nhất trong tiếng Hàn.',
-    content: `
-      <p>Một trong những trở ngại lớn đầu tiên đối với bất kỳ người mới bắt đầu học tiếng Hàn nào là hiểu hệ thống tiểu từ. Không giống như tiếng Anh, tiếng Hàn sử dụng các tiểu từ được gắn vào danh từ để chỉ ra chức năng ngữ pháp của chúng trong câu. Cơ bản nhất trong số này là các tiểu từ chủ đề <strong>은/는 (eun/neun)</strong> và các tiểu từ chủ ngữ <strong>이/가 (i/ga)</strong>.</p>
-      <p>Thoạt nhìn, chúng có vẻ có thể thay thế cho nhau, nhưng chúng mang những khác biệt tinh tế và quan trọng về sắc thái. Trong bài viết này, chúng ta sẽ phân tích các chức năng cốt lõi của mỗi cặp và xem xét các ví dụ để giúp bạn phân biệt khi nào nên sử dụng cái nào.</p>
-      <h3>Tiểu từ chủ đề: 은 (eun) / 는 (neun)</h3>
-      <p>Được sử dụng để giới thiệu một chủ đề của cuộc trò chuyện. Nó giống như nói "Về phần..." hoặc "Nói về...". Bạn sử dụng <strong>은</strong> sau một danh từ kết thúc bằng một phụ âm và <strong>는</strong> sau một danh từ kết thúc bằng một nguyên âm.</p>
-      <p>Ví dụ: <strong>저는</strong> 학생입니다. (<strong>Jeo-neun</strong> haksaeng-imnida.) - "Về phần tôi, tôi là một học sinh." Ở đây, "tôi" là chủ đề.</p>
-      <h3>Tiểu từ chủ ngữ: 이 (i) / 가 (ga)</h3>
-      <p>Được sử dụng để xác định chủ ngữ của một động từ, người thực hiện hành động. Bạn sử dụng <strong>이</strong> sau một phụ âm và <strong>가</strong> sau một nguyên âm.</p>
-      <p>Ví dụ: 날씨<strong>가</strong> 좋습니다. (Nalssi-<strong>ga</strong> josseumnida.) - "Thời tiết đẹp." Ở đây, "thời tiết" là chủ ngữ được mô tả.</p>
-      <p>Sự khác biệt là tinh tế nhưng rất quan trọng để nghe tự nhiên. Chúng ta sẽ khám phá các tình huống phức tạp hơn và cảm giác chúng truyền tải trong một bài viết trong tương lai!</p>
-    `,
-    pinned: true,
-  },
-  {
     slug: 'my-favorite-learning-resources',
     title: 'Các tài nguyên học tiếng Hàn yêu thích của tôi',
     description: 'Một danh sách tuyển chọn các ứng dụng, trang web và sách đã giúp tôi trên hành trình học ngôn ngữ của mình.',
