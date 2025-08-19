@@ -87,25 +87,25 @@ export default function Home() {
         <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Kangwon, Chuncheon
+                  Trường Đại học Kangwon, Chuncheon
               </h3>
               <p className="text-muted-foreground">Thạc sĩ (2025 - Hiện tại)</p>
           </div>
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Đà Lạt
+                  Trường Đại học Đà Lạt
               </h3>
               <p className="text-muted-foreground">Cử nhân (2019 - 2024)</p>
           </div>
           <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  Đại học Wonkwang, Iksan
+                  Trường Đại học Wonkwang, Iksan
               </h3>
               <p className="text-muted-foreground">Sinh viên trao đổi (2023)</p>
           </div>
            <div className="text-center w-full">
               <h3 className="text-xl font-medium font-heading text-primary">
-                  THPT Bùi Thị Xuân
+                  Trường THPT Bùi Thị Xuân, Đà Lạt
               </h3>
               <p className="text-muted-foreground">Tốt nghiệp (2019)</p>
           </div>
@@ -118,23 +118,23 @@ export default function Home() {
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Kinh nghiệm làm việc</h2>
         <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
-           <div className="text-center w-full">
+          <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
               Giảng viên
             </h3>
-            <p className="text-muted-foreground">Đại học Đà Lạt (12/2024 - 03/2025)</p>
+            <p className="text-muted-foreground">Đại học Đà Lạt (12/2024 - 03/2025) • 4 tháng</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
               Giảng viên
             </h3>
-            <p className="text-muted-foreground">Trường Hàn Ngữ Kanata (05/2024 - 03/2025)</p>
+            <p className="text-muted-foreground">Trường Hàn Ngữ Kanata (05/2024 - 03/2025) • 11 tháng</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
               Quản lý nhà hàng & Điều hành Tour
             </h3>
-            <p className="text-muted-foreground">Công ty Hàn Quốc tại Nha Trang (03/2024 - 05/2025)</p>
+            <p className="text-muted-foreground">Công ty Hàn Quốc tại Nha Trang (03/2024 - 05/2025) • 1 năm 3 tháng</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
@@ -146,13 +146,13 @@ export default function Home() {
             <h3 className="text-xl font-medium font-heading text-primary">
               Trợ giảng
             </h3>
-            <p className="text-muted-foreground">Viện King Sejong Đà Lạt (09/2022 - 03/2023)</p>
+            <p className="text-muted-foreground">Viện King Sejong Đà Lạt (09/2022 - 03/2023) • 7 tháng</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
               Lễ tân
             </h3>
-            <p className="text-muted-foreground">Biệt Thự Khánh Lâm (2018 - 2022)</p>
+            <p className="text-muted-foreground">Biệt Thự Khánh Lâm (2018 - 2022) • 4 năm</p>
           </div>
         </div>
       </section>
