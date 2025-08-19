@@ -76,6 +76,27 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Separator className="my-12" />
+
+      {/* Education Section */}
+      <section>
+        <h2 className="text-3xl font-bold font-heading mb-8 text-center">Học vấn</h2>
+        <div className="flex flex-col items-center space-y-6">
+          <div className="text-center w-full max-w-2xl">
+              <h3 className="text-xl font-medium font-heading text-primary">
+                  Đại học Khoa học Xã hội và Nhân văn, ĐHQG-HCM
+              </h3>
+              <p className="text-muted-foreground">Cử nhân Ngôn ngữ Hàn Quốc (2018 - 2022)</p>
+          </div>
+          <div className="text-center w-full max-w-2xl">
+              <h3 className="text-xl font-medium font-heading text-primary">
+                  Khóa học Ngôn ngữ tại Đại học Yonsei
+              </h3>
+              <p className="text-muted-foreground">Chương trình trao đổi sinh viên (2021)</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
