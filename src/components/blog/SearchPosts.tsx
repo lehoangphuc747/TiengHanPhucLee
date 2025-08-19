@@ -45,6 +45,8 @@ export function SearchPosts({ posts }: SearchPostsProps) {
             <Link 
               href={`/posts/${post.slug}`} 
               className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <h2 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
                 {post.title}
