@@ -3,7 +3,7 @@ import { posts, projects } from '@/lib/data';
 import type { Post, Project } from '@/lib/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink, Facebook } from 'lucide-react';
+import { ArrowRight, Facebook } from 'lucide-react';
 import { Fragment } from 'react';
 import { Separator } from '@/components/ui/separator';
 
@@ -59,24 +59,23 @@ export default function Home() {
         <h2 className="text-3xl font-bold font-heading mb-8 text-center md:text-left">Dự án</h2>
         <div className="space-y-6">
           {projects.map((project: Project) => (
-            <Card key={project.title} className="bg-card hover:border-primary/50 transition-all duration-300">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6">
-                <div className="flex items-start gap-4 mb-4 sm:mb-0">
-                  {project.icon && <div className="p-3 bg-primary/10 rounded-lg"><project.icon className="h-6 w-6 text-primary" /></div>}
-                  <div>
-                    <h3 className="text-xl font-bold font-heading">{project.title}</h3>
-                    <p className="text-muted-foreground">{project.description}</p>
+            <Link key={project.slug} href={`/projects/${project.slug}`} className="block">
+              <Card className="bg-card hover:border-primary/50 transition-all duration-300 group">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6">
+                  <div className="flex items-start gap-4">
+                    {project.icon && (
+                      <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                        <project.icon className="h-6 w-6 text-primary" />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="text-xl font-bold font-heading">{project.title}</h3>
+                      <p className="text-muted-foreground">{project.description}</p>
+                    </div>
                   </div>
                 </div>
-                {project.link && (
-                  <Button asChild variant="ghost" size="sm" className="text-accent-foreground hover:bg-accent/50 shrink-0 ml-auto sm:ml-0">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      Xem dự án <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </Card>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>

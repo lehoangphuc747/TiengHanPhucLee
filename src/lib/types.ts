@@ -10,8 +10,10 @@ export interface Post {
 }
 
 export interface Project {
+  slug: string;
   title: string;
   description: string;
   link?: string;
   icon?: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
+  content: string;
 }
