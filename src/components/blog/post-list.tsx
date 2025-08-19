@@ -72,8 +72,8 @@ export function PostList({ posts }: PostListProps) {
 
   return (
     <section>
-      <div className="flex flex-wrap items-center justify-start gap-2 mb-6">
-        <div className="flex flex-wrap justify-start gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <div className="flex flex-wrap justify-center gap-2">
            <Button 
             variant={activeSortKey === 'date' ? 'secondary' : 'ghost'}
             onClick={() => handleSort('date')}
