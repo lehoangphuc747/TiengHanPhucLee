@@ -118,11 +118,17 @@ export default function Home() {
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Kinh nghiệm làm việc</h2>
         <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
-          <div className="text-center w-full">
+           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
               Giảng viên
             </h3>
             <p className="text-muted-foreground">Đại học Đà Lạt (12/2024 - 03/2025)</p>
+          </div>
+          <div className="text-center w-full">
+            <h3 className="text-xl font-medium font-heading text-primary">
+              Giảng viên
+            </h3>
+            <p className="text-muted-foreground">Trường Hàn Ngữ Kanata (05/2024 - 03/2025)</p>
           </div>
           <div className="text-center w-full">
             <h3 className="text-xl font-medium font-heading text-primary">
