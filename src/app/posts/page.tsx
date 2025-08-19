@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { posts } from '@/lib/data';
 import type { Post } from '@/lib/types';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,17 +23,15 @@ export default function AllPostsPage() {
       <section>
         <div className="space-y-4">
           {posts.map((post: Post) => (
-             <Card key={post.slug} className="bg-card hover:border-primary/50 transition-all duration-300">
-                <Link href={`/posts/${post.slug}`} className="block group p-4">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <CardTitle className="font-heading text-xl group-hover:text-primary transition-colors">{post.title}</CardTitle>
-                            <CardDescription className="text-muted-foreground mt-2">{post.description}</CardDescription>
-                        </div>
-                        <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform transform-gpu group-hover:translate-x-1 group-hover:text-primary" />
-                    </div>
-                </Link>
-             </Card>
+            <Link 
+              key={post.slug} 
+              href={`/posts/${post.slug}`} 
+              className="block p-4 -mx-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+            >
+              <h2 className="text-2xl font-semibold font-heading text-primary group-hover:text-accent-foreground">
+                {post.title}
+              </h2>
+            </Link>
           ))}
         </div>
       </section>

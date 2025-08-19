@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* Pinned Posts Section */}
       <section>
-        <h2 className="text-3xl font-bold font-heading mb-8 text-center md:text-left">Bài viết nổi bật</h2>
+        <h2 className="text-3xl font-bold font-heading mb-8 text-center md:text-left">Bài viết</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {pinnedPosts.map((post: Post) => (
             <Card key={post.slug} className="bg-card hover:border-primary/50 transition-all duration-300">
@@ -40,6 +40,13 @@ export default function Home() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="mt-8 text-center">
+            <Button asChild>
+                <Link href="/posts">
+                    Xem toàn bộ bài viết <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+            </Button>
         </div>
       </section>
 
