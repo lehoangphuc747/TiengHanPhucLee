@@ -46,14 +46,14 @@ export function PostList({ posts }: PostListProps) {
 
   return (
     <section>
-      <div className="flex flex-wrap items-center justify-end gap-2 mb-6">
+      <div className="flex flex-wrap items-center justify-start gap-2 mb-6">
         <span className="text-sm text-muted-foreground mr-2">Sắp xếp theo:</span>
         <ToggleGroup
           type="single"
           value={sortOption}
           onValueChange={handleSortChange}
           aria-label="Sắp xếp bài viết"
-          className="flex-wrap justify-end"
+          className="flex-wrap justify-start"
         >
           {sortOptions.map(option => (
             <ToggleGroupItem 
