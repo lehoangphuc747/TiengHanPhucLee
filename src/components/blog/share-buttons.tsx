@@ -70,7 +70,8 @@ export function ShareButtons({ post }: ShareButtonsProps) {
   };
 
   const downloadMarkdown = () => {
-    const blob = new Blob([post.markdownContent], { type: 'text/markdown;charset=utf-8' });
+    const content = `# ${post.title}\n\n${post.markdownContent}`;
+    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = `${post.slug}.md`;
