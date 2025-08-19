@@ -1,4 +1,4 @@
-name: CI
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -24,5 +24,11 @@ jobs:
     - name: Install dependencies
       run: npm install # Hoặc yarn install nếu bạn sử dụng Yarn
 
-    - name: Run tests
-      run: npm test # Hoặc lệnh kiểm tra của bạn
+    - name: Build project
+      run: npm run build # Hoặc lệnh xây dựng của bạn
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist # Thay đổi đường dẫn nếu cần
