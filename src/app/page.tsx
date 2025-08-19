@@ -29,13 +29,13 @@ export default function Home() {
 
       {/* Pinned Posts Section */}
       <section>
-        <h2 className="text-3xl font-bold font-heading mb-8 text-center md:text-left">Bài viết</h2>
+        <h2 className="text-3xl font-bold font-heading mb-8 text-center">Bài viết</h2>
         <div className="flex flex-col">
           {pinnedPosts.map((post: Post, index: number) => (
             <Fragment key={post.slug}>
               <Link 
                 href={`/posts/${post.slug}`} 
-                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
               >
                 <h3 className="text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground">
                   {post.title}
@@ -45,7 +45,7 @@ export default function Home() {
             </Fragment>
           ))}
         </div>
-        <div className="mt-8 text-left">
+        <div className="mt-8 text-center">
             <Button asChild>
                 <Link href="/posts">
                     Xem toàn bộ bài viết <ArrowRight className="ml-2 h-4 w-4" />
@@ -56,13 +56,13 @@ export default function Home() {
 
       {/* Projects Section */}
       <section>
-        <h2 className="text-3xl font-bold font-heading mb-8 text-center md:text-left">Dự án</h2>
+        <h2 className="text-3xl font-bold font-heading mb-8 text-center">Dự án</h2>
         <div className="space-y-6">
           {projects.map((project: Project) => (
             <Link key={project.slug} href={`/projects/${project.slug}`} className="block">
               <Card className="bg-card hover:border-primary/50 transition-all duration-300 group">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6">
-                  <div className="flex items-start gap-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center p-6 text-center">
+                  <div className="flex flex-col items-center gap-4">
                     {project.icon && (
                       <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                         <project.icon className="h-6 w-6 text-primary" />
