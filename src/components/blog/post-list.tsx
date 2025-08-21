@@ -97,7 +97,7 @@ export function PostList({ posts }: PostListProps) {
               href={`/posts/${post.slug}`} 
               className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
             >
-              <h2 className="flex items-center gap-3 text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
+              <h2 className="flex items-center gap-3 text-xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
                 {post.pinned && <Pin className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
                 <span>{post.title}</span>
               </h2>
