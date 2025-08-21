@@ -26,7 +26,7 @@ const experienceData = [
   },
   {
     title: 'Giảng viên',
-    company: 'Trường Hàn Ngữ Kanata',
+    company: 'Trường Hàn Ngữ Việt - Hàn Kanata',
     period: '05/2023 - 03/2024',
     duration: '11 tháng',
     current: false,
