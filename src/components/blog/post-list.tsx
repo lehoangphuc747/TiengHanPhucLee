@@ -7,7 +7,8 @@ import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUp, Pin } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 interface PostListProps {
   posts: Post[];
@@ -22,20 +23,30 @@ export function PostList({ posts }: PostListProps) {
     date: 'desc' as SortDirection,
     title: 'asc' as SortDirection,
   });
-  const [selectedTag, setSelectedTag] = useState<string>('all');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
     posts.forEach(post => {
       post.tags.forEach(tag => tags.add(tag));
     });
-    return ['all', ...Array.from(tags)];
+    return Array.from(tags);
   }, [posts]);
+
+  const handleTagChange = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag) 
+        : [...prev, tag]
+    );
+  };
 
   const filteredAndSortedPosts = useMemo(() => {
     let filteredPosts = posts;
-    if (selectedTag !== 'all') {
-      filteredPosts = posts.filter(post => post.tags.includes(selectedTag));
+    if (selectedTags.length > 0) {
+      filteredPosts = posts.filter(post => 
+        post.tags.some(tag => selectedTags.includes(tag))
+      );
     }
 
     const sorted = [...filteredPosts];
@@ -58,7 +69,7 @@ export function PostList({ posts }: PostListProps) {
     });
 
     return sorted;
-  }, [posts, selectedTag, activeSortKey, sortConfig]);
+  }, [posts, selectedTags, activeSortKey, sortConfig]);
 
   const handleSort = (key: SortKey) => {
     if (key === activeSortKey) {
@@ -86,7 +97,7 @@ export function PostList({ posts }: PostListProps) {
 
   return (
     <section>
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+      <div className="flex flex-col items-center justify-center gap-4 mb-6">
         <div className="flex flex-wrap justify-center gap-2">
            <Button 
             variant={activeSortKey === 'date' ? 'secondary' : 'ghost'}
@@ -105,36 +116,44 @@ export function PostList({ posts }: PostListProps) {
             <SortIcon for_key='title' />
           </Button>
         </div>
-        <div className="w-full sm:w-auto">
-          <Select value={selectedTag} onValueChange={setSelectedTag}>
-            <SelectTrigger className="text-xs md:text-sm w-full sm:w-[180px]">
-              <SelectValue placeholder="Lọc theo chủ đề" />
-            </SelectTrigger>
-            <SelectContent>
-              {allTags.map(tag => (
-                <SelectItem key={tag} value={tag} className="capitalize">
-                  {tag === 'all' ? 'Tất cả chủ đề' : tag}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <div className="flex flex-wrap justify-center items-center gap-4">
+          <span className="text-sm font-medium text-muted-foreground">Lọc theo chủ đề:</span>
+          {allTags.map(tag => (
+            <div key={tag} className="flex items-center space-x-2">
+              <Checkbox 
+                id={`tag-${tag}`} 
+                checked={selectedTags.includes(tag)}
+                onCheckedChange={() => handleTagChange(tag)}
+              />
+              <Label 
+                htmlFor={`tag-${tag}`} 
+                className="text-sm font-medium capitalize cursor-pointer"
+              >
+                {tag}
+              </Label>
+            </div>
+          ))}
         </div>
       </div>
       <div className="flex flex-col">
-        {filteredAndSortedPosts.map((post: Post, index: number) => (
-          <Fragment key={post.slug}>
-            <Link 
-              href={`/posts/${post.slug}`} 
-              className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
-            >
-              <h2 className="flex items-center gap-3 text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
-                {post.pinned && <Pin className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
-                <span>{post.title}</span>
-              </h2>
-            </Link>
-            {index < filteredAndSortedPosts.length - 1 && <Separator />}
-          </Fragment>
-        ))}
+        {filteredAndSortedPosts.length > 0 ? (
+          filteredAndSortedPosts.map((post: Post, index: number) => (
+            <Fragment key={post.slug}>
+              <Link 
+                href={`/posts/${post.slug}`} 
+                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+              >
+                <h2 className="flex items-center gap-3 text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
+                  {post.pinned && <Pin className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
+                  <span>{post.title}</span>
+                </h2>
+              </Link>
+              {index < filteredAndSortedPosts.length - 1 && <Separator />}
+            </Fragment>
+          ))
+        ) : (
+          <p className="text-center text-muted-foreground mt-8">Không có bài viết nào phù hợp với chủ đề đã chọn.</p>
+        )}
       </div>
     </section>
   );
