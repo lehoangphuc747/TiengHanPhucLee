@@ -6,16 +6,7 @@ import Link from 'next/link';
 import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, ArrowUp, Pin, ChevronDown } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator as DropdownMenuSeparatorUI,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
+import { ArrowDown, ArrowUp, Pin } from 'lucide-react';
 
 interface PostListProps {
   posts: Post[];
@@ -30,55 +21,9 @@ export function PostList({ posts }: PostListProps) {
     date: 'desc' as SortDirection,
     title: 'asc' as SortDirection,
   });
-  
-  const [filteredTags, setFilteredTags] = useState<string[]>([]);
-  const [tempSelectedTags, setTempSelectedTags] = useState<string[]>([]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    posts.forEach(post => {
-      post.tags.forEach(tag => tags.add(tag));
-    });
-    return Array.from(tags).sort();
-  }, [posts]);
-
-  const handleTempTagChange = (tag: string) => {
-    setTempSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag) 
-        : [...prev, tag]
-    );
-  };
-  
-  const applyFilter = () => {
-    setFilteredTags(tempSelectedTags);
-    setIsDropdownOpen(false);
-  };
-
-  const resetFilter = () => {
-    setTempSelectedTags([]);
-    setFilteredTags([]);
-    setIsDropdownOpen(false);
-  }
-
-  const handleDropdownOpenChange = (open: boolean) => {
-    if (open) {
-      // Khi mở dropdown, đồng bộ state tạm thời với state filter đang được áp dụng
-      setTempSelectedTags(filteredTags);
-    }
-    setIsDropdownOpen(open);
-  };
-
-  const filteredAndSortedPosts = useMemo(() => {
-    let filteredPosts = posts;
-    if (filteredTags.length > 0) {
-      filteredPosts = posts.filter(post => 
-        post.tags.some(tag => filteredTags.includes(tag))
-      );
-    }
-
-    const sorted = [...filteredPosts];
+  const sortedPosts = useMemo(() => {
+    const sorted = [...posts];
     const direction = sortConfig[activeSortKey];
     
     sorted.sort((a, b) => {
@@ -98,7 +43,7 @@ export function PostList({ posts }: PostListProps) {
     });
 
     return sorted;
-  }, [posts, filteredTags, activeSortKey, sortConfig]);
+  }, [posts, activeSortKey, sortConfig]);
 
   const handleSort = (key: SortKey) => {
     if (key === activeSortKey) {
@@ -143,61 +88,23 @@ export function PostList({ posts }: PostListProps) {
           {getButtonLabel('title')}
           <SortIcon for_key='title' />
         </Button>
-        <DropdownMenu open={isDropdownOpen} onOpenChange={handleDropdownOpenChange}>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="text-xs md:text-sm relative">
-              Lọc theo chủ đề
-              {filteredTags.length > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs">
-                  {filteredTags.length}
-                </span>
-              )}
-              <ChevronDown className="h-4 w-4 ml-1" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-60" onSelect={(e) => e.preventDefault()}>
-            <DropdownMenuLabel>Chọn chủ đề</DropdownMenuLabel>
-            <DropdownMenuSeparatorUI />
-            <div className="max-h-60 overflow-y-auto px-1">
-              {allTags.map(tag => (
-                <DropdownMenuCheckboxItem
-                  key={tag}
-                  className="capitalize"
-                  checked={tempSelectedTags.includes(tag)}
-                  onCheckedChange={() => handleTempTagChange(tag)}
-                >
-                  {tag}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </div>
-            <DropdownMenuSeparatorUI />
-            <div className="p-2 flex justify-end gap-2">
-              <Button variant="ghost" size="sm" onClick={resetFilter}>Đặt lại</Button>
-              <Button size="sm" onClick={applyFilter}>Lọc</Button>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
 
       <div className="flex flex-col">
-        {filteredAndSortedPosts.length > 0 ? (
-          filteredAndSortedPosts.map((post: Post, index: number) => (
-            <Fragment key={post.slug}>
-              <Link 
-                href={`/posts/${post.slug}`} 
-                className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
-              >
-                <h2 className="flex items-center gap-3 text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
-                  {post.pinned && <Pin className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
-                  <span>{post.title}</span>
-                </h2>
-              </Link>
-              {index < filteredAndSortedPosts.length - 1 && <Separator />}
-            </Fragment>
-          ))
-        ) : (
-          <p className="text-center text-muted-foreground mt-8">Không có bài viết nào phù hợp với chủ đề đã chọn.</p>
-        )}
+        {sortedPosts.map((post: Post, index: number) => (
+          <Fragment key={post.slug}>
+            <Link 
+              href={`/posts/${post.slug}`} 
+              className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+            >
+              <h2 className="flex items-center gap-3 text-2xl font-medium font-heading text-primary group-hover:text-accent-foreground leading-relaxed">
+                {post.pinned && <Pin className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
+                <span>{post.title}</span>
+              </h2>
+            </Link>
+            {index < sortedPosts.length - 1 && <Separator />}
+          </Fragment>
+        ))}
       </div>
     </section>
   );
