@@ -7,6 +7,7 @@ import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUp, Pin } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface PostListProps {
   posts: Post[];
@@ -21,17 +22,29 @@ export function PostList({ posts }: PostListProps) {
     date: 'desc' as SortDirection,
     title: 'asc' as SortDirection,
   });
+  const [selectedTag, setSelectedTag] = useState<string>('all');
 
-  const sortedPosts = useMemo(() => {
-    const sorted = [...posts];
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    posts.forEach(post => {
+      post.tags.forEach(tag => tags.add(tag));
+    });
+    return ['all', ...Array.from(tags)];
+  }, [posts]);
+
+  const filteredAndSortedPosts = useMemo(() => {
+    let filteredPosts = posts;
+    if (selectedTag !== 'all') {
+      filteredPosts = posts.filter(post => post.tags.includes(selectedTag));
+    }
+
+    const sorted = [...filteredPosts];
     const direction = sortConfig[activeSortKey];
     
     sorted.sort((a, b) => {
-      // Prioritize pinned posts
       if (a.pinned && !b.pinned) return -1;
       if (!a.pinned && b.pinned) return 1;
 
-      // Then sort by the active key
       if (activeSortKey === 'date') {
         const dateA = new Date(a.date).getTime();
         const dateB = new Date(b.date).getTime();
@@ -45,17 +58,15 @@ export function PostList({ posts }: PostListProps) {
     });
 
     return sorted;
-  }, [posts, activeSortKey, sortConfig]);
+  }, [posts, selectedTag, activeSortKey, sortConfig]);
 
   const handleSort = (key: SortKey) => {
     if (key === activeSortKey) {
-      // Toggle direction if it's the active key
       setSortConfig(prev => ({
         ...prev,
         [key]: prev[key] === 'asc' ? 'desc' : 'asc',
       }));
     } else {
-      // Switch to the new key
       setActiveSortKey(key);
     }
   };
@@ -65,7 +76,6 @@ export function PostList({ posts }: PostListProps) {
     if (key === 'date') {
       return direction === 'desc' ? 'Mới nhất' : 'Cũ nhất';
     }
-    // key === 'title'
     return direction === 'asc' ? 'Tiêu đề (A-Z)' : 'Tiêu đề (Z-A)';
   };
 
@@ -95,9 +105,23 @@ export function PostList({ posts }: PostListProps) {
             <SortIcon for_key='title' />
           </Button>
         </div>
+        <div className="w-full sm:w-auto">
+          <Select value={selectedTag} onValueChange={setSelectedTag}>
+            <SelectTrigger className="text-xs md:text-sm w-full sm:w-[180px]">
+              <SelectValue placeholder="Lọc theo chủ đề" />
+            </SelectTrigger>
+            <SelectContent>
+              {allTags.map(tag => (
+                <SelectItem key={tag} value={tag} className="capitalize">
+                  {tag === 'all' ? 'Tất cả chủ đề' : tag}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <div className="flex flex-col">
-        {sortedPosts.map((post: Post, index: number) => (
+        {filteredAndSortedPosts.map((post: Post, index: number) => (
           <Fragment key={post.slug}>
             <Link 
               href={`/posts/${post.slug}`} 
@@ -108,7 +132,7 @@ export function PostList({ posts }: PostListProps) {
                 <span>{post.title}</span>
               </h2>
             </Link>
-            {index < sortedPosts.length - 1 && <Separator />}
+            {index < filteredAndSortedPosts.length - 1 && <Separator />}
           </Fragment>
         ))}
       </div>
