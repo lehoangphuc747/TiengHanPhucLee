@@ -7,8 +7,6 @@ import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUp, Pin, ChevronDown } from 'lucide-react';
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -32,7 +30,10 @@ export function PostList({ posts }: PostListProps) {
     date: 'desc' as SortDirection,
     title: 'asc' as SortDirection,
   });
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  
+  const [filteredTags, setFilteredTags] = useState<string[]>([]);
+  const [tempSelectedTags, setTempSelectedTags] = useState<string[]>([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
@@ -42,19 +43,38 @@ export function PostList({ posts }: PostListProps) {
     return Array.from(tags).sort();
   }, [posts]);
 
-  const handleTagChange = (tag: string) => {
-    setSelectedTags(prev => 
+  const handleTempTagChange = (tag: string) => {
+    setTempSelectedTags(prev => 
       prev.includes(tag) 
         ? prev.filter(t => t !== tag) 
         : [...prev, tag]
     );
   };
+  
+  const applyFilter = () => {
+    setFilteredTags(tempSelectedTags);
+    setIsDropdownOpen(false);
+  };
+
+  const resetFilter = () => {
+    setTempSelectedTags([]);
+    setFilteredTags([]);
+    setIsDropdownOpen(false);
+  }
+
+  const handleDropdownOpenChange = (open: boolean) => {
+    if (open) {
+      // When opening, sync temp state with the active filter state
+      setTempSelectedTags(filteredTags);
+    }
+    setIsDropdownOpen(open);
+  };
 
   const filteredAndSortedPosts = useMemo(() => {
     let filteredPosts = posts;
-    if (selectedTags.length > 0) {
+    if (filteredTags.length > 0) {
       filteredPosts = posts.filter(post => 
-        post.tags.some(tag => selectedTags.includes(tag))
+        post.tags.some(tag => filteredTags.includes(tag))
       );
     }
 
@@ -78,7 +98,7 @@ export function PostList({ posts }: PostListProps) {
     });
 
     return sorted;
-  }, [posts, selectedTags, activeSortKey, sortConfig]);
+  }, [posts, filteredTags, activeSortKey, sortConfig]);
 
   const handleSort = (key: SortKey) => {
     if (key === activeSortKey) {
@@ -123,26 +143,38 @@ export function PostList({ posts }: PostListProps) {
           {getButtonLabel('title')}
           <SortIcon for_key='title' />
         </Button>
-        <DropdownMenu>
+        <DropdownMenu open={isDropdownOpen} onOpenChange={handleDropdownOpenChange}>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="text-xs md:text-sm">
+            <Button variant="ghost" className="text-xs md:text-sm relative">
               Lọc theo chủ đề
+              {filteredTags.length > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs">
+                  {filteredTags.length}
+                </span>
+              )}
               <ChevronDown className="h-4 w-4 ml-1" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" onSelect={(e) => e.preventDefault()}>
+          <DropdownMenuContent className="w-60" onSelect={(e) => e.preventDefault()}>
             <DropdownMenuLabel>Chọn chủ đề</DropdownMenuLabel>
             <DropdownMenuSeparatorUI />
-            {allTags.map(tag => (
-              <DropdownMenuCheckboxItem
-                key={tag}
-                className="capitalize"
-                checked={selectedTags.includes(tag)}
-                onCheckedChange={() => handleTagChange(tag)}
-              >
-                {tag}
-              </DropdownMenuCheckboxItem>
-            ))}
+            <div className="max-h-60 overflow-y-auto px-1">
+              {allTags.map(tag => (
+                <DropdownMenuCheckboxItem
+                  key={tag}
+                  className="capitalize"
+                  checked={tempSelectedTags.includes(tag)}
+                  onCheckedChange={() => handleTempTagChange(tag)}
+                >
+                  {tag}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </div>
+            <DropdownMenuSeparatorUI />
+            <div className="p-2 flex justify-end gap-2">
+              <Button variant="ghost" size="sm" onClick={resetFilter}>Đặt lại</Button>
+              <Button size="sm" onClick={applyFilter}>Lọc</Button>
+            </div>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
