@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { projects } from '@/lib/data';
 import { getAllPosts } from '@/lib/posts';
 import type { Post, Project } from '@/lib/types';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Facebook } from 'lucide-react';
 import { Fragment } from 'react';
@@ -63,22 +63,27 @@ export default async function Home() {
       {/* Projects Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Dự án</h2>
-        <div className="flex flex-col items-center space-y-4">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {projects.map((project: Project) => (
-            <Link
-              key={project.slug}
-              href={project.link || `/projects/${project.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block py-4 w-full max-w-2xl rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
-            >
-              <div className="flex justify-center items-baseline gap-4">
-                <h3 className="text-xl font-medium font-heading text-primary group-hover:text-accent-foreground">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground">{project.description}</p>
-              </div>
-            </Link>
+            <Card key={project.slug} className="flex flex-col">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  {project.icon && <project.icon className="h-6 w-6 text-muted-foreground" />}
+                  <span>{project.title}</span>
+                </CardTitle>
+                <CardDescription>{project.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                {/* Future content can go here */}
+              </CardContent>
+              <CardFooter>
+                 <Button asChild variant="link" className="p-0 h-auto">
+                   <Link href={project.link || `/projects/${project.slug}`} target="_blank" rel="noopener noreferrer">
+                    Xem dự án <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                 </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </section>
