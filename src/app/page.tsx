@@ -63,27 +63,21 @@ export default async function Home() {
       {/* Projects Section */}
       <section>
         <h2 className="text-3xl font-bold font-heading mb-8 text-center">Dự án</h2>
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="max-w-xl mx-auto space-y-6">
           {projects.map((project: Project) => (
-            <Card key={project.slug} className="flex flex-col">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  {project.icon && <project.icon className="h-6 w-6 text-muted-foreground" />}
-                  <span>{project.title}</span>
-                </CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                {/* Future content can go here */}
-              </CardContent>
-              <CardFooter>
-                 <Button asChild variant="link" className="p-0 h-auto">
-                   <Link href={project.link || `/projects/${project.slug}`} target="_blank" rel="noopener noreferrer">
-                    Xem dự án <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                 </Button>
-              </CardFooter>
-            </Card>
+            <a 
+              key={project.slug} 
+              href={project.link || `/projects/${project.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between py-4 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
+            >
+              <div className="flex items-center gap-4">
+                {project.icon && <project.icon className="h-5 w-5 text-muted-foreground group-hover:text-accent-foreground" />}
+                <span className="text-lg font-medium text-primary group-hover:text-accent-foreground">{project.title}</span>
+              </div>
+              <span className="text-muted-foreground group-hover:text-accent-foreground">{project.description}</span>
+            </a>
           ))}
         </div>
       </section>
