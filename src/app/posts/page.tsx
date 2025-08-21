@@ -17,7 +17,7 @@ export default async function AllPostsPage() {
           Tất cả bài viết
         </h1>
         <p className="text-lg text-muted-foreground">
-          Tuyển tập đầy đủ tất cả các bài viết và ghi chú của tớ.
+          Tuyển tập đầy đủ tất cả các bài viết và ghi chú của mình.
         </p>
       </section>
 

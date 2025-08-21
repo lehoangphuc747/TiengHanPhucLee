@@ -22,7 +22,7 @@ export default async function Home() {
           Annyeong~~
         </h1>
         <p className="max-w-3xl mx-auto text-lg text-foreground/80 mb-8">
-          Tớ là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của tớ, nơi tớ chia sẻ ghi chú, khám phá và tài nguyên.
+          Mình là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của mình, nơi mình chia sẻ ghi chú, khám phá và tài nguyên.
         </p>
         <Button asChild variant="outline">
           <a href="https://www.facebook.com/your-profile" target="_blank" rel="noopener noreferrer">
