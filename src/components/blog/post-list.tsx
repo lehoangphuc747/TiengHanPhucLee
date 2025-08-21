@@ -6,9 +6,18 @@ import Link from 'next/link';
 import type { Post } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, ArrowUp, Pin } from 'lucide-react';
+import { ArrowDown, ArrowUp, Pin, ChevronDown } from 'lucide-react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator as DropdownMenuSeparatorUI,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 interface PostListProps {
   posts: Post[];
@@ -30,7 +39,7 @@ export function PostList({ posts }: PostListProps) {
     posts.forEach(post => {
       post.tags.forEach(tag => tags.add(tag));
     });
-    return Array.from(tags);
+    return Array.from(tags).sort();
   }, [posts]);
 
   const handleTagChange = (tag: string) => {
@@ -97,44 +106,47 @@ export function PostList({ posts }: PostListProps) {
 
   return (
     <section>
-      <div className="flex flex-col items-center justify-center gap-4 mb-6">
-        <div className="flex flex-wrap justify-center gap-2">
-           <Button 
-            variant={activeSortKey === 'date' ? 'secondary' : 'ghost'}
-            onClick={() => handleSort('date')}
-            className="text-xs md:text-sm"
-          >
-            {getButtonLabel('date')}
-            <SortIcon for_key='date' />
-          </Button>
-          <Button 
-            variant={activeSortKey === 'title' ? 'secondary' : 'ghost'}
-            onClick={() => handleSort('title')}
-            className="text-xs md:text-sm"
-          >
-            {getButtonLabel('title')}
-            <SortIcon for_key='title' />
-          </Button>
-        </div>
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          <span className="text-sm font-medium text-muted-foreground">Lọc theo chủ đề:</span>
-          {allTags.map(tag => (
-            <div key={tag} className="flex items-center space-x-2">
-              <Checkbox 
-                id={`tag-${tag}`} 
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <Button 
+          variant={activeSortKey === 'date' ? 'secondary' : 'ghost'}
+          onClick={() => handleSort('date')}
+          className="text-xs md:text-sm"
+        >
+          {getButtonLabel('date')}
+          <SortIcon for_key='date' />
+        </Button>
+        <Button 
+          variant={activeSortKey === 'title' ? 'secondary' : 'ghost'}
+          onClick={() => handleSort('title')}
+          className="text-xs md:text-sm"
+        >
+          {getButtonLabel('title')}
+          <SortIcon for_key='title' />
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="text-xs md:text-sm">
+              Lọc theo chủ đề
+              <ChevronDown className="h-4 w-4 ml-1" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56" onSelect={(e) => e.preventDefault()}>
+            <DropdownMenuLabel>Chọn chủ đề</DropdownMenuLabel>
+            <DropdownMenuSeparatorUI />
+            {allTags.map(tag => (
+              <DropdownMenuCheckboxItem
+                key={tag}
+                className="capitalize"
                 checked={selectedTags.includes(tag)}
                 onCheckedChange={() => handleTagChange(tag)}
-              />
-              <Label 
-                htmlFor={`tag-${tag}`} 
-                className="text-sm font-medium capitalize cursor-pointer"
               >
                 {tag}
-              </Label>
-            </div>
-          ))}
-        </div>
+              </DropdownMenuCheckboxItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
+
       <div className="flex flex-col">
         {filteredAndSortedPosts.length > 0 ? (
           filteredAndSortedPosts.map((post: Post, index: number) => (
