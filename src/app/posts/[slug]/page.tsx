@@ -62,20 +62,22 @@ export default async function PostPage({ params }: { params: { slug: string } })
     notFound();
   }
 
-  // Find youtube links in content and replace them with a placeholder
-  const youtubeLinkRegex = /<a href="(https?:\/\/(?:www\.)?youtube\.com\/watch\?v=[\w-]+)[^>]*>.*?<\/a>/g;
+  // Regex to find standalone YouTube links in the content
+  const youtubeLinkRegex = /(?:<p>)?(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)[\w-]+)(?:<\/p>)?/g;
   const videoIds: string[] = [];
+  
+  // Replace youtube links with placeholders
   const contentWithPlaceholders = post.content.replace(youtubeLinkRegex, (match, url) => {
     const videoId = getYoutubeVideoId(url);
     if (videoId) {
-      videoIds.push(videoId);
-      return `<div id="youtube-player-${videoId}"></div>`;
+        videoIds.push(videoId);
+        return `<div id="youtube-player-${videoId}"></div>`;
     }
     return match;
   });
 
+  // Split content by placeholders
   const contentParts = contentWithPlaceholders.split(/<div id="youtube-player-[\w-]+"><\/div>/);
-
 
   return (
     <div className="max-w-3xl mx-auto py-8">
@@ -103,7 +105,9 @@ export default async function PostPage({ params }: { params: { slug: string } })
             <div key={index}>
               <div dangerouslySetInnerHTML={{ __html: part }} />
               {index < videoIds.length && (
-                <YoutubePlayer videoId={videoIds[index]} className="my-6" />
+                <div className="not-prose my-6">
+                  <YoutubePlayer videoId={videoIds[index]} />
+                </div>
               )}
             </div>
           ))}

@@ -8,6 +8,8 @@ slug: "ngung-hoc-vet-va-bat-dau-noi-tieng-anh-di"
 
 Nguồn: <a href="https://www.youtube.com/watch?v=-nMcOJ-YXXs" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=-nMcOJ-YXXs</a>
 
+https://www.youtube.com/watch?v=-nMcOJ-YXXs
+
 ## **Sự thật phũ phàng: Hầu hết cách bạn học đều sai lầm**
 
 Bạn đã dành hàng trăm giờ để xem phim, nghe nhạc, cày ngữ pháp. Kết quả? Bạn vẫn ấp úng khi cần nói một câu đơn giản.
