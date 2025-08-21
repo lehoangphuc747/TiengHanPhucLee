@@ -2,7 +2,7 @@
 title: "Ngừng học vẹt và bắt đầu nói tiếng Anh đi"
 description: "Bạn đã dành hàng trăm giờ để xem phim, nghe nhạc, cày ngữ pháp nhưng vẫn ấp úng. Đây là lý do và phương pháp để thực sự bắt đầu nói."
 date: "2025-08-15"
-tags: ["learning", "english", "productivity"]
+tags: ["learning", "english"]
 slug: "ngung-hoc-vet-va-bat-dau-noi-tieng-anh-di"
 ---
 

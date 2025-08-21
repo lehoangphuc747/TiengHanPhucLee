@@ -2,7 +2,7 @@
 title: "14 Sự Thật Phũ Phàng (Phiên bản Tối giản)"
 description: "Cuộc sống không dễ dàng, và đây là 14 sự thật phũ phàng nhưng cần thiết mà bạn cần đối mặt để trưởng thành."
 date: "2025-08-14"
-tags: ["mindset", "life-lessons", "productivity"]
+tags: ["mindset", "life-lessons"]
 slug: "14-su-that-phu-phang-phien-ban-toi-gian"
 ---
 

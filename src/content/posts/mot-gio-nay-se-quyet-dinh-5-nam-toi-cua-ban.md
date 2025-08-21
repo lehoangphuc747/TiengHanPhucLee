@@ -2,7 +2,7 @@
 title: "Một Giờ Này Sẽ Quyết Định 5 Năm Tới Của Bạn"
 description: "Nghe này, tương lai của bạn sẽ chẳng khá hơn đâu nếu bạn cứ tiếp tục sống như một kẻ mộng du."
 date: "2025-08-11"
-tags: ["mindset", "productivity", "success"]
+tags: ["mindset", "productivity"]
 slug: "mot-gio-nay-se-quyet-dinh-5-nam-toi-cua-ban"
 ---
 

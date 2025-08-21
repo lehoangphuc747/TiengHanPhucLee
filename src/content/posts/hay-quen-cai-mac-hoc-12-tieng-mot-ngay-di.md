@@ -2,7 +2,7 @@
 title: "Hãy quên cái mác 'học 12 tiếng một ngày' đi"
 description: "Đây mới là những điều thực sự quan trọng để thực sự tiến bộ, không phải là khoe khoang về số giờ bạn học."
 date: "2025-08-12"
-tags: ["mindset", "productivity", "learning"]
+tags: ["mindset", "learning"]
 slug: "hay-quen-cai-mac-hoc-12-tieng-mot-ngay-di"
 ---
 
