@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import { Inter } from 'next/font/google';
+import { ScrollToTopButton } from '@/components/ui/scroll-to-top';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster />
+          <ScrollToTopButton />
       </body>
     </html>
   );
