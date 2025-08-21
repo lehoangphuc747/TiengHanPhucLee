@@ -64,7 +64,7 @@ export function PostList({ posts }: PostListProps) {
 
   const handleDropdownOpenChange = (open: boolean) => {
     if (open) {
-      // When opening, sync temp state with the active filter state
+      // Khi mở dropdown, đồng bộ state tạm thời với state filter đang được áp dụng
       setTempSelectedTags(filteredTags);
     }
     setIsDropdownOpen(open);
