@@ -5,6 +5,14 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ShareButtons } from '@/components/blog/share-buttons';
+import { YoutubePlayer } from '@/components/blog/youtube-player';
+
+// Helper function to extract YouTube video ID from URL
+function getYoutubeVideoId(url: string): string | null {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -54,6 +62,21 @@ export default async function PostPage({ params }: { params: { slug: string } })
     notFound();
   }
 
+  // Find youtube links in content and replace them with a placeholder
+  const youtubeLinkRegex = /<a href="(https?:\/\/(?:www\.)?youtube\.com\/watch\?v=[\w-]+)[^>]*>.*?<\/a>/g;
+  const videoIds: string[] = [];
+  const contentWithPlaceholders = post.content.replace(youtubeLinkRegex, (match, url) => {
+    const videoId = getYoutubeVideoId(url);
+    if (videoId) {
+      videoIds.push(videoId);
+      return `<div id="youtube-player-${videoId}"></div>`;
+    }
+    return match;
+  });
+
+  const contentParts = contentWithPlaceholders.split(/<div id="youtube-player-[\w-]+"><\/div>/);
+
+
   return (
     <div className="max-w-3xl mx-auto py-8">
       <div className="mb-8">
@@ -75,8 +98,16 @@ export default async function PostPage({ params }: { params: { slug: string } })
                     prose-headings:font-heading prose-headings:text-primary
                     prose-a:text-primary hover:prose-a:text-accent-foreground
                     prose-strong:font-semibold text-justify"
-          dangerouslySetInnerHTML={{ __html: post.content }} 
-        />
+        >
+          {contentParts.map((part, index) => (
+            <div key={index}>
+              <div dangerouslySetInnerHTML={{ __html: part }} />
+              {index < videoIds.length && (
+                <YoutubePlayer videoId={videoIds[index]} className="my-6" />
+              )}
+            </div>
+          ))}
+        </div>
       </article>
 
       <ShareButtons post={post} />

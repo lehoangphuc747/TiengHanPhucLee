@@ -6,9 +6,7 @@ tags: ["learning", "english"]
 slug: "ngung-hoc-vet-va-bat-dau-noi-tieng-anh-di"
 ---
 
-<div class="aspect-video w-full my-6">
-  <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/-nMcOJ-YXXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+Nguồn: <a href="https://www.youtube.com/watch?v=-nMcOJ-YXXs" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=-nMcOJ-YXXs</a>
 
 ## **Sự thật phũ phàng: Hầu hết cách bạn học đều sai lầm**
 
