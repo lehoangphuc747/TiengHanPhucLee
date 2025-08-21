@@ -43,7 +43,7 @@ export function SearchPosts({ posts }: SearchPostsProps) {
         {filteredPosts.map((post: Post, index: number) => (
           <Fragment key={post.slug}>
             <Link 
-              href={`/posts/${post.slug}`} 
+              href={`/bai-viet/${post.slug}`} 
               className="block py-6 -mx-4 px-4 rounded-lg hover:bg-accent transition-colors duration-200 group"
               target="_blank"
               rel="noopener noreferrer"

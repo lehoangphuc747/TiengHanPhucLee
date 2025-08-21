@@ -40,7 +40,7 @@ export default async function Home() {
           {pinnedPosts.map((post: Post) => (
             <Link 
               key={post.slug}
-              href={`/posts/${post.slug}`} 
+              href={`/bai-viet/${post.slug}`} 
               className="block py-4 w-full max-w-2xl rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
             >
               <h3 className="text-2xl font-normal font-heading text-primary group-hover:text-accent-foreground">
@@ -51,7 +51,7 @@ export default async function Home() {
         </div>
         <div className="mt-10 text-center">
           <Button asChild variant="outline" className="bg-white text-black border-black hover:bg-gray-200">
-            <Link href="/posts">
+            <Link href="/bai-viet">
               Tất cả bài viết <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

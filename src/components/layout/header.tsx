@@ -18,7 +18,7 @@ export function Header() {
                   <Link href="/">Trang chủ</Link>
                 </Button>
                 <Button variant="ghost" asChild>
-                  <Link href="/posts">Bài viết</Link>
+                  <Link href="/bai-viet">Bài viết</Link>
                 </Button>
                 <Button variant="ghost" asChild>
                   <Link href="/search">Tìm kiếm</Link>
