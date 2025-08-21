@@ -4,7 +4,6 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import { Inter } from 'next/font/google';
-import { AuthProvider } from '@/components/auth/auth-provider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -21,7 +20,6 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${inter.variable} scroll-smooth`}>
       <body className="font-sans antialiased bg-background text-foreground">
-        <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,7 +28,6 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster />
-        </AuthProvider>
       </body>
     </html>
   );
