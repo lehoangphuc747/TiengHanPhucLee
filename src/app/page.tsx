@@ -27,19 +27,6 @@ const MessengerIcon = () => (
   </svg>
 );
 
-// Simple Zalo Icon as SVG component
-const ZaloIcon = () => (
-    <svg 
-        width="24" 
-        height="24" 
-        viewBox="0 0 24 24" 
-        fill="currentColor"
-        className="h-5 w-5"
-    >
-        <path d="M16.229 15.242c-.347.05-.732.14-1.15.27-.419.13-.804.229-1.15.289-.92.14-1.69.21-2.31.21-.69 0-1.38-.07-2.07-.21-.69-.14-1.28-.32-1.78-.54-.5-.22-.88-.45-1.15-.7-.27-.25-.4-.51-.4-.79 0-.21.08-.42.23-.64.15-.22.38-.45.68-.7.3-.25.7-.54 1.18-.87.49-.33.98-.63 1.48-.9.5-.27 1.01-.58 1.52-.94.51-.36.9-.76 1.15-1.2.25-.44.38-.9.38-1.37 0-.36-.06-.7-.18-1.02-.12-.32-.29-.6-.51-.82-.22-.22-.48-.4-.79-.51-.3-.12-.64-.18-.99-.18-.55 0-1.07.12-1.54.38-.47.25-.88.59-1.22.99-.34.4-.6.85-.79 1.35s-.28 1.01-.28 1.54h-2.22c0-.8.15-1.54.45-2.22.3-.69.7-1.3 1.22-1.83.51-.53 1.12-.95 1.83-1.27.7-.32 1.48-.48 2.32-.48.84 0 1.6.16 2.29.48.69.32 1.28.74 1.78 1.27.5.53.88 1.14 1.14 1.83.27.68.4 1.43.4 2.22 0 .58-.12 1.14-.35 1.68-.23.54-.56 1.02-.99 1.44s-.93.76-1.51 1.02c-.58.27-1.11.48-1.59.64h.01c.03 0 .06.01.09.01.21 0 .46-.03.75-.08.29-.06.54-.12.75-.19.4-.14.7-.28.9-.44.2-.16.3-.3.3-.41 0-.22-.16-.45-.48-.69-.32-.24-.7-.45-1.15-.63-.45-.18-.8-.3-1.05-.38-.25-.07-.42-.11-.51-.11-.12 0-.24.03-.35.08s-.21.12-.29.2c-.08.08-.12.18-.12.29s.03.2.08.29c.06.08.15.16.29.23.14.07.32.14.54.2.22.06.49.12.8.19.31.07.56.12.75.16.19.04.35.08.48.11.13.03.23.06.29.08.2.06.39.15.54.28.15.13.22.28.22.44 0 .3-.15.56-.44.79-.3.22-.69.4-1.15.51z" />
-    </svg>
-)
-
 export default async function Home() {
   const posts = await getAllPosts();
   const pinnedPosts = posts.filter(post => post.pinned);
@@ -71,10 +58,10 @@ export default async function Home() {
                   <MessengerIcon />
                 </a>
               </Button>
-               <Button asChild variant="outline" size="icon">
+               <Button asChild variant="outline">
                 {/* Update the href to your Zalo link */}
                 <a href="https://zalo.me/your-phone-number" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
-                  <ZaloIcon />
+                  Zalo
                 </a>
               </Button>
               <Button asChild variant="outline" size="icon">
@@ -111,7 +98,7 @@ export default async function Home() {
               href={`/bai-viet/${post.slug}`} 
               className="block py-4 w-full max-w-2xl rounded-lg hover:bg-accent transition-colors duration-200 group text-center"
             >
-              <h3 className="text-2xl font-normal font-heading text-primary group-hover:text-accent-foreground">
+              <h3 className="text-xl md:text-2xl font-normal font-heading text-primary group-hover:text-accent-foreground">
                 {post.title}
               </h3>
             </Link>
