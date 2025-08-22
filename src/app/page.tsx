@@ -12,20 +12,6 @@ import { Education } from '@/components/sections/education';
 import { Experience } from '@/components/sections/experience';
 import Image from 'next/image';
 
-// Simple Messenger Icon as SVG component
-const MessengerIcon = () => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24" 
-    fill="currentColor"
-    className="h-5 w-5"
-  >
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.85 0 3.58-.5 5.09-1.38L20.59 22l-1.09-3.26A9.92 9.92 0 0 0 22 12c0-5.52-4.48-10-10-10zm-2.41 11.41L12 10.83l2.41 2.58L17 10.59l-5-5-5.41 5.41z"/>
-  </svg>
-);
-
 export default async function Home() {
   const posts = await getAllPosts();
   const pinnedPosts = posts.filter(post => post.pinned);
@@ -51,10 +37,10 @@ export default async function Home() {
                   <Facebook className="h-5 w-5" />
                 </a>
               </Button>
-              <Button asChild variant="outline" size="icon">
+              <Button asChild variant="outline">
                 {/* Update the href to your Messenger link */}
                 <a href="https://m.me/your-username" target="_blank" rel="noopener noreferrer" aria-label="Messenger">
-                  <MessengerIcon />
+                  Messenger
                 </a>
               </Button>
                <Button asChild variant="outline">
