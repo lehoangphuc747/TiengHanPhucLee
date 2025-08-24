@@ -5,7 +5,7 @@ import { getAllPosts } from '@/lib/posts';
 import type { Post, Project } from '@/lib/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Facebook, Mail } from 'lucide-react';
+import { ArrowRight, Facebook } from 'lucide-react';
 import { Fragment } from 'react';
 import { Separator } from '@/components/ui/separator';
 import { Education } from '@/components/sections/education';
@@ -47,11 +47,6 @@ export default async function Home() {
                 {/* Update the href to your Zalo link */}
                 <a href="https://zalo.me/your-phone-number" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
                   Zalo
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="icon">
-                <a href="mailto:your-email@example.com" aria-label="Email">
-                  <Mail className="h-5 w-5" />
                 </a>
               </Button>
             </div>
