@@ -6,8 +6,6 @@ tags: ["k-pop", "variety-show", "fun"]
 slug: "real-man-series-jang-wonyoung-kai-cai-ket"
 ---
 
-<a href="https://d.l3n.co/i/NLf7kP.png" target="_blank" rel="noopener noreferrer">
-  <img src="https://d.l3n.co/i/NLf7kP.png" alt="Jang Wonyoung và Kai trong Real Man" style="width:100%; border-radius: 0.5rem;"/>
-</a>
+[Xem hình ảnh tại đây](https://d.l3n.co/i/NLf7kP.png)
 
 Câu chuyện về sự ngây thơ của "Ngốc" Jang Wonyoung khi tin vào lời của "Đại Ngốc" Kai trong chương trình thực tế "Real Man" đã mang lại những tràng cười không ngớt cho khán giả. Khoảnh khắc này đã trở thành một trong những điểm nhấn hài hước và đáng nhớ nhất của series.
