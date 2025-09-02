@@ -1,5 +1,5 @@
 ---
-title: "THÁI CỰC TƯỢNG ĐỒ CỦA NƯỢC VIỆT NAM TRONG KỶ NGUYÊN MỚI"
+title: "THÁI CỰC TƯỢNG ĐỒ CỦA NƯỚC VIỆT NAM TRONG KỶ NGUYÊN MỚI"
 description: "Diễn giải về đồ hình Thái Cực của Việt Nam, luận về thời cuộc và tương lai theo góc nhìn Lý - Tượng - Số. Nguồn: Ký sự phía bên kia không gian chiều thứ tư."
 date: "2017-09-13"
 tags: ["triet-ly", "van-menh", "lich-su"]
@@ -8,7 +8,7 @@ slug: "thai-cuc-tuong-do-cua-nuoc-viet-nam-trong-ky-nguyen-moi"
 
 *Nguồn: Ký sự phía bên kia không gian chiều thứ tư*
 
-![Thái Cực Tượng Đồ Việt Nam](https://placehold.co/600x600)
+![Thái Cực Tượng Đồ Việt Nam](/images/posts/thai-cuc-tuong-do-cua-nuoc-viet-nam-trong-ky-nguyen-moi.jpg)
 
 ## **I. Những Lưu Ý Căn Bản**
 
