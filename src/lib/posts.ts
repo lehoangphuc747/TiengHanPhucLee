@@ -44,35 +44,39 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-    const allPosts = await getAllPosts();
-    const post = allPosts.find(p => p.slug === slug);
-
-    if (post) {
-      return post;
-    }
-
-    // Fallback for old slugs from file names if needed, though we should migrate
     try {
+        const allPosts = await getAllPosts();
+        const post = allPosts.find(p => p.slug === slug);
+    
+        if (post) {
+          return post;
+        }
+
+        // Fallback for old slugs from file names if needed
         const fullPath = path.join(postsDirectory, `${slug}.md`);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
-    
-        const matterResult = matter(fileContents);
-    
-        const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content);
-        const contentHtml = processedContent.toString();
-    
-        return {
-            slug,
-            title: matterResult.data.title,
-            description: matterResult.data.description,
-            date: matterResult.data.date,
-            tags: matterResult.data.tags || [],
-            pinned: matterResult.data.pinned || false,
-            content: contentHtml,
-            markdownContent: matterResult.content,
-        };
+        if (fs.existsSync(fullPath)) {
+            const fileContents = fs.readFileSync(fullPath, 'utf8');
+        
+            const matterResult = matter(fileContents);
+        
+            const processedContent = await remark()
+            .use(html)
+            .process(matterResult.content);
+            const contentHtml = processedContent.toString();
+        
+            return {
+                slug,
+                title: matterResult.data.title,
+                description: matterResult.data.description,
+                date: matterResult.data.date,
+                tags: matterResult.data.tags || [],
+                pinned: matterResult.data.pinned || false,
+                content: contentHtml,
+                markdownContent: matterResult.content,
+            };
+        }
+        
+        return null;
     } catch (error) {
         console.error(`Error reading post with slug ${slug}:`, error);
         return null;
