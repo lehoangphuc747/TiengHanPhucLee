@@ -8,6 +8,8 @@ slug: "thai-cuc-tuong-do-cua-nuoc-viet-nam-trong-ky-nguyen-moi"
 
 *Nguồn: Ký sự phía bên kia không gian chiều thứ tư*
 
+![Thái Cực Tượng Đồ Việt Nam](https://placehold.co/600x600)
+
 ## **I. Những Lưu Ý Căn Bản**
 
 ### ***Ba Công Cụ Cần Thiết***
