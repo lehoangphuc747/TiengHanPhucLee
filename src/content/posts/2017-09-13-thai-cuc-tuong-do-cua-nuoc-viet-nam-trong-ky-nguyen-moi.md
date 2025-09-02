@@ -6,7 +6,7 @@ tags: ["triet-ly", "van-menh", "lich-su"]
 slug: "thai-cuc-tuong-do-cua-nuoc-viet-nam-trong-ky-nguyen-moi"
 ---
 
-*Nguồn: Ký sự phía bên kia không gian chiều thứ tư*
+*Nguồn: [Ký sự phía bên kia không gian chiều thứ tư](https://www.facebook.com/photo/?fbid=286472075171946&set=a.278626265956527)*
 
 ![Thái Cực Tượng Đồ Việt Nam](/images/posts/thai-cuc-tuong-do-cua-nuoc-viet-nam-trong-ky-nguyen-moi.jpg)
 
