@@ -1,12 +1,14 @@
 ---
-// Layout component đơn giản cho website
-// Chỉ hiển thị tiêu đề "Phúc Lee"
+// Layout component chính cho website
+// Bao gồm navigation và main content
+import Navigation from './Navigation.astro';
+
 export interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Phúc Lee" } = Astro.props;
+const { title, description = "Phúc Lee - Korean Learner & Content Creator" } = Astro.props;
 ---
 
 <html lang="vi">
@@ -21,6 +23,7 @@ const { title, description = "Phúc Lee" } = Astro.props;
   </head>
   <body>
     <div class="layout">
+      <Navigation />
       <main class="main">
         <slot />
       </main>
@@ -33,11 +36,11 @@ const { title, description = "Phúc Lee" } = Astro.props;
   .layout {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
   }
 
   .main {
-    text-align: center;
+    flex: 1;
+    padding-top: var(--spacing-lg);
   }
 </style>

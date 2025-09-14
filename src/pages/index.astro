@@ -8,51 +8,77 @@ import PostPreview from '../components/Blog/PostPreview.astro';
 ---
 
 <Layout title="Phúc Lee - Korean Learner & Content Creator" description="Phúc Lee - Người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn">
-  <div class="intro">
-    <h1 class="main-title">Phúc Lee</h1>
-    <h2 class="subtitle">Korean Learner & Content Creator</h2>
-    <div class="description">
-      <p>Mình là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của mình, nơi mình chia sẻ ghi chú, khám phá và tài nguyên.</p>
-    </div>
-  </div>
-  
-  <Projects />
-  <Education />
-  <Experience />
-  
-  <section class="recent-posts">
-    <h2 class="section-title">Bài viết mới nhất</h2>
-    <div class="posts-preview">
-      <PostPreview 
-        title="Học bảng chữ cái Hangeul - Bước đầu tiên quan trọng"
-        description="Hướng dẫn chi tiết cách học bảng chữ cái Hangeul từ cơ bản đến nâng cao, với các mẹo nhớ và bài tập thực hành."
-        slug="hoc-hangeul-co-ban"
-      />
-      
-      <PostPreview 
-        title="Những câu chào hỏi cơ bản trong tiếng Hàn"
-        description="Học các cách chào hỏi thông dụng trong tiếng Hàn, từ formal đến informal, phù hợp với mọi tình huống giao tiếp."
-        slug="chao-hoi-co-ban"
-      />
-      
-      <PostPreview 
-        title="Văn hóa tặng quà ở Hàn Quốc"
-        description="Khám phá những quy tắc và phong tục tặng quà của người Hàn Quốc, giúp bạn tránh những sai lầm không đáng có."
-        slug="van-hoa-tang-qua"
-      />
-    </div>
+  <div class="home-page">
+    <section class="intro" id="intro">
+      <div class="intro-content">
+        <h1 class="main-title">Phúc Lee</h1>
+        <h2 class="subtitle">Korean Learner & Content Creator</h2>
+        <div class="description">
+          <p>Mình là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của mình, nơi mình chia sẻ ghi chú, khám phá và tài nguyên.</p>
+        </div>
+      </div>
+    </section>
     
-    <div class="view-all">
-      <a href="/blog" class="view-all-link">Xem tất cả bài viết →</a>
-    </div>
-  </section>
+    <section id="projects">
+      <Projects />
+    </section>
+    
+    <section id="education">
+      <Education />
+    </section>
+    
+    <section id="experience">
+      <Experience />
+    </section>
+    
+    <section class="recent-posts">
+      <h2 class="section-title">Bài viết mới nhất</h2>
+      <div class="posts-preview">
+        <PostPreview 
+          title="Học bảng chữ cái Hangeul - Bước đầu tiên quan trọng"
+          description="Hướng dẫn chi tiết cách học bảng chữ cái Hangeul từ cơ bản đến nâng cao, với các mẹo nhớ và bài tập thực hành."
+          slug="hoc-hangeul-co-ban"
+        />
+        
+        <PostPreview 
+          title="Những câu chào hỏi cơ bản trong tiếng Hàn"
+          description="Học các cách chào hỏi thông dụng trong tiếng Hàn, từ formal đến informal, phù hợp với mọi tình huống giao tiếp."
+          slug="chao-hoi-co-ban"
+        />
+        
+        <PostPreview 
+          title="Văn hóa tặng quà ở Hàn Quốc"
+          description="Khám phá những quy tắc và phong tục tặng quà của người Hàn Quốc, giúp bạn tránh những sai lầm không đáng có."
+          slug="van-hoa-tang-qua"
+        />
+      </div>
+      
+      <div class="view-all">
+        <a href="/blog" class="view-all-link">Xem tất cả bài viết →</a>
+      </div>
+    </section>
+  </div>
 </Layout>
 
 <style>
+  .home-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
   .intro {
+    text-align: center;
+    padding: var(--spacing-3xl) 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .intro-content {
     max-width: 600px;
     margin: 0 auto;
-    padding: var(--spacing-xl);
   }
 
   .main-title {
@@ -123,8 +149,13 @@ import PostPreview from '../components/Blog/PostPreview.astro';
 
   /* Responsive */
   @media (max-width: 768px) {
+    .home-page {
+      padding: 0 var(--spacing-sm);
+    }
+
     .intro {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-2xl) 0;
+      min-height: 50vh;
     }
     
     .main-title {
@@ -143,7 +174,6 @@ import PostPreview from '../components/Blog/PostPreview.astro';
       grid-template-columns: 1fr;
       gap: var(--spacing-md);
     }
-    
     
     .section-title {
       font-size: var(--font-size-2xl);
