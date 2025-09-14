@@ -2,7 +2,7 @@
 title: "Thiên Cơ Dân Tộc: Từ Vó Ngựa Trời Nam Đến Kỷ Nguyên Mới"
 description: "Khám phá sâu sắc về thiên cơ dân tộc Việt Nam qua lăng kính lịch sử và triết lý. Từ sự tương đồng giữa Sử Việt và Kinh Thánh đến hành trình 1000 năm vận hành vũ trụ và dòng chảy lịch sử."
 publishedAt: 2024-01-27
-category: "Triết lý & Văn hóa"
+category: "Văn hóa"
 tags: ["thiên cơ", "lịch sử việt nam", "triết lý dân tộc", "nhân quả", "vận mệnh", "kinh thánh"]
 readingTime: 15
 featured: true

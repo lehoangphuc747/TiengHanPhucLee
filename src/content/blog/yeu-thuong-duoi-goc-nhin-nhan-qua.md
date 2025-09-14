@@ -2,7 +2,7 @@
 title: "Yêu Thương Dưới Góc Nhìn Nhân Quả: Chọn 'Yêu Đại' Hay Chọn Duyên Lành?"
 description: "Khám phá mối quan hệ giữa tình yêu và nhân quả trong Phật pháp. Cách nhận biết người 'nặng nghiệp' hay 'nhẹ nghiệp', và những điều cần lưu ý khi kết hôn từ góc độ nghiệp duyên."
 publishedAt: 2024-01-26
-category: "Triết lý & Văn hóa"
+category: "Văn hóa"
 tags: ["tình yêu", "nhân quả", "nghiệp duyên", "phật pháp", "hôn nhân", "triết lý sống"]
 readingTime: 10
 featured: true
