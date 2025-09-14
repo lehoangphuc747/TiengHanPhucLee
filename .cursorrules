@@ -1,0 +1,65 @@
+# Cursor Rules — Tiếng Hàn Phúc Lee Blog
+
+## Phong cách chung
+- Viết code sạch, component nhỏ, SRP (Single Responsibility Principle).
+- Comment **tiếng Việt súc tích** trên đầu file + trước khối logic.
+- Không nhúng style inline trừ khi rất nhỏ; ưu tiên `*.module.css` hoặc file CSS riêng.
+- Đặt tên rõ nghĩa, tránh viết tắt mơ hồ.
+- Ưu tiên `TypeScript`.
+
+## Tổ chức component
+- Mỗi Page có thư mục riêng trong `src/components/<PageName>/`.
+- Component chung tái sử dụng để trong `src/components/common/`.
+- Props phải có `types` rõ ràng; docs ngắn gọn trong comment.
+
+## CSS & Design System
+- Dùng CSS Modules hoặc file `.css` riêng cho mỗi cụm.
+- Token hoá màu/spacing/font trong `src/assets/styles/tokens.css`.
+- Phong cách minimalist, không gradient.
+- Hỗ trợ tiếng Việt trong typography.
+
+## Cấu trúc dự án
+- `src/components/common/` - Component tái sử dụng
+- `src/components/<PageName>/` - Component cho từng trang
+- `src/types/` - TypeScript definitions
+- `src/utils/` - Utility functions
+- `src/assets/styles/` - CSS tokens và global styles
+
+## Giảm token khi AI đọc
+- Chia file nhỏ: tách hooks, utils, styles.
+- Viết docstring ngắn gọn; tránh paste data lớn vào code.
+- Yêu cầu AI chỉ đọc phạm vi thư mục liên quan.
+
+## Commit message
+- **BẮT BUỘC**: Tất cả commit message phải bằng **tiếng Việt**
+- Format: `feat:`, `fix:`, `refactor:`, `docs:`, `style:`, `chore:`
+- Ví dụ: `feat: thêm component Hero cho trang chủ`
+
+## Yêu cầu khi generate code
+- Viết ví dụ usage ngắn.
+- Thêm TODO nếu còn phần bỏ ngỏ.
+- Comment tiếng Việt cho tất cả functions và components.
+
+## Tech Stack
+- **Astro** - Static site generator
+- **React** - UI components (khi cần interactivity)
+- **TypeScript** - Type safety
+- **CSS Modules** - Scoped styling
+- **Netlify** - Hosting & deployment
+
+## Repository
+- GitHub: https://github.com/lehoangphuc747/TiengHanPhucLee
+- Mỗi lần commit phải có message tiếng Việt
+- Push thường xuyên để backup code
+
+## Nội dung blog
+- Tập trung vào học tiếng Hàn từ cơ bản
+- Bao gồm văn hóa Hàn Quốc
+- Bài học thực tế, dễ hiểu
+- Hỗ trợ người Việt học tiếng Hàn
+
+## SEO & Performance
+- Meta tags tiếng Việt
+- Structured data cho blog posts
+- Optimize images và fonts
+- Mobile-first responsive design

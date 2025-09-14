@@ -1,16 +1,124 @@
 ---
+// Trang chủ blog tiếng Hàn
+// Sử dụng Layout component và các component Home theo quy tắc
+import Layout from '../components/common/Layout.astro';
+import Hero from '../components/Home/Hero.astro';
+import FeatureGrid from '../components/Home/FeatureGrid.astro';
 
+// TODO: Thêm data từ CMS hoặc markdown files
+const features = [
+  {
+    title: "Bài học từ cơ bản",
+    description: "Bắt đầu từ bảng chữ cái Hangeul và những câu giao tiếp đơn giản",
+    icon: "📚"
+  },
+  {
+    title: "Văn hóa Hàn Quốc", 
+    description: "Khám phá phong tục, lễ hội và cách sống của người Hàn",
+    icon: "🇰🇷"
+  },
+  {
+    title: "Luyện tập thực tế",
+    description: "Bài tập và tình huống giao tiếp hàng ngày",
+    icon: "💬"
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Tiếng Hàn Phúc Lee - Học tiếng Hàn dễ dàng" description="Blog học tiếng Hàn từ cơ bản đến nâng cao, khám phá văn hóa Hàn Quốc">
+  <Hero 
+    title="Học tiếng Hàn cùng Phúc Lee"
+    subtitle="Khám phá ngôn ngữ và văn hóa Hàn Quốc qua những bài học thú vị và dễ hiểu"
+    ctaText="Bắt đầu học ngay"
+    ctaLink="/blog"
+  />
+  
+  <FeatureGrid features={features} />
+  
+  <section class="recent-posts">
+    <h2 class="section-title">Bài viết mới nhất</h2>
+    <div class="posts-grid">
+      <!-- TODO: Thêm component PostCard và fetch data từ markdown -->
+      <div class="post-card">
+        <h3>Bảng chữ cái Hangeul - Bước đầu tiên</h3>
+        <p>Học cách đọc và viết bảng chữ cái Hàn Quốc một cách dễ dàng</p>
+        <span class="post-date">15/01/2024</span>
+      </div>
+      
+      <div class="post-card">
+        <h3>Những câu chào hỏi cơ bản</h3>
+        <p>Học cách chào hỏi và giới thiệu bản thân bằng tiếng Hàn</p>
+        <span class="post-date">12/01/2024</span>
+      </div>
+      
+      <div class="post-card">
+        <h3>Văn hóa tặng quà ở Hàn Quốc</h3>
+        <p>Khám phá những quy tắc và phong tục tặng quà của người Hàn</p>
+        <span class="post-date">10/01/2024</span>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .recent-posts {
+    margin-top: var(--spacing-3xl);
+  }
+
+  .section-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    color: var(--color-text);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .post-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    transition: box-shadow var(--transition-fast);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .post-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .post-card p {
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .post-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    
+    .post-card {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>

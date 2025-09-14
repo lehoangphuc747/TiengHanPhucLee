@@ -1,43 +1,84 @@
-# Astro Starter Kit: Minimal
+# Tiếng Hàn Phúc Lee
 
-```sh
-npm create astro@latest -- --template minimal
+Blog học tiếng Hàn từ cơ bản đến nâng cao, khám phá văn hóa Hàn Quốc.
+
+## 🚀 Công nghệ sử dụng
+
+- **Astro** - Static site generator
+- **React** - UI components
+- **TypeScript** - Type safety
+- **CSS Modules** - Scoped styling
+- **Netlify** - Hosting & deployment
+
+## 📁 Cấu trúc dự án
+
+```
+src/
+├── components/
+│   ├── common/          # Component tái sử dụng
+│   │   ├── Layout.astro
+│   │   ├── PostCard.tsx
+│   │   └── PostCard.module.css
+│   └── Home/            # Component cho trang chủ
+│       ├── Hero.astro
+│       └── FeatureGrid.astro
+├── pages/               # Astro pages
+├── types/               # TypeScript definitions
+├── utils/               # Utility functions
+└── assets/
+    └── styles/
+        └── tokens.css   # Design tokens
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🎨 Design System
 
-## 🚀 Project Structure
+- **Phong cách**: Minimalist, không gradient
+- **Typography**: Hỗ trợ tiếng Việt
+- **Colors**: Token hóa trong `tokens.css`
+- **Spacing**: 8px base unit system
+- **Components**: CSS Modules cho scoped styling
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Development
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+# Cài đặt dependencies
+npm install
+
+# Chạy development server
+npm run dev
+
+# Build production
+npm run build
+
+# Preview build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📝 Quy tắc coding
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Component**: Nhỏ, tuân thủ SRP
+- **Comments**: Tiếng Việt súc tích
+- **CSS**: Modules hoặc file riêng
+- **Types**: TypeScript với props rõ ràng
+- **Commit**: Conventional commits
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🚀 Deployment
 
-## 🧞 Commands
+Dự án được cấu hình auto-deploy trên Netlify:
 
-All commands are run from the root of the project, from a terminal:
+```bash
+netlify deploy --prod
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📋 TODO
 
-## 👀 Want to learn more?
+- [ ] Thêm CMS integration (Contentful/Strapi)
+- [ ] Tạo blog post pages với markdown
+- [ ] Thêm search functionality
+- [ ] SEO optimization
+- [ ] Dark mode support
+- [ ] PWA features
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📄 License
+
+MIT License - Xem file [LICENSE](LICENSE) để biết thêm chi tiết.

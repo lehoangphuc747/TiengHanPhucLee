@@ -1,0 +1,92 @@
+---
+// Layout component chung cho toàn bộ website
+// Sử dụng CSS Modules và tuân thủ phong cách minimalist
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Blog cá nhân về tiếng Hàn" } = Astro.props;
+---
+
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/src/assets/styles/tokens.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <header class="header">
+        <nav class="nav">
+          <a href="/" class="nav__link">Trang chủ</a>
+          <a href="/blog" class="nav__link">Blog</a>
+          <a href="/about" class="nav__link">Giới thiệu</a>
+        </nav>
+      </header>
+      
+      <main class="main">
+        <slot />
+      </main>
+      
+      <footer class="footer">
+        <p>&copy; 2024 Tiếng Hàn Phúc Lee. Tất cả quyền được bảo lưu.</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  /* Layout styles - minimalist design */
+  .layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-md) 0;
+  }
+
+  .nav {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-lg);
+  }
+
+  .nav__link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .nav__link:hover {
+    color: var(--color-primary);
+  }
+
+  .main {
+    flex: 1;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    width: 100%;
+  }
+
+  .footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>
