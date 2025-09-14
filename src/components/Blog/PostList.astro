@@ -1,0 +1,91 @@
+---
+// Component hiển thị danh sách bài viết blog
+// Tuân thủ phong cách minimalist, không gradient
+
+import PostCard from './PostCard.astro';
+
+export interface Props {
+  posts: Array<{
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      publishedAt: Date;
+      category: string;
+      tags: string[];
+      readingTime: number;
+      featured?: boolean;
+    };
+  }>;
+  title?: string;
+  description?: string;
+  showTitle?: boolean;
+  className?: string;
+}
+
+const { 
+  posts, 
+  title = "Bài viết",
+  description = "Khám phá những bài viết về học tiếng Hàn và văn hóa Hàn Quốc",
+  showTitle = true,
+  className = ''
+} = Astro.props;
+---
+
+<section class={`post-list ${className}`}>
+  {showTitle && (
+    <header class="post-list__header">
+      <h2 class="post-list__title">{title}</h2>
+      <p class="post-list__description">{description}</p>
+    </header>
+  )}
+
+  <div class="post-list__grid">
+    {posts.map((post) => (
+      <PostCard post={post} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .post-list {
+    margin: var(--spacing-3xl) 0;
+  }
+
+  .post-list__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .post-list__title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .post-list__description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .post-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .post-list__grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+    
+    .post-list__title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>

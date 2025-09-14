@@ -4,6 +4,7 @@ import Layout from '../components/common/Layout.astro';
 import Projects from '../components/Home/Projects.astro';
 import Education from '../components/Home/Education.astro';
 import Experience from '../components/Home/Experience.astro';
+import PostPreview from '../components/Blog/PostPreview.astro';
 ---
 
 <Layout title="Phúc Lee - Korean Learner & Content Creator" description="Phúc Lee - Người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn">
@@ -22,23 +23,23 @@ import Experience from '../components/Home/Experience.astro';
   <section class="recent-posts">
     <h2 class="section-title">Bài viết mới nhất</h2>
     <div class="posts-preview">
-      <div class="post-preview">
-        <h3>Học bảng chữ cái Hangeul - Bước đầu tiên quan trọng</h3>
-        <p>Hướng dẫn chi tiết cách học bảng chữ cái Hangeul từ cơ bản đến nâng cao, với các mẹo nhớ và bài tập thực hành.</p>
-        <a href="/blog/hoc-hangeul-co-ban" class="read-more">Đọc thêm →</a>
-      </div>
+      <PostPreview 
+        title="Học bảng chữ cái Hangeul - Bước đầu tiên quan trọng"
+        description="Hướng dẫn chi tiết cách học bảng chữ cái Hangeul từ cơ bản đến nâng cao, với các mẹo nhớ và bài tập thực hành."
+        slug="hoc-hangeul-co-ban"
+      />
       
-      <div class="post-preview">
-        <h3>Những câu chào hỏi cơ bản trong tiếng Hàn</h3>
-        <p>Học các cách chào hỏi thông dụng trong tiếng Hàn, từ formal đến informal, phù hợp với mọi tình huống giao tiếp.</p>
-        <a href="/blog/chao-hoi-co-ban" class="read-more">Đọc thêm →</a>
-      </div>
+      <PostPreview 
+        title="Những câu chào hỏi cơ bản trong tiếng Hàn"
+        description="Học các cách chào hỏi thông dụng trong tiếng Hàn, từ formal đến informal, phù hợp với mọi tình huống giao tiếp."
+        slug="chao-hoi-co-ban"
+      />
       
-      <div class="post-preview">
-        <h3>Văn hóa tặng quà ở Hàn Quốc</h3>
-        <p>Khám phá những quy tắc và phong tục tặng quà của người Hàn Quốc, giúp bạn tránh những sai lầm không đáng có.</p>
-        <a href="/blog/van-hoa-tang-qua" class="read-more">Đọc thêm →</a>
-      </div>
+      <PostPreview 
+        title="Văn hóa tặng quà ở Hàn Quốc"
+        description="Khám phá những quy tắc và phong tục tặng quà của người Hàn Quốc, giúp bạn tránh những sai lầm không đáng có."
+        slug="van-hoa-tang-qua"
+      />
     </div>
     
     <div class="view-all">
@@ -100,43 +101,6 @@ import Experience from '../components/Home/Experience.astro';
     margin-bottom: var(--spacing-xl);
   }
 
-  .post-preview {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    transition: all var(--transition-fast);
-  }
-
-  .post-preview:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-primary);
-  }
-
-  .post-preview h3 {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
-    line-height: var(--line-height-tight);
-  }
-
-  .post-preview p {
-    color: var(--color-text-muted);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .read-more {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-    transition: color var(--transition-fast);
-  }
-
-  .read-more:hover {
-    color: var(--color-primary-hover);
-  }
 
   .view-all {
     text-align: center;
@@ -180,9 +144,6 @@ import Experience from '../components/Home/Experience.astro';
       gap: var(--spacing-md);
     }
     
-    .post-preview {
-      padding: var(--spacing-lg);
-    }
     
     .section-title {
       font-size: var(--font-size-2xl);

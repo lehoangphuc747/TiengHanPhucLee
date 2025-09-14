@@ -1,0 +1,40 @@
+---
+// Component navigation cho bài viết
+// Tuân thủ phong cách minimalist, không gradient
+
+export interface Props {
+  showBackToBlog?: boolean;
+  className?: string;
+}
+
+const { showBackToBlog = true, className = '' } = Astro.props;
+---
+
+<nav class={`post-navigation ${className}`}>
+  {showBackToBlog && (
+    <a href="/blog" class="post-navigation__back">
+      ← Quay lại danh sách bài viết
+    </a>
+  )}
+</nav>
+
+<style>
+  .post-navigation {
+    margin-top: var(--spacing-3xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-navigation__back {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .post-navigation__back:hover {
+    color: var(--color-primary-hover);
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+// Component hiển thị preview bài viết cho trang chủ
+// Tuân thủ phong cách minimalist, không gradient
+
+export interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  className?: string;
+}
+
+const { title, description, slug, className = '' } = Astro.props;
+---
+
+<div class={`post-preview ${className}`}>
+  <h3 class="post-preview__title">
+    <a href={`/blog/${slug}`} class="post-preview__link">
+      {title}
+    </a>
+  </h3>
+  
+  <p class="post-preview__description">
+    {description}
+  </p>
+  
+  <a href={`/blog/${slug}`} class="post-preview__read-more">
+    Đọc thêm →
+  </a>
+</div>
+
+<style>
+  .post-preview {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-fast);
+  }
+
+  .post-preview:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .post-preview__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-tight);
+  }
+
+  .post-preview__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .post-preview__link:hover {
+    color: var(--color-primary);
+  }
+
+  .post-preview__description {
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .post-preview__read-more {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .post-preview__read-more:hover {
+    color: var(--color-primary-hover);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .post-preview {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>

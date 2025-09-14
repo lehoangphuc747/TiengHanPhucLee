@@ -1,6 +1,7 @@
 ---
 // Trang hiển thị chi tiết bài viết blog
 import Layout from '../../components/common/Layout.astro';
+import PostNavigation from '../../components/Blog/PostNavigation.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -50,13 +51,7 @@ const { Content } = await post.render();
       <Content />
     </div>
 
-    <footer class="post-footer">
-      <div class="post-navigation">
-        <a href="/blog" class="back-to-blog">
-          ← Quay lại danh sách bài viết
-        </a>
-      </div>
-    </footer>
+    <PostNavigation />
   </article>
 </Layout>
 
