@@ -1,0 +1,209 @@
+---
+// Trang danh sách bài viết blog
+import Layout from '../components/common/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Lấy tất cả bài viết từ content collection
+const posts = await getCollection('blog');
+
+// Sắp xếp theo ngày xuất bản (mới nhất trước)
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+);
+---
+
+<Layout title="Bài viết - Phúc Lee" description="Tất cả bài viết về học tiếng Hàn và văn hóa Hàn Quốc">
+  <div class="blog-page">
+    <header class="blog-header">
+      <h1 class="blog-title">Bài viết</h1>
+      <p class="blog-description">Khám phá những bài viết về học tiếng Hàn và văn hóa Hàn Quốc</p>
+    </header>
+
+    <div class="posts-grid">
+      {sortedPosts.map((post) => (
+        <article class="post-card">
+          <div class="post-card__header">
+            <span class="post-card__category">{post.data.category}</span>
+            <time class="post-card__date">
+              {new Date(post.data.publishedAt).toLocaleDateString('vi-VN')}
+            </time>
+          </div>
+          
+          <h2 class="post-card__title">
+            <a href={`/blog/${post.slug}`} class="post-card__link">
+              {post.data.title}
+            </a>
+          </h2>
+          
+          <p class="post-card__description">
+            {post.data.description}
+          </p>
+          
+          <div class="post-card__footer">
+            <div class="post-card__tags">
+              {post.data.tags.slice(0, 3).map((tag) => (
+                <span class="post-card__tag">#{tag}</span>
+              ))}
+            </div>
+            <span class="post-card__reading-time">
+              {post.data.readingTime} phút đọc
+            </span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .blog-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+  }
+
+  .blog-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .blog-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .blog-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .post-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-fast);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .post-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .post-card__category {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-xs);
+  }
+
+  .post-card__date {
+    color: var(--color-text-light);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .post-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-tight);
+  }
+
+  .post-card__link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .post-card__link:hover {
+    color: var(--color-primary);
+  }
+
+  .post-card__description {
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .post-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .post-card__tags {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+  }
+
+  .post-card__tag {
+    background: var(--color-surface-alt);
+    color: var(--color-text-muted);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .post-card__reading-time {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .blog-page {
+      padding: var(--spacing-lg);
+    }
+    
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+    
+    .post-card {
+      padding: var(--spacing-lg);
+    }
+    
+    .post-card__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
+    
+    .post-card__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+    }
+    
+    .blog-title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>
