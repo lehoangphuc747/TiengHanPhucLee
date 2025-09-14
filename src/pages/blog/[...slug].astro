@@ -43,6 +43,14 @@ const { Content } = await post.render();
         <div class="post-details">
           <span class="post-author">Tác giả: {post.data.author}</span>
           <span class="post-reading-time">{post.data.readingTime} phút đọc</span>
+          {post.data.source && (
+            <div class="post-source">
+              <span class="post-source-label">Nguồn:</span>
+              <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post-source-link">
+                {post.data.sourceTitle || 'Xem nguồn'}
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </header>
@@ -147,6 +155,29 @@ const { Content } = await post.render();
   .post-reading-time {
     color: var(--color-text-light);
     font-size: var(--font-size-sm);
+  }
+
+  .post-source {
+    margin-top: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+  }
+
+  .post-source-label {
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+    margin-right: var(--spacing-xs);
+  }
+
+  .post-source-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .post-source-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
   }
 
   .post-content {

@@ -13,8 +13,6 @@ sourceTitle: "Facebook Post"
 
 # THÁI CỰC TƯỢNG ĐỒ CỦA NƯỚC VIỆT NAM TRONG KỶ NGUYÊN MỚI
 
-*Nguồn: [Ký sự phía bên kia không gian chiều thứ tư](https://www.facebook.com/photo/?fbid=286472075171946&set=a.278626265956527)*
-
 ![Thái Cực Tượng Đồ Việt Nam](/images/posts/thai-cuc-tuong-do-cua-nuoc-viet-nam-trong-ky-nguyen-moi.jpg)
 
 ## **I. Những Lưu Ý Căn Bản**
