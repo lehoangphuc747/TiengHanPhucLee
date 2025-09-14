@@ -14,6 +14,8 @@ const blog = defineCollection({
     readingTime: z.number(),
     featured: z.boolean().optional().default(false),
     author: z.string().optional().default('Phúc Lee'),
+    source: z.string().optional(),
+    sourceTitle: z.string().optional(),
   }),
 });
 

@@ -13,6 +13,8 @@ export interface Props {
       tags: string[];
       readingTime: number;
       featured?: boolean;
+      source?: string;
+      sourceTitle?: string;
     };
   };
   className?: string;
@@ -57,6 +59,15 @@ const formatDate = (date: Date) => {
       {post.data.readingTime} phút đọc
     </span>
   </div>
+  
+  {post.data.source && (
+    <div class="post-card__source">
+      <span class="post-card__source-label">Nguồn:</span>
+      <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post-card__source-link">
+        {post.data.sourceTitle || 'Xem nguồn'}
+      </a>
+    </div>
+  )}
 </article>
 
 <style>
@@ -151,6 +162,31 @@ const formatDate = (date: Date) => {
     color: var(--color-text-light);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
+  }
+
+  .post-card__source {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border-light);
+    font-size: var(--font-size-sm);
+  }
+
+  .post-card__source-label {
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+    margin-right: var(--spacing-xs);
+  }
+
+  .post-card__source-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .post-card__source-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
   }
 
   /* Responsive */

@@ -6,7 +6,9 @@ category: "Triết lý & Văn hóa"
 tags: ["thái cực", "tượng đồ", "việt nam", "kỷ nguyên mới", "triết lý phương đông"]
 readingTime: 15
 featured: true
-author: "Phúc Lee"
+author: "Ký sự phía bên kia không gian chiều thứ tư"
+source: "https://www.facebook.com/photo/?fbid=286472075171946&set=a.278626265956527"
+sourceTitle: "Facebook Post"
 ---
 
 # THÁI CỰC TƯỢNG ĐỒ CỦA NƯỚC VIỆT NAM TRONG KỶ NGUYÊN MỚI

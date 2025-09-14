@@ -6,10 +6,12 @@ export interface Props {
   title: string;
   description: string;
   slug: string;
+  source?: string;
+  sourceTitle?: string;
   className?: string;
 }
 
-const { title, description, slug, className = '' } = Astro.props;
+const { title, description, slug, source, sourceTitle, className = '' } = Astro.props;
 ---
 
 <div class={`post-preview ${className}`}>
@@ -23,9 +25,20 @@ const { title, description, slug, className = '' } = Astro.props;
     {description}
   </p>
   
-  <a href={`/blog/${slug}`} class="post-preview__read-more">
-    Đọc thêm →
-  </a>
+  <div class="post-preview__footer">
+    <a href={`/blog/${slug}`} class="post-preview__read-more">
+      Đọc thêm →
+    </a>
+    
+    {source && (
+      <div class="post-preview__source">
+        <span class="post-preview__source-label">Nguồn:</span>
+        <a href={source} target="_blank" rel="noopener noreferrer" class="post-preview__source-link">
+          {sourceTitle || 'Xem nguồn'}
+        </a>
+      </div>
+    )}
+  </div>
 </div>
 
 <style>
@@ -66,6 +79,15 @@ const { title, description, slug, className = '' } = Astro.props;
     margin-bottom: var(--spacing-md);
   }
 
+  .post-preview__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border-light);
+  }
+
   .post-preview__read-more {
     color: var(--color-primary);
     text-decoration: none;
@@ -77,10 +99,38 @@ const { title, description, slug, className = '' } = Astro.props;
     color: var(--color-primary-hover);
   }
 
+  .post-preview__source {
+    font-size: var(--font-size-sm);
+  }
+
+  .post-preview__source-label {
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+    margin-right: var(--spacing-xs);
+  }
+
+  .post-preview__source-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .post-preview__source-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .post-preview {
       padding: var(--spacing-lg);
+    }
+    
+    .post-preview__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
     }
   }
 </style>
