@@ -14,18 +14,18 @@ const { title, category, slug, readingTime, className = '' } = Astro.props;
 ---
 
 <div class={`post-preview ${className}`}>
-  <div class="post-preview__header">
-    <span class="post-preview__category">{category}</span>
-    <span class="post-preview__reading-time">
-      {readingTime} phút đọc
-    </span>
-  </div>
-  
-  <h3 class="post-preview__title">
-    <a href={`/blog/${slug}`} class="post-preview__link">
+  <a href={`/blog/${slug}`} class="post-preview__link">
+    <div class="post-preview__header">
+      <span class="post-preview__category">{category}</span>
+      <span class="post-preview__reading-time">
+        {readingTime} phút đọc
+      </span>
+    </div>
+    
+    <h3 class="post-preview__title">
       {title}
-    </a>
-  </h3>
+    </h3>
+  </a>
 </div>
 
 <style>
@@ -78,6 +78,9 @@ const { title, category, slug, readingTime, className = '' } = Astro.props;
   .post-preview__link {
     color: inherit;
     text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
     transition: color var(--transition-fast);
   }
 
