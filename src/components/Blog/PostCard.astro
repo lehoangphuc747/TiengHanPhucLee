@@ -19,16 +19,20 @@ const { post, className = '' } = Astro.props;
 
 <article class={`post-card ${className}`} data-category={post.data.category}>
   <a href={`/blog/${post.slug}`} class="post-card__link">
-    <div class="post-card__header">
-      <span class="post-card__category">{post.data.category}</span>
-      <span class="post-card__reading-time">
-        {post.data.readingTime} phút đọc
-      </span>
+    <div class="post-card__category">
+      {post.data.category}
     </div>
     
     <h3 class="post-card__title">
       {post.data.title}
     </h3>
+    
+    <div class="post-card__footer">
+      <span class="post-card__author">{post.data.author}</span>
+      <span class="post-card__reading-time">
+        {post.data.readingTime} phút đọc
+      </span>
+    </div>
   </a>
 </article>
 
@@ -50,14 +54,6 @@ const { post, className = '' } = Astro.props;
     border-color: var(--color-primary);
   }
 
-  .post-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-sm);
-  }
-
   .post-card__category {
     background: var(--color-primary);
     color: white;
@@ -65,6 +61,22 @@ const { post, className = '' } = Astro.props;
     border-radius: var(--radius-sm);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-xs);
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .post-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .post-card__author {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
   }
 
   .post-card__reading-time {
@@ -104,7 +116,7 @@ const { post, className = '' } = Astro.props;
       padding: var(--spacing-lg);
     }
     
-    .post-card__header {
+    .post-card__footer {
       flex-direction: column;
       align-items: flex-start;
       gap: var(--spacing-xs);
