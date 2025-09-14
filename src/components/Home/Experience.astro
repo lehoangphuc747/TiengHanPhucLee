@@ -1,0 +1,190 @@
+---
+// Component hiển thị kinh nghiệm làm việc của Phúc Lee
+// Tuân thủ phong cách minimalist, không gradient
+
+export interface ExperienceItem {
+  position: string;
+  company: string;
+  period: string;
+  duration: string;
+  description?: string;
+}
+
+const experienceItems: ExperienceItem[] = [
+  {
+    position: "Dạy Anki",
+    company: "hocanki.com",
+    period: "2022 - Hiện tại",
+    duration: "3 năm 8 tháng",
+    description: "Hướng dẫn và dạy Anki cho cộng đồng học tập"
+  },
+  {
+    position: "Quản lý nhà hàng & Điều hành Tour",
+    company: "Công ty Hàn Quốc tại Nha Trang",
+    period: "03/2024 - 05/2024",
+    duration: "3 tháng",
+    description: "Quản lý hoạt động nhà hàng và điều hành tour du lịch"
+  },
+  {
+    position: "Giảng viên",
+    company: "Trường Đại học Đà Lạt",
+    period: "12/2023 - 03/2024",
+    duration: "4 tháng",
+    description: "Giảng dạy tiếng Hàn tại trường đại học"
+  },
+  {
+    position: "Giảng viên",
+    company: "Trường Hàn Ngữ Việt - Hàn Kanata",
+    period: "05/2023 - 03/2024",
+    duration: "11 tháng",
+    description: "Giảng dạy tiếng Hàn tại trường ngôn ngữ"
+  },
+  {
+    position: "Trợ giảng",
+    company: "Viện King Sejong Đà Lạt",
+    period: "09/2022 - 03/2023",
+    duration: "7 tháng",
+    description: "Hỗ trợ giảng dạy tiếng Hàn tại Viện King Sejong"
+  },
+  {
+    position: "Lễ tân",
+    company: "Biệt Thự Khánh Lâm",
+    period: "2018 - 2022",
+    duration: "5 năm",
+    description: "Làm việc tại bộ phận lễ tân khách sạn"
+  }
+];
+---
+
+<section class="experience">
+  <h2 class="experience__title">Kinh nghiệm làm việc</h2>
+  <div class="experience__list">
+    {experienceItems.map((item) => (
+      <div class="experience-item">
+        <div class="experience-item__header">
+          <h3 class="experience-item__position">{item.position}</h3>
+          <div class="experience-item__meta">
+            <span class="experience-item__period">{item.period}</span>
+            <span class="experience-item__duration">{item.duration}</span>
+          </div>
+        </div>
+        <h4 class="experience-item__company">{item.company}</h4>
+        {item.description && (
+          <p class="experience-item__description">{item.description}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .experience {
+    margin: var(--spacing-3xl) 0;
+  }
+
+  .experience__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .experience__list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .experience-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-fast);
+  }
+
+  .experience-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .experience-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .experience-item__position {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .experience-item__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-xs);
+  }
+
+  .experience-item__period {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .experience-item__duration {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    background: var(--color-surface-alt);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  .experience-item__company {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    margin: 0 0 var(--spacing-xs) 0;
+  }
+
+  .experience-item__description {
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .experience__list {
+      gap: var(--spacing-md);
+    }
+    
+    .experience-item {
+      padding: var(--spacing-lg);
+    }
+    
+    .experience-item__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .experience-item__meta {
+      align-items: flex-start;
+      flex-direction: row;
+      gap: var(--spacing-sm);
+    }
+    
+    .experience__title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
