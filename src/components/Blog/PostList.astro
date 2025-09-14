@@ -68,8 +68,8 @@ const {
   }
 
   .post-list__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-lg);
     width: 100%;
   }
@@ -77,8 +77,7 @@ const {
   /* Responsive */
   @media (max-width: 768px) {
     .post-list__grid {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
+      gap: var(--spacing-md);
     }
     
     .post-list__title {
