@@ -58,6 +58,18 @@
 - Bài học thực tế, dễ hiểu
 - Hỗ trợ người Việt học tiếng Hàn
 
+## Quản lý Category Blog
+- **BẮT BUỘC**: Chỉ sử dụng các category đã được định nghĩa dưới đây
+- **Danh sách category được phép sử dụng:**
+  - `"Văn hóa"` - Bài viết về văn hóa, tâm linh, triết lý sống
+  - `"Phát triển bản thân"` - Bài viết về kỹ năng sống, tâm lý học, thành công
+  - `"Học tập"` - Bài viết về phương pháp học, kỹ năng học tập
+- **Quy tắc thêm category mới:**
+  - Chỉ tạo category mới khi không có category phù hợp trong danh sách trên
+  - Khi tạo category mới, BẮT BUỘC phải cập nhật danh sách này trong `.cursorrules`
+  - Category mới phải có tên ngắn gọn, rõ nghĩa bằng tiếng Việt
+  - Không sử dụng dấu câu đặc biệt trong tên category
+
 ## SEO & Performance
 - Meta tags tiếng Việt
 - Structured data cho blog posts
