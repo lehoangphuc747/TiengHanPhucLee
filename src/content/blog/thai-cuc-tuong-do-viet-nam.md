@@ -2,7 +2,7 @@
 title: "Thái Cực Tượng Đồ của nước Việt Nam trong kỷ nguyên mới"
 description: "Phân tích sâu về đồ hình Thái Cực Tượng Đồ và những dự đoán về thời vận của Việt Nam trong kỷ nguyên mới dựa trên triết lý phương Đông."
 publishedAt: 2024-01-20
-category: "Triết lý & Văn hóa"
+category: "Văn hóa"
 tags: ["thái cực", "tượng đồ", "việt nam", "kỷ nguyên mới", "triết lý phương đông"]
 readingTime: 15
 featured: true

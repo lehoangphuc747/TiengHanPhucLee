@@ -4,41 +4,28 @@
 
 export interface Props {
   title: string;
-  description: string;
+  category: string;
   slug: string;
-  source?: string;
-  sourceTitle?: string;
+  readingTime: number;
   className?: string;
 }
 
-const { title, description, slug, source, sourceTitle, className = '' } = Astro.props;
+const { title, category, slug, readingTime, className = '' } = Astro.props;
 ---
 
 <div class={`post-preview ${className}`}>
+  <div class="post-preview__header">
+    <span class="post-preview__category">{category}</span>
+    <span class="post-preview__reading-time">
+      {readingTime} phút đọc
+    </span>
+  </div>
+  
   <h3 class="post-preview__title">
     <a href={`/blog/${slug}`} class="post-preview__link">
       {title}
     </a>
   </h3>
-  
-  <p class="post-preview__description">
-    {description}
-  </p>
-  
-  <div class="post-preview__footer">
-    <a href={`/blog/${slug}`} class="post-preview__read-more">
-      Đọc thêm →
-    </a>
-    
-    {source && (
-      <div class="post-preview__source">
-        <span class="post-preview__source-label">Nguồn:</span>
-        <a href={source} target="_blank" rel="noopener noreferrer" class="post-preview__source-link">
-          {sourceTitle || 'Xem nguồn'}
-        </a>
-      </div>
-    )}
-  </div>
 </div>
 
 <style>
@@ -55,11 +42,33 @@ const { title, description, slug, source, sourceTitle, className = '' } = Astro.
     border-color: var(--color-primary);
   }
 
+  .post-preview__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .post-preview__category {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-xs);
+  }
+
+  .post-preview__reading-time {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
   .post-preview__title {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
     line-height: var(--line-height-tight);
   }
 
@@ -73,53 +82,6 @@ const { title, description, slug, source, sourceTitle, className = '' } = Astro.
     color: var(--color-primary);
   }
 
-  .post-preview__description {
-    color: var(--color-text-muted);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .post-preview__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: var(--spacing-md);
-    padding-top: var(--spacing-sm);
-    border-top: 1px solid var(--color-border-light);
-  }
-
-  .post-preview__read-more {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-    transition: color var(--transition-fast);
-  }
-
-  .post-preview__read-more:hover {
-    color: var(--color-primary-hover);
-  }
-
-  .post-preview__source {
-    font-size: var(--font-size-sm);
-  }
-
-  .post-preview__source-label {
-    color: var(--color-text-muted);
-    font-weight: var(--font-weight-medium);
-    margin-right: var(--spacing-xs);
-  }
-
-  .post-preview__source-link {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-    transition: color var(--transition-fast);
-  }
-
-  .post-preview__source-link:hover {
-    color: var(--color-primary-dark);
-    text-decoration: underline;
-  }
 
   /* Responsive */
   @media (max-width: 768px) {
@@ -127,10 +89,10 @@ const { title, description, slug, source, sourceTitle, className = '' } = Astro.
       padding: var(--spacing-lg);
     }
     
-    .post-preview__footer {
+    .post-preview__header {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-xs);
     }
   }
 </style>

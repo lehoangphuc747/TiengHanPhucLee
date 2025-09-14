@@ -2,7 +2,7 @@
 title: "Não Bạn Là Một Thằng Sếp Tồi. Hãy Sa Thải Nó"
 description: "Khám phá cách bộ não của chúng ta cản trở thành công và những chiến lược thực tế để vượt qua sự trì hoãn, xây dựng ý chí mạnh mẽ và đạt được mục tiêu."
 publishedAt: 2024-01-21
-category: "Tâm lý học & Phát triển bản thân"
+category: "Phát triển bản thân"
 tags: ["tâm lý học", "phát triển bản thân", "ý chí", "thói quen", "động lực"]
 readingTime: 8
 featured: true

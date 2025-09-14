@@ -2,7 +2,7 @@
 title: "Dậy Sớm Là Trò Nhảm Nhí. Đây Là Sự Thật."
 description: "Phân tích thực tế về việc dậy sớm và những quan niệm sai lầm phổ biến. Tại sao chất lượng giấc ngủ quan trọng hơn thời gian thức dậy và cách xây dựng thói quen hiệu quả."
 publishedAt: 2024-01-23
-category: "Tâm lý học & Phát triển bản thân"
+category: "Phát triển bản thân"
 tags: ["thói quen", "giấc ngủ", "năng suất", "phát triển bản thân", "lối sống"]
 readingTime: 5
 featured: true

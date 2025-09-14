@@ -2,7 +2,7 @@
 title: "14 Sự Thật Phũ Phàng"
 description: "Những chân lý cuộc sống không dễ nghe nhưng cần thiết để trưởng thành. Từ việc đối mặt với xung đột đến chấp nhận sự thất bại, đây là những bài học thực tế về cuộc sống."
 publishedAt: 2024-01-24
-category: "Tâm lý học & Phát triển bản thân"
+category: "Phát triển bản thân"
 tags: ["chân lý cuộc sống", "trưởng thành", "thành công", "thất bại", "lựa chọn"]
 readingTime: 7
 featured: true

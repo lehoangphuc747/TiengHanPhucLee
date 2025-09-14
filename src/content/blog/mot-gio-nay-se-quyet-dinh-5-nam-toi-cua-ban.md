@@ -2,7 +2,7 @@
 title: "Một Giờ Này Sẽ Quyết Định 5 Năm Tới Của Bạn"
 description: "Khám phá tầm quan trọng của giờ đầu tiên trong ngày và cách tận dụng nó để xây dựng tương lai thành công. Kế hoạch 5 bước đơn giản để biến đổi cuộc sống."
 publishedAt: 2024-01-22
-category: "Tâm lý học & Phát triển bản thân"
+category: "Phát triển bản thân"
 tags: ["phát triển bản thân", "quản lý thời gian", "thói quen", "thành công", "kỷ luật"]
 readingTime: 6
 featured: true
