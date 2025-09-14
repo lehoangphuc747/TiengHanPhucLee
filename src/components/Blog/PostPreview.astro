@@ -70,6 +70,9 @@ const { title, category, slug, readingTime, className = '' } = Astro.props;
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     line-height: var(--line-height-tight);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .post-preview__link {
@@ -93,6 +96,12 @@ const { title, category, slug, readingTime, className = '' } = Astro.props;
       flex-direction: column;
       align-items: flex-start;
       gap: var(--spacing-xs);
+    }
+    
+    .post-preview__title {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
     }
   }
 </style>

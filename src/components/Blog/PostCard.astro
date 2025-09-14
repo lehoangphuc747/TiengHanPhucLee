@@ -78,6 +78,9 @@ const { post, className = '' } = Astro.props;
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
     line-height: var(--line-height-tight);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .post-card__link {
@@ -101,6 +104,12 @@ const { post, className = '' } = Astro.props;
       flex-direction: column;
       align-items: flex-start;
       gap: var(--spacing-xs);
+    }
+    
+    .post-card__title {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
     }
   }
 </style>
