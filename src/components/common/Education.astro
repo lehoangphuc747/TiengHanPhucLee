@@ -1,0 +1,175 @@
+---
+// Component hiển thị thông tin học vấn của Phúc Lee
+// Tuân thủ phong cách minimalist, không gradient
+
+export interface EducationItem {
+  degree: string;
+  school: string;
+  period: string;
+  duration: string;
+  location?: string;
+}
+
+const educationItems: EducationItem[] = [
+  {
+    degree: "Thạc sĩ",
+    school: "Trường Đại học Kangwon, Chuncheon",
+    period: "03/2025 - Hiện tại",
+    duration: "6 tháng",
+    location: "Hàn Quốc"
+  },
+  {
+    degree: "Cử nhân", 
+    school: "Trường Đại học Đà Lạt, Lâm Đồng",
+    period: "2019 - 06/2024",
+    duration: "5 năm",
+    location: "Việt Nam"
+  },
+  {
+    degree: "Sinh viên trao đổi",
+    school: "Trường Đại học Wonkwang, Iksan", 
+    period: "03/2023 - 12/2023",
+    duration: "10 tháng",
+    location: "Hàn Quốc"
+  },
+  {
+    degree: "Tốt nghiệp",
+    school: "Trường THPT Bùi Thị Xuân, Đà Lạt",
+    period: "2016 - 2019", 
+    duration: "3 năm",
+    location: "Việt Nam"
+  }
+];
+---
+
+<section class="education">
+  <h2 class="education__title">Học vấn</h2>
+  <div class="education__list">
+    {educationItems.map((item) => (
+      <div class="education-item">
+        <div class="education-item__header">
+          <h3 class="education-item__degree">{item.degree}</h3>
+          <div class="education-item__meta">
+            <span class="education-item__period">{item.period}</span>
+            <span class="education-item__duration">{item.duration}</span>
+          </div>
+        </div>
+        <h4 class="education-item__school">{item.school}</h4>
+        {item.location && (
+          <p class="education-item__location">{item.location}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .education {
+    margin: var(--spacing-3xl) 0;
+  }
+
+  .education__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .education__list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .education-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-fast);
+  }
+
+  .education-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .education-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .education-item__degree {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .education-item__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-xs);
+  }
+
+  .education-item__period {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .education-item__duration {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    background: var(--color-surface-alt);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  .education-item__school {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    margin: 0 0 var(--spacing-xs) 0;
+  }
+
+  .education-item__location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .education__list {
+      gap: var(--spacing-md);
+    }
+    
+    .education-item {
+      padding: var(--spacing-lg);
+    }
+    
+    .education-item__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .education-item__meta {
+      align-items: flex-start;
+      flex-direction: row;
+      gap: var(--spacing-sm);
+    }
+    
+    .education__title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
