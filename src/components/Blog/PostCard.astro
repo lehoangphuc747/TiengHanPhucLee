@@ -17,7 +17,7 @@ export interface Props {
 const { post, className = '' } = Astro.props;
 ---
 
-<article class={`post-card ${className}`}>
+<article class={`post-card ${className}`} data-category={post.data.category}>
   <a href={`/blog/${post.slug}`} class="post-card__link">
     <div class="post-card__header">
       <span class="post-card__category">{post.data.category}</span>

@@ -1,0 +1,137 @@
+---
+// Component filter theo category cho trang blog
+// Tuân thủ phong cách minimalist, không gradient
+
+export interface Props {
+  categories: string[];
+  currentCategory?: string;
+  className?: string;
+}
+
+const { categories, currentCategory = '', className = '' } = Astro.props;
+---
+
+<div class={`category-filter ${className}`}>
+  <div class="category-filter__container">
+    <button 
+      class={`category-filter__item ${currentCategory === '' ? 'active' : ''}`}
+      data-category=""
+    >
+      Tất cả
+    </button>
+    
+    {categories.map((category) => (
+      <button 
+        class={`category-filter__item ${currentCategory === category ? 'active' : ''}`}
+        data-category={category}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Xử lý filter theo category
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.category-filter__item');
+    const postCards = document.querySelectorAll('.post-card');
+    
+    // Lấy category từ URL khi load trang
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentCategory = urlParams.get('category') || '';
+    
+    // Áp dụng filter ban đầu
+    if (currentCategory) {
+      postCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (cardCategory !== currentCategory) {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedCategory = button.getAttribute('data-category');
+        
+        // Cập nhật URL với query parameter
+        const url = new URL(window.location);
+        if (selectedCategory) {
+          url.searchParams.set('category', selectedCategory);
+        } else {
+          url.searchParams.delete('category');
+        }
+        window.history.pushState({}, '', url);
+        
+        // Cập nhật active state
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Filter posts
+        postCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (!selectedCategory || cardCategory === selectedCategory) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .category-filter {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .category-filter__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .category-filter__item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .category-filter__item:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .category-filter__item.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .category-filter__container {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: var(--spacing-xs);
+    }
+
+    .category-filter__item {
+      flex-shrink: 0;
+      font-size: var(--font-size-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+    }
+  }
+</style>
