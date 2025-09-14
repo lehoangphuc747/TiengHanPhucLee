@@ -1,7 +1,7 @@
 ---
 title: 'Tại Sao Sau Khi Công Khai - Tình Yêu Dễ Rạn Nứt?'
 author: 'Bùi Tuấn Sơn'
-pubDate: '2024-07-28'
+publishedAt: 2024-07-28
 category: 'Văn hóa'
 description: 'Một góc nhìn sâu sắc về năng lượng tâm linh và tác động của suy nghĩ đến mối quan hệ tình cảm khi công khai với nhóm bạn.'
 tags: ['tình yêu', 'năng lượng tâm linh', 'tâm lý', 'mối quan hệ']
