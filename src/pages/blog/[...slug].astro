@@ -2,6 +2,7 @@
 // Trang hiển thị chi tiết bài viết blog
 import Layout from '../../components/common/Layout.astro';
 import PostNavigation from '../../components/Blog/PostNavigation.astro';
+import OneDriveVideo from '../../components/common/OneDriveVideo.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -58,6 +59,12 @@ const { Content } = await post.render();
         </div>
       </div>
     </header>
+
+    {post.data.videoUrl && (
+      <div class="post-video">
+        <OneDriveVideo url={post.data.videoUrl} title={post.data.title} />
+      </div>
+    )}
 
     <div class="post-content">
       <Content />
@@ -194,6 +201,10 @@ const { Content } = await post.render();
   .post-source-link:hover {
     color: var(--color-primary-dark);
     text-decoration: underline;
+  }
+
+  .post-video {
+    margin: var(--spacing-2xl) 0;
   }
 
   .post-content {
