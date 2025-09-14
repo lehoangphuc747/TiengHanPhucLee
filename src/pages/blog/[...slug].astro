@@ -40,11 +40,15 @@ const { Content } = await post.render();
             <span class="post-tag">#{tag}</span>
           ))}
         </div>
-        <div class="post-details">
-          <span class="post-author">Tác giả: {post.data.author}</span>
-          <span class="post-reading-time">{post.data.readingTime} phút đọc</span>
+        
+        <div class="post-meta-details">
+          <div class="post-author-info">
+            <span class="post-author">Tác giả: {post.data.author}</span>
+            <span class="post-reading-time">{post.data.readingTime} phút đọc</span>
+          </div>
+          
           {post.data.source && (
-            <div class="post-source">
+            <div class="post-source-info">
               <span class="post-source-label">Nguồn:</span>
               <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post-source-link">
                 {post.data.sourceTitle || 'Xem nguồn'}
@@ -116,10 +120,8 @@ const { Content } = await post.render();
 
   .post-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
+    flex-direction: column;
+    gap: var(--spacing-lg);
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-border);
   }
@@ -128,6 +130,7 @@ const { Content } = await post.render();
     display: flex;
     gap: var(--spacing-xs);
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .post-tag {
@@ -139,10 +142,20 @@ const { Content } = await post.render();
     font-weight: var(--font-weight-medium);
   }
 
-  .post-details {
+  .post-meta-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-md);
+  }
+
+  .post-author-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     gap: var(--spacing-xs);
   }
 
@@ -157,21 +170,24 @@ const { Content } = await post.render();
     font-size: var(--font-size-sm);
   }
 
-  .post-source {
-    margin-top: var(--spacing-xs);
-    font-size: var(--font-size-sm);
+  .post-source-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-xs);
   }
 
   .post-source-label {
     color: var(--color-text-muted);
     font-weight: var(--font-weight-medium);
-    margin-right: var(--spacing-xs);
+    font-size: var(--font-size-sm);
   }
 
   .post-source-link {
     color: var(--color-primary);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
     transition: color var(--transition-fast);
   }
 
@@ -282,13 +298,13 @@ const { Content } = await post.render();
       gap: var(--spacing-sm);
     }
     
-    .post-info {
+    .post-meta-details {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-md);
     }
     
-    .post-details {
+    .post-source-info {
       align-items: flex-start;
     }
     
