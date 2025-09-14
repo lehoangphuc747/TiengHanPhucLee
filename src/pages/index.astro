@@ -1,17 +1,68 @@
 ---
-// Trang chủ đơn giản - chỉ hiển thị tiêu đề "Phúc Lee"
+// Trang chủ giới thiệu về Phúc Lee
 import Layout from '../components/common/Layout.astro';
 ---
 
-<Layout title="Phúc Lee" description="Phúc Lee">
-  <h1 class="main-title">Phúc Lee</h1>
+<Layout title="Phúc Lee - Korean Learner & Content Creator" description="Phúc Lee - Người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn">
+  <div class="intro">
+    <h1 class="main-title">Phúc Lee</h1>
+    <h2 class="subtitle">Korean Learner & Content Creator</h2>
+    <div class="description">
+      <p>Mình là Phúc Lee, một người đam mê ngôn ngữ, ghi lại hành trình học tiếng Hàn của mình. Đây là khu vườn kỹ thuật số của mình, nơi mình chia sẻ ghi chú, khám phá và tài nguyên.</p>
+    </div>
+  </div>
 </Layout>
 
 <style>
+  .intro {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+  }
+
   .main-title {
     font-size: var(--font-size-4xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
+    margin: 0 0 var(--spacing-sm) 0;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--spacing-xl) 0;
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .description p {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
     margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .intro {
+      padding: var(--spacing-lg);
+    }
+    
+    .main-title {
+      font-size: var(--font-size-3xl);
+    }
+    
+    .subtitle {
+      font-size: var(--font-size-lg);
+    }
+    
+    .description p {
+      font-size: var(--font-size-base);
+    }
   }
 </style>
