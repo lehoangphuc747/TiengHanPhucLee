@@ -8,8 +8,22 @@ import TagFilter from '../components/Blog/TagFilter.astro';
 import { getCollection } from 'astro:content';
 import approvedTags from '../content/tags.json';
 
-// Lấy tất cả bài viết từ content collection
-const posts = await getCollection('blog');
+// Lấy tất cả bài viết từ content collection (kèm bộ lọc phòng vệ)
+const allPosts = await getCollection('blog');
+const posts = allPosts.filter((p) => {
+  try {
+    return (
+      p && p.data &&
+      typeof p.data.title === 'string' &&
+      typeof p.data.description === 'string' &&
+      typeof p.data.category === 'string' &&
+      typeof p.data.readingTime === 'number' &&
+      p.data.publishedAt
+    );
+  } catch (_) {
+    return false;
+  }
+});
 
 // Sắp xếp theo ngày xuất bản (mới nhất trước)
 const sortedPosts = posts.sort((a, b) => 
