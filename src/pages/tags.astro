@@ -1,0 +1,102 @@
+---
+import Layout from '../components/common/Layout.astro';
+import { getCollection } from 'astro:content';
+import approvedTags from '../content/tags.json';
+
+const posts = await getCollection('blog');
+
+// Đếm số bài cho từng tag chuẩn
+const tagCount = new Map<string, number>();
+for (const t of approvedTags) tagCount.set(t, 0);
+for (const post of posts) {
+  for (const tag of (post.data.tags || [])) {
+    if (tagCount.has(tag)) tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+  }
+}
+const tags = approvedTags.map((t) => ({ tag: t, count: tagCount.get(t) || 0 }));
+---
+
+<Layout title="Tất cả tags" description="Quản lý và xem tất cả tags của blog">
+  <div class="tags-page">
+    <h1 class="tags-title">Tất cả tags</h1>
+    <p class="tags-desc">Danh sách tag chuẩn cùng số bài viết đang sử dụng.</p>
+
+    <ul class="tags-list">
+      {tags.map(({ tag, count }) => (
+        <li class="tags-item">
+          <a href={`/blog?tag=${encodeURIComponent(tag)}`} class="tags-link">
+            <span class="tags-name">{tag}</span>
+            <span class="tags-count">{count}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .tags-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+  }
+
+  .tags-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .tags-desc {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .tags-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .tags-item {}
+
+  .tags-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    color: var(--color-text);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .tags-link:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tags-name {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .tags-count {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+  }
+
+  @media (max-width: 768px) {
+    .tags-page { padding: var(--spacing-lg); }
+  }
+</style>
+
+
