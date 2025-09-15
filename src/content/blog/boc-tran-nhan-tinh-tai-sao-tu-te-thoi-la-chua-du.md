@@ -4,7 +4,7 @@ author: 'Bùi Tuấn Sơn'
 publishedAt: 2024-07-28
 category: 'Văn hóa'
 description: 'Một góc nhìn trần trụi và gai góc về sự đố kỵ, bản chất của các mối quan hệ và quy luật sinh tồn trong xã hội hiện đại.'
-tags: ['nhân tính', 'đối nhân xử thế', 'tâm lý', 'triết lý sống']
+tags: ['Life']
 readingTime: 8
 ---
 

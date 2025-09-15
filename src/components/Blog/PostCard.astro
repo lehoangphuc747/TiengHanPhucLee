@@ -17,7 +17,7 @@ export interface Props {
 const { post, className = '' } = Astro.props;
 ---
 
-<article class={`post-card ${className}`} data-category={post.data.category} data-tags={(post.data.tags || []).join(', ')}>
+<article class={`post-card ${className}`} data-category={post.data.category} data-tags={(post.data.tags || []).join(', ')} data-subtags={(post.data.subTags || []).join(', ')}>
   <a href={`/blog/${post.slug}`} class="post-card__link">
     <div class="post-card__category">
       {post.data.category}
@@ -38,6 +38,17 @@ const { post, className = '' } = Astro.props;
       <div class="post-card__tags">
         {(post.data.tags.slice(0, 3)).map((tag) => (
           <span class="post-card__tag">{tag}</span>
+        ))}
+      </div>
+    )}
+
+    {(post.data.series || Array.isArray(post.data.subTags)) && (
+      <div class="post-card__series">
+        {post.data.series && (
+          <span class="post-card__series-badge">{post.data.series}</span>
+        )}
+        {Array.isArray(post.data.subTags) && post.data.subTags.slice(0, 3).map((s) => (
+          <span class="post-card__subtag">{s}</span>
         ))}
       </div>
     )}
@@ -103,6 +114,30 @@ const { post, className = '' } = Astro.props;
   .post-card__tag {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+  }
+
+  .post-card__series {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-xs);
+  }
+
+  .post-card__series-badge {
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+    font-size: var(--font-size-xs);
+  }
+
+  .post-card__subtag {
+    background: var(--color-surface);
+    border: 1px dashed var(--color-border);
     border-radius: var(--radius-sm);
     padding: 2px 8px;
     font-size: var(--font-size-xs);

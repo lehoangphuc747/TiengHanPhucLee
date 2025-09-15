@@ -3,7 +3,7 @@ title: "Muốn tu là đời sống phải giản dị"
 description: "Khám phá mối liên hệ giữa lối sống giản dị và con đường tu tập tâm linh. Tại sao sự đơn giản trong đời sống lại là nền tảng quan trọng cho việc tu tập và phát triển tâm linh."
 publishedAt: 2024-01-30
 category: "Văn hóa"
-tags: ["tu tập", "giản dị", "tâm linh", "đời sống", "thiền định", "phật giáo"]
+tags: ["phật giáo"]
 readingTime: 8
 featured: true
 author: "Phúc Lee"

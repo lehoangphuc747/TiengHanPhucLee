@@ -3,7 +3,7 @@ title: "Con Đường Chuyển Hóa: Lộ Trình Tu Tập Toàn Diện cho Ngư�
 description: "Hướng dẫn toàn diện về con đường tu tập Phật giáo từ cơ bản đến nâng cao, bao gồm Tứ Diệu Đế, Bát Chánh Đạo, Tam Vô Lậu Học và cách ứng dụng vào đời sống hàng ngày."
 publishedAt: 2024-01-29
 category: "Văn hóa"
-tags: ["phật giáo", "tu tập", "tứ diệu đế", "bát chánh đạo", "thiền định", "chánh niệm", "giác ngộ"]
+tags: ["phật giáo"]
 readingTime: 25
 featured: true
 author: "Phúc Lee"

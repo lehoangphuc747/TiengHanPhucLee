@@ -1,6 +1,8 @@
 // Cấu hình content collections cho blog
 import { defineCollection, z } from 'astro:content';
 import approvedTags from './tags.json';
+import approvedSeries from './series.json';
+import approvedSubTags from './subtags.json';
 
 // Định nghĩa schema cho blog posts
 const blog = defineCollection({
@@ -23,6 +25,16 @@ const blog = defineCollection({
     source: z.string().optional(),
     sourceTitle: z.string().optional(),
     videoUrl: z.string().optional(),
+    // Series: chuỗi/series chính (ví dụ tên sách)
+    series: z.string().optional().refine((val) => !val || approvedSeries.includes(val), {
+      message: 'Series không hợp lệ. Hãy khai báo series trong src/content/series.json trước khi sử dụng.',
+    }),
+    // Sub-tags: các phần nhỏ trong series (ví dụ Chương 1, Chương 2)
+    subTags: z.array(z.string()).optional()
+      .max(10, { message: 'Tối đa 10 sub-tags cho mỗi bài viết.' })
+      .refine((arr) => !arr || arr.every((t) => approvedSubTags.includes(t)), {
+        message: 'Sub-tag không hợp lệ. Hãy khai báo trong src/content/subtags.json trước khi sử dụng.',
+      }),
   }),
 });
 
