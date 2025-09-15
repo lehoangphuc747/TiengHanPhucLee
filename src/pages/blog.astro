@@ -39,21 +39,14 @@ const tags = [...tagSet].sort();
 const url = new URL(Astro.request.url);
 const selectedCategory = url.searchParams.get('category') || '';
 const selectedTag = url.searchParams.get('tag') || '';
-const selectedSubTag = url.searchParams.get('sub') || '';
 
-// Tính sub-tags theo scope category
-const subTagSet = new Set<string>();
-for (const post of postsInScope) {
-  for (const sub of (post.data.subTags || [])) subTagSet.add(sub);
-}
-const subTags = [...subTagSet].sort();
 ---
 
 <Layout title="Bài viết - Phúc Lee" description="Tất cả bài viết về học tiếng Hàn và văn hóa Hàn Quốc">
   <div class="blog-page">
     <BlogHeader />
     <CategoryFilter categories={categories} currentCategory={selectedCategory} />
-    <TagFilter tags={tags} currentTag={selectedTag} subTags={subTags} currentSubTag={selectedSubTag} />
+    <TagFilter tags={tags} currentTag={selectedTag} />
     <PostList posts={sortedPosts} showTitle={false} />
   </div>
 </Layout>

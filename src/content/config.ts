@@ -2,7 +2,6 @@
 import { defineCollection, z } from 'astro:content';
 import approvedTags from './tags.json';
 import approvedSeries from './series.json';
-import approvedSubTags from './subtags.json';
 
 // Định nghĩa schema cho blog posts
 const blog = defineCollection({
@@ -26,8 +25,7 @@ const blog = defineCollection({
     videoUrl: z.string().optional(),
     // Series: tùy chọn, không ép theo danh sách để tránh loại bài
     series: z.string().optional(),
-    // Sub-tags: tùy chọn, không ép theo danh sách để tránh loại bài
-    subTags: z.array(z.string()).optional().max(20).default([]),
+    // Sub-tags: đã loại bỏ cơ chế sub-tag
   }),
 });
 

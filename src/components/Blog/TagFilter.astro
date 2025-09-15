@@ -6,12 +6,9 @@ export interface Props {
   tags: string[];
   currentTag?: string;
   className?: string;
-  // Sub-tags (ví dụ Chương 1, 2...)
-  subTags?: string[];
-  currentSubTag?: string;
 }
 
-const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' } = Astro.props;
+const { tags, currentTag = '', className = '' } = Astro.props;
 ---
 
 <div class={`tag-filter ${className}`}>
@@ -33,24 +30,6 @@ const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' 
     ))}
   </div>
 
-  {subTags.length > 0 && (
-    <div class="subtag-filter__container">
-      <button 
-        class={`subtag-filter__item ${currentSubTag === '' ? 'active' : ''}`}
-        data-subtag=""
-      >
-        Tất cả sub-tag
-      </button>
-      {subTags.map((s) => (
-        <button 
-          class={`subtag-filter__item ${currentSubTag === s ? 'active' : ''}`}
-          data-subtag={s}
-        >
-          {s}
-        </button>
-      ))}
-    </div>
-  )}
 </div>
 
 <script>
@@ -79,29 +58,23 @@ const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' 
   function updateTagCountsAndVisibility() {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedCategory = urlParams.get('category') || '';
-    const selectedSubTag = urlParams.get('sub') || '';
     const tagButtons = document.querySelectorAll('.tag-filter__item');
-    const subTagButtons = document.querySelectorAll('.subtag-filter__item');
     const postCards = document.querySelectorAll('.post-card');
 
     // Đếm số bài theo tag/sub-tag theo ngữ cảnh category
     const countByTag = new Map<string, number>();
-    const countBySubTag = new Map<string, number>();
     let distinctPosts = 0;
 
     postCards.forEach((card) => {
       const cardCategory = card.getAttribute('data-category') || '';
       const tagsAttr = card.getAttribute('data-tags') || '';
       const tags = tagsAttr.split(',').map(t => t.trim()).filter(Boolean);
-      const subTagsAttr = card.getAttribute('data-subtags') || '';
-      const subTags = subTagsAttr.split(',').map(t => t.trim()).filter(Boolean);
 
       const categoryOk = !selectedCategory || cardCategory === selectedCategory;
       if (!categoryOk) return;
 
       if (tags.length > 0) distinctPosts += 1;
       tags.forEach((t) => countByTag.set(t, (countByTag.get(t) || 0) + 1));
-      subTags.forEach((t) => countBySubTag.set(t, (countBySubTag.get(t) || 0) + 1));
     });
 
     // Cập nhật text nút và ẩn nút tag không có bài trong scope
@@ -120,23 +93,10 @@ const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' 
       }
     });
 
-    // Cập nhật sub-tag buttons
-    subTagButtons.forEach((btn) => {
-      const sub = btn.getAttribute('data-subtag') || '';
-      if (sub) {
-        const c = countBySubTag.get(sub) || 0;
-        btn.style.display = c > 0 ? 'inline-flex' : 'none';
-        btn.textContent = `${sub} (${c})`;
-      } else {
-        const totalSub = Array.from(countBySubTag.values()).reduce((a, b) => a + b, 0);
-        btn.textContent = `Tất cả sub-tag (${totalSub})`;
-      }
-    });
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.tag-filter__item');
-    const subTagButtons = document.querySelectorAll('.subtag-filter__item');
     updateTagCountsAndVisibility();
 
     // Áp dụng filter ban đầu từ URL
@@ -164,26 +124,6 @@ const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' 
       });
     });
 
-    // Sub-tag click
-    subTagButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const selectedSub = button.getAttribute('data-subtag') || '';
-
-        const url = new URL(window.location.href);
-        if (selectedSub) {
-          url.searchParams.set('sub', selectedSub);
-        } else {
-          url.searchParams.delete('sub');
-        }
-        window.history.pushState({}, '', url.toString());
-
-        subTagButtons.forEach((btn) => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        applyFilters();
-        updateTagCountsAndVisibility();
-      });
-    });
   });
 </script>
 
@@ -225,32 +165,6 @@ const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' 
     border-color: var(--color-primary);
   }
 
-  .subtag-filter__container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    align-items: center;
-    margin-top: var(--spacing-md);
-  }
-
-  .subtag-filter__item {
-    background: var(--color-surface);
-    border: 1px dashed var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-xs) var(--spacing-lg);
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    white-space: nowrap;
-  }
-
-  .subtag-filter__item.active,
-  .subtag-filter__item:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
 
   @media (max-width: 768px) {
     .tag-filter__container {

@@ -36,14 +36,9 @@ const { post, className = '' } = Astro.props;
 
     
 
-    {(post.data.series || Array.isArray(post.data.subTags)) && (
+    {post.data.series && (
       <div class="post-card__series">
-        {post.data.series && (
-          <span class="post-card__series-badge">{post.data.series}</span>
-        )}
-        {Array.isArray(post.data.subTags) && post.data.subTags.slice(0, 3).map((s) => (
-          <span class="post-card__subtag">{s}</span>
-        ))}
+        <span class="post-card__series-badge">{post.data.series}</span>
       </div>
     )}
   </a>
@@ -115,14 +110,7 @@ const { post, className = '' } = Astro.props;
     font-size: var(--font-size-xs);
   }
 
-  .post-card__subtag {
-    background: var(--color-surface);
-    border: 1px dashed var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: 2px 8px;
-    font-size: var(--font-size-xs);
-    color: var(--color-text-light);
-  }
+  
 
   .post-card__title {
     font-size: var(--font-size-xl);
