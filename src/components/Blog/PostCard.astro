@@ -36,11 +36,7 @@ const { post, className = '' } = Astro.props;
 
     
 
-    {post.data.series && (
-      <div class="post-card__series">
-        <span class="post-card__series-badge">{post.data.series}</span>
-      </div>
-    )}
+    
   </a>
 </article>
 
@@ -95,20 +91,7 @@ const { post, className = '' } = Astro.props;
 
   
 
-  .post-card__series {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    margin-top: var(--spacing-xs);
-  }
-
-  .post-card__series-badge {
-    background: var(--color-primary);
-    color: #fff;
-    border-radius: var(--radius-sm);
-    padding: 2px 8px;
-    font-size: var(--font-size-xs);
-  }
+  
 
   
 
