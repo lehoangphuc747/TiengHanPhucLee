@@ -136,6 +136,7 @@ const { tags, currentTag = '', className = '', subTags = [], currentSubTag = '' 
 
   document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.tag-filter__item');
+    const subTagButtons = document.querySelectorAll('.subtag-filter__item');
     updateTagCountsAndVisibility();
 
     // Áp dụng filter ban đầu từ URL
