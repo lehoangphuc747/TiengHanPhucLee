@@ -24,10 +24,10 @@ const tags = approvedTags.map((t) => ({ tag: t, count: tagCount.get(t) || 0 }));
     <ul class="tags-list">
       {tags.map(({ tag, count }) => (
         <li class="tags-item">
-          <a href={`/blog?tag=${encodeURIComponent(tag)}`} class="tags-link">
+          <div class="tags-link" role="button">
             <span class="tags-name">{tag}</span>
             <span class="tags-count">{count}</span>
-          </a>
+          </div>
         </li>
       ))}
     </ul>

@@ -68,20 +68,11 @@ const { categories, currentCategory = '', className = '' } = Astro.props;
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         
-        // Áp dụng filter kết hợp
-        if ((window as any).applyBlogFilters) {
-          (window as any).applyBlogFilters();
-        } else {
-          postCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            (card as HTMLElement).style.display = (!selectedCategory || cardCategory === selectedCategory) ? 'block' : 'none';
-          });
-        }
-
-        // Cập nhật lại danh sách tag theo scope category
-        if ((window as any).updateTagCountsAndVisibility) {
-          (window as any).updateTagCountsAndVisibility();
-        }
+        // Chỉ filter theo category
+        postCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          (card as HTMLElement).style.display = (!selectedCategory || cardCategory === selectedCategory) ? 'block' : 'none';
+        });
       });
     });
   });

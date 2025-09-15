@@ -4,7 +4,6 @@ import Layout from '../components/common/Layout.astro';
 import BlogHeader from '../components/Blog/BlogHeader.astro';
 import PostList from '../components/Blog/PostList.astro';
 import CategoryFilter from '../components/Blog/CategoryFilter.astro';
-import TagFilter from '../components/Blog/TagFilter.astro';
 import { getCollection } from 'astro:content';
 import approvedTags from '../content/tags.json';
 
@@ -32,27 +31,12 @@ const sortedPosts = posts.sort((a, b) =>
 
 // Lấy danh sách categories duy nhất
 const categories = [...new Set(posts.map(post => post.data.category))].sort();
-// Tạo danh sách tag theo ngữ cảnh category:
-// - Category = tất cả: hiển thị các tag có ít nhất 1 bài trong toàn hệ thống
-// - Category cụ thể: chỉ hiển thị các tag xuất hiện trong bài thuộc category đó
-const postsInScope = posts.filter((p) => {
-  const url = new URL(Astro.request.url);
-  const selectedCategory = url.searchParams.get('category') || '';
-  return !selectedCategory || p.data.category === selectedCategory;
-});
-
-const tagSet = new Set<string>();
-for (const post of postsInScope) {
-  for (const tag of (post.data.tags || [])) {
-    if (approvedTags.includes(tag)) tagSet.add(tag);
-  }
-}
-const tags = [...tagSet].sort();
+// Bỏ cơ chế filter theo tag: không cần tính toán tags theo scope nữa
 
 // Lấy category từ query parameter
 const url = new URL(Astro.request.url);
 const selectedCategory = url.searchParams.get('category') || '';
-const selectedTag = url.searchParams.get('tag') || '';
+// Bỏ query tag
 
 ---
 
@@ -60,7 +44,6 @@ const selectedTag = url.searchParams.get('tag') || '';
   <div class="blog-page">
     <BlogHeader />
     <CategoryFilter categories={categories} currentCategory={selectedCategory} />
-    <TagFilter tags={tags} currentTag={selectedTag} />
     <PostList posts={sortedPosts} showTitle={false} />
   </div>
 </Layout>
