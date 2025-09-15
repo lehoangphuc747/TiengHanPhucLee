@@ -19,15 +19,12 @@ const { post, className = '' } = Astro.props;
 
 <article class={`post-card ${className}`} data-category={post.data.category} data-tags={(post.data.tags || []).join(', ')} data-subtags={(post.data.subTags || []).join(', ')}>
   <a href={`/blog/${post.slug}`} class="post-card__link">
-    <div class="post-card__category">
-      {post.data.category}
-    </div>
-    
     <h3 class="post-card__title">
       {post.data.title}
     </h3>
     
     <div class="post-card__footer">
+      <span class="post-card__category">{post.data.category}</span>
       <span class="post-card__author">{post.data.author}</span>
       <span class="post-card__reading-time">
         {post.data.readingTime} phút đọc
@@ -66,7 +63,7 @@ const { post, className = '' } = Astro.props;
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-xs);
     display: inline-block;
-    margin-bottom: var(--spacing-sm);
+    margin: 0;
   }
 
   .post-card__footer {
