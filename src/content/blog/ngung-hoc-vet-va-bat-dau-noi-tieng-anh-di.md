@@ -3,7 +3,7 @@ title: "Ngừng học vẹt và bắt đầu nói tiếng Anh đi"
 description: "Phương pháp học tiếng Anh hiệu quả thông qua luyện tập 'đầu ra' có chủ đích. Tại sao hầu hết cách học hiện tại đều sai lầm và cách áp dụng Phương pháp Kịch bản để nói tiếng Anh tự nhiên."
 publishedAt: 2024-01-25
 category: "Học tập"
-tags: ["tiếng anh", "học ngoại ngữ", "phương pháp học", "giao tiếp", "kỹ năng"]
+tags: ["ngoại ngữ"]
 readingTime: 8
 featured: true
 author: "Phúc Lee"

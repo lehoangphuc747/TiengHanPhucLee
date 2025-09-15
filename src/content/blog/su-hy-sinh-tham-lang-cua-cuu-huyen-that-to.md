@@ -3,7 +3,7 @@ title: "Sự Hy Sinh Thầm Lặng Của Cửu Huyền Thất Tổ: Gánh Nghi�
 description: "Khám phá sự hy sinh thầm lặng của tổ tiên trong việc bảo vệ con cháu, khái niệm 'kẹt cơ' và cách báo đáp ân tình đúng đắn qua việc tu tập và tích đức."
 publishedAt: 2024-01-28
 category: "Văn hóa"
-tags: ["cửu huyền thất tổ", "tổ tiên", "tâm linh", "nhân quả", "tu tập", "báo đáp"]
+tags: ["tâm linh"]
 readingTime: 6
 featured: true
 author: "Phúc Lee"

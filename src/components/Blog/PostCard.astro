@@ -34,13 +34,7 @@ const { post, className = '' } = Astro.props;
       </span>
     </div>
 
-    {Array.isArray(post.data.tags) && post.data.tags.length > 0 && (
-      <div class="post-card__tags">
-        {(post.data.tags.slice(0, 3)).map((tag) => (
-          <span class="post-card__tag">{tag}</span>
-        ))}
-      </div>
-    )}
+    
 
     {(post.data.series || Array.isArray(post.data.subTags)) && (
       <div class="post-card__series">
@@ -104,21 +98,7 @@ const { post, className = '' } = Astro.props;
     font-weight: var(--font-weight-medium);
   }
 
-  .post-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    margin-top: var(--spacing-sm);
-  }
-
-  .post-card__tag {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: 2px 8px;
-    font-size: var(--font-size-xs);
-    color: var(--color-text-light);
-  }
+  
 
   .post-card__series {
     display: flex;
