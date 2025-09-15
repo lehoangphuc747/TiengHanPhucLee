@@ -1,6 +1,5 @@
 // Cấu hình content collections cho blog
 import { defineCollection, z } from 'astro:content';
-import approvedTags from './tags.json';
 
 // Định nghĩa schema cho blog posts
 const blog = defineCollection({

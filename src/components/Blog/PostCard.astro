@@ -87,6 +87,8 @@ const { post, className = '' } = Astro.props;
     color: var(--color-text-light);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
+    margin-left: auto;
+    text-align: right;
   }
 
   
@@ -124,12 +126,6 @@ const { post, className = '' } = Astro.props;
   @media (max-width: 768px) {
     .post-card {
       padding: var(--spacing-md);
-    }
-    
-    .post-card__footer {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--spacing-xs);
     }
     
     .post-card__title {
