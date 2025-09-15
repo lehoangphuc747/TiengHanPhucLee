@@ -6,6 +6,7 @@ import PostList from '../components/Blog/PostList.astro';
 import CategoryFilter from '../components/Blog/CategoryFilter.astro';
 import TagFilter from '../components/Blog/TagFilter.astro';
 import { getCollection } from 'astro:content';
+import approvedTags from '../content/tags.json';
 
 // Lấy tất cả bài viết từ content collection
 const posts = await getCollection('blog');
@@ -17,7 +18,19 @@ const sortedPosts = posts.sort((a, b) =>
 
 // Lấy danh sách categories duy nhất
 const categories = [...new Set(posts.map(post => post.data.category))].sort();
-const tags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
+// Đếm tần suất tag và lọc theo danh sách chuẩn, lấy Top 10
+const tagCount = new Map<string, number>();
+for (const post of posts) {
+  for (const tag of (post.data.tags || [])) {
+    if (approvedTags.includes(tag)) {
+      tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+    }
+  }
+}
+const tags = [...tagCount.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 10)
+  .map(([tag]) => tag);
 
 // Lấy category từ query parameter
 const url = new URL(Astro.request.url);

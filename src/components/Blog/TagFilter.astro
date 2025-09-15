@@ -55,6 +55,37 @@ const { tags, currentTag = '', className = '' } = Astro.props;
 
   document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.tag-filter__item');
+    const postCards = document.querySelectorAll('.post-card');
+
+    // Tính số bài theo tag và hiển thị trên nút
+    const countByTag = new Map<string, number>();
+    let totalVisible = 0;
+    postCards.forEach((card) => {
+      const tagsAttr = card.getAttribute('data-tags') || '';
+      const tags = tagsAttr.split(',').map(t => t.trim()).filter(Boolean);
+      if (tags.length > 0) {
+        totalVisible += 1;
+      }
+      tags.forEach((t) => countByTag.set(t, (countByTag.get(t) || 0) + 1));
+    });
+
+    filterButtons.forEach((btn) => {
+      const tag = btn.getAttribute('data-tag') || '';
+      if (tag) {
+        const c = countByTag.get(tag) || 0;
+        // Chỉ cập nhật nếu nút chưa có số lượng
+        if (!/\(\d+\)$/.test(btn.textContent || '')) {
+          btn.textContent = `${tag} (${c})`;
+        }
+      } else {
+        // Nút tất cả tag: hiển thị tổng số bài có tag
+        const cTotal = Array.from(countByTag.values()).reduce((a, b) => a + b, 0);
+        const distinctPosts = totalVisible || postCards.length;
+        if (!/\(\d+\)$/.test(btn.textContent || '')) {
+          btn.textContent = `Tất cả tag (${distinctPosts})`;
+        }
+      }
+    });
 
     // Áp dụng filter ban đầu từ URL
     applyFilters();
