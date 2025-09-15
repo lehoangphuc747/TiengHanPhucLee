@@ -77,6 +77,11 @@ const { categories, currentCategory = '', className = '' } = Astro.props;
             (card as HTMLElement).style.display = (!selectedCategory || cardCategory === selectedCategory) ? 'block' : 'none';
           });
         }
+
+        // Cập nhật lại danh sách tag theo scope category
+        if ((window as any).updateTagCountsAndVisibility) {
+          (window as any).updateTagCountsAndVisibility();
+        }
       });
     });
   });

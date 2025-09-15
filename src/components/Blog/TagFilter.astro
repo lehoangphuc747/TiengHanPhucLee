@@ -52,40 +52,50 @@ const { tags, currentTag = '', className = '' } = Astro.props;
   }
 
   (window as any).applyBlogFilters = applyFilters;
+  (window as any).updateTagCountsAndVisibility = updateTagCountsAndVisibility;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.tag-filter__item');
+  function updateTagCountsAndVisibility() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('category') || '';
+    const tagButtons = document.querySelectorAll('.tag-filter__item');
     const postCards = document.querySelectorAll('.post-card');
 
-    // Tính số bài theo tag và hiển thị trên nút
+    // Đếm số bài theo tag theo ngữ cảnh category
     const countByTag = new Map<string, number>();
-    let totalVisible = 0;
+    let distinctPosts = 0;
+
     postCards.forEach((card) => {
+      const cardCategory = card.getAttribute('data-category') || '';
       const tagsAttr = card.getAttribute('data-tags') || '';
       const tags = tagsAttr.split(',').map(t => t.trim()).filter(Boolean);
-      if (tags.length > 0) {
-        totalVisible += 1;
-      }
+
+      const categoryOk = !selectedCategory || cardCategory === selectedCategory;
+      if (!categoryOk) return;
+
+      if (tags.length > 0) distinctPosts += 1;
       tags.forEach((t) => countByTag.set(t, (countByTag.get(t) || 0) + 1));
     });
 
-    filterButtons.forEach((btn) => {
+    // Cập nhật text nút và ẩn nút tag không có bài trong scope
+    tagButtons.forEach((btn) => {
       const tag = btn.getAttribute('data-tag') || '';
       if (tag) {
         const c = countByTag.get(tag) || 0;
-        // Chỉ cập nhật nếu nút chưa có số lượng
-        if (!/\(\d+\)$/.test(btn.textContent || '')) {
-          btn.textContent = `${tag} (${c})`;
-        }
+        btn.style.display = c > 0 ? 'inline-flex' : 'none';
+        btn.textContent = `${tag} (${c})`;
       } else {
-        // Nút tất cả tag: hiển thị tổng số bài có tag
-        const cTotal = Array.from(countByTag.values()).reduce((a, b) => a + b, 0);
-        const distinctPosts = totalVisible || postCards.length;
-        if (!/\(\d+\)$/.test(btn.textContent || '')) {
-          btn.textContent = `Tất cả tag (${distinctPosts})`;
-        }
+        // Nút Tất cả tag: hiển thị tổng số bài có ít nhất 1 tag trong scope
+        btn.textContent = `Tất cả tag (${distinctPosts})`;
+        // Nếu không có bài nào trong scope, ẩn toàn bộ khối tag-filter
+        const wrapper = document.querySelector('.tag-filter') as HTMLElement | null;
+        if (wrapper) wrapper.style.display = distinctPosts > 0 ? 'block' : 'none';
       }
     });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.tag-filter__item');
+    updateTagCountsAndVisibility();
 
     // Áp dụng filter ban đầu từ URL
     applyFilters();
@@ -108,6 +118,7 @@ const { tags, currentTag = '', className = '' } = Astro.props;
 
         // Áp dụng filter kết hợp
         applyFilters();
+        updateTagCountsAndVisibility();
       });
     });
   });
