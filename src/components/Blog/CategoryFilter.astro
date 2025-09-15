@@ -41,13 +41,13 @@ const { categories, currentCategory = '', className = '' } = Astro.props;
     const urlParams = new URLSearchParams(window.location.search);
     const currentCategory = urlParams.get('category') || '';
     
-    // Áp dụng filter ban đầu
-    if (currentCategory) {
+    // Áp dụng filter ban đầu (kết hợp với tag nếu có)
+    if ((window as any).applyBlogFilters) {
+      (window as any).applyBlogFilters();
+    } else if (currentCategory) {
       postCards.forEach(card => {
         const cardCategory = card.getAttribute('data-category');
-        if (cardCategory !== currentCategory) {
-          card.style.display = 'none';
-        }
+        (card as HTMLElement).style.display = (cardCategory === currentCategory) ? 'block' : 'none';
       });
     }
     
@@ -68,15 +68,15 @@ const { categories, currentCategory = '', className = '' } = Astro.props;
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         
-        // Filter posts
-        postCards.forEach(card => {
-          const cardCategory = card.getAttribute('data-category');
-          if (!selectedCategory || cardCategory === selectedCategory) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+        // Áp dụng filter kết hợp
+        if ((window as any).applyBlogFilters) {
+          (window as any).applyBlogFilters();
+        } else {
+          postCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            (card as HTMLElement).style.display = (!selectedCategory || cardCategory === selectedCategory) ? 'block' : 'none';
+          });
+        }
       });
     });
   });

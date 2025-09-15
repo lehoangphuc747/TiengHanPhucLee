@@ -17,7 +17,7 @@ export interface Props {
 const { post, className = '' } = Astro.props;
 ---
 
-<article class={`post-card ${className}`} data-category={post.data.category}>
+<article class={`post-card ${className}`} data-category={post.data.category} data-tags={(post.data.tags || []).join(', ')}>
   <a href={`/blog/${post.slug}`} class="post-card__link">
     <div class="post-card__category">
       {post.data.category}
@@ -41,7 +41,7 @@ const { post, className = '' } = Astro.props;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     transition: all var(--transition-fast);
     display: flex;
     flex-direction: column;
@@ -62,14 +62,14 @@ const { post, className = '' } = Astro.props;
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-xs);
     display: inline-block;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
   }
 
   .post-card__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
     font-size: var(--font-size-sm);
   }
 
@@ -89,7 +89,7 @@ const { post, className = '' } = Astro.props;
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     line-height: var(--line-height-tight);
     white-space: nowrap;
     overflow: hidden;
@@ -113,7 +113,7 @@ const { post, className = '' } = Astro.props;
   /* Responsive */
   @media (max-width: 768px) {
     .post-card {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-md);
     }
     
     .post-card__footer {

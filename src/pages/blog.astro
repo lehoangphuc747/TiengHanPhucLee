@@ -4,6 +4,7 @@ import Layout from '../components/common/Layout.astro';
 import BlogHeader from '../components/Blog/BlogHeader.astro';
 import PostList from '../components/Blog/PostList.astro';
 import CategoryFilter from '../components/Blog/CategoryFilter.astro';
+import TagFilter from '../components/Blog/TagFilter.astro';
 import { getCollection } from 'astro:content';
 
 // Lấy tất cả bài viết từ content collection
@@ -16,16 +17,19 @@ const sortedPosts = posts.sort((a, b) =>
 
 // Lấy danh sách categories duy nhất
 const categories = [...new Set(posts.map(post => post.data.category))].sort();
+const tags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
 
 // Lấy category từ query parameter
 const url = new URL(Astro.request.url);
 const selectedCategory = url.searchParams.get('category') || '';
+const selectedTag = url.searchParams.get('tag') || '';
 ---
 
 <Layout title="Bài viết - Phúc Lee" description="Tất cả bài viết về học tiếng Hàn và văn hóa Hàn Quốc">
   <div class="blog-page">
     <BlogHeader />
     <CategoryFilter categories={categories} currentCategory={selectedCategory} />
+    <TagFilter tags={tags} currentTag={selectedTag} />
     <PostList posts={sortedPosts} showTitle={false} />
   </div>
 </Layout>

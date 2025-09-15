@@ -1,0 +1,138 @@
+---
+// Component filter theo tag cho trang blog
+// Tuân thủ phong cách minimalist, không gradient
+
+export interface Props {
+  tags: string[];
+  currentTag?: string;
+  className?: string;
+}
+
+const { tags, currentTag = '', className = '' } = Astro.props;
+---
+
+<div class={`tag-filter ${className}`}>
+  <div class="tag-filter__container">
+    <button 
+      class={`tag-filter__item ${currentTag === '' ? 'active' : ''}`}
+      data-tag=""
+    >
+      Tất cả tag
+    </button>
+    
+    {tags.map((tag) => (
+      <button 
+        class={`tag-filter__item ${currentTag === tag ? 'active' : ''}`}
+        data-tag={tag}
+      >
+        {tag}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Hàm áp dụng filter kết hợp category + tag (đặt trên window để tái sử dụng)
+  function applyFilters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('category') || '';
+    const selectedTag = urlParams.get('tag') || '';
+    const postCards = document.querySelectorAll('.post-card');
+
+    postCards.forEach((card) => {
+      const cardCategory = card.getAttribute('data-category') || '';
+      const cardTagsAttr = card.getAttribute('data-tags') || '';
+      const cardTags = cardTagsAttr.split(',').map(t => t.trim()).filter(Boolean);
+
+      const categoryOk = !selectedCategory || cardCategory === selectedCategory;
+      const tagOk = !selectedTag || cardTags.includes(selectedTag);
+
+      (card as HTMLElement).style.display = categoryOk && tagOk ? 'block' : 'none';
+    });
+  }
+
+  (window as any).applyBlogFilters = applyFilters;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.tag-filter__item');
+
+    // Áp dụng filter ban đầu từ URL
+    applyFilters();
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedTag = button.getAttribute('data-tag') || '';
+
+        const url = new URL(window.location.href);
+        if (selectedTag) {
+          url.searchParams.set('tag', selectedTag);
+        } else {
+          url.searchParams.delete('tag');
+        }
+        window.history.pushState({}, '', url.toString());
+
+        // Active state
+        filterButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Áp dụng filter kết hợp
+        applyFilters();
+      });
+    });
+  });
+</script>
+
+<style>
+  .tag-filter {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .tag-filter__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tag-filter__item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xs) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .tag-filter__item:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .tag-filter__item.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .tag-filter__container {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: var(--spacing-xs);
+    }
+
+    .tag-filter__item {
+      flex-shrink: 0;
+      font-size: var(--font-size-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+    }
+  }
+</style>
+
+
