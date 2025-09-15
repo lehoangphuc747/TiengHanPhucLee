@@ -3,9 +3,7 @@
 import Layout from '../components/common/Layout.astro';
 import BlogHeader from '../components/Blog/BlogHeader.astro';
 import PostList from '../components/Blog/PostList.astro';
-import CategoryFilter from '../components/Blog/CategoryFilter.astro';
 import { getCollection } from 'astro:content';
-import approvedTags from '../content/tags.json';
 
 // Lấy tất cả bài viết từ content collection (kèm bộ lọc phòng vệ)
 const allPosts = await getCollection('blog');
@@ -29,21 +27,13 @@ const sortedPosts = posts.sort((a, b) =>
   new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
 );
 
-// Lấy danh sách categories duy nhất
-const categories = [...new Set(posts.map(post => post.data.category))].sort();
-// Bỏ cơ chế filter theo tag: không cần tính toán tags theo scope nữa
-
-// Lấy category từ query parameter
-const url = new URL(Astro.request.url);
-const selectedCategory = url.searchParams.get('category') || '';
-// Bỏ query tag
+// Bỏ cơ chế filter theo category/tag: hiển thị toàn bộ bài viết
 
 ---
 
 <Layout title="Bài viết - Phúc Lee" description="Tất cả bài viết về học tiếng Hàn và văn hóa Hàn Quốc">
   <div class="blog-page">
     <BlogHeader />
-    <CategoryFilter categories={categories} currentCategory={selectedCategory} />
     <PostList posts={sortedPosts} showTitle={false} />
   </div>
 </Layout>
