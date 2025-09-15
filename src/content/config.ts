@@ -13,28 +13,21 @@ const blog = defineCollection({
     publishedAt: z.date(),
     updatedAt: z.date().optional(),
     category: z.string(),
-    // Tags: chỉ cho phép các tag nằm trong danh sách chuẩn và tối đa 4 tag/bài
+    // Tags: nới lỏng để không loại bài viết; quản lý hiển thị bằng TagFilter
     tags: z.array(z.string())
-      .max(4, { message: 'Tối đa 4 tags cho mỗi bài viết.' })
-      .refine((arr) => arr.every((t) => approvedTags.includes(t)), {
-        message: 'Tag không hợp lệ. Hãy khai báo tag trong src/content/tags.json trước khi sử dụng.',
-      }),
+      .max(8, { message: 'Tối đa 8 tags cho mỗi bài viết.' })
+      .optional()
+      .default([]),
     readingTime: z.number(),
     featured: z.boolean().optional().default(false),
     author: z.string().optional().default('Phúc Lee'),
     source: z.string().optional(),
     sourceTitle: z.string().optional(),
     videoUrl: z.string().optional(),
-    // Series: chuỗi/series chính (ví dụ tên sách)
-    series: z.string().optional().refine((val) => !val || approvedSeries.includes(val), {
-      message: 'Series không hợp lệ. Hãy khai báo series trong src/content/series.json trước khi sử dụng.',
-    }),
-    // Sub-tags: các phần nhỏ trong series (ví dụ Chương 1, Chương 2)
-    subTags: z.array(z.string()).optional()
-      .max(10, { message: 'Tối đa 10 sub-tags cho mỗi bài viết.' })
-      .refine((arr) => !arr || arr.every((t) => approvedSubTags.includes(t)), {
-        message: 'Sub-tag không hợp lệ. Hãy khai báo trong src/content/subtags.json trước khi sử dụng.',
-      }),
+    // Series: tùy chọn, không ép theo danh sách để tránh loại bài
+    series: z.string().optional(),
+    // Sub-tags: tùy chọn, không ép theo danh sách để tránh loại bài
+    subTags: z.array(z.string()).optional().max(20).default([]),
   }),
 });
 
